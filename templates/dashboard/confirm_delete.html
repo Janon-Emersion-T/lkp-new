@@ -1,0 +1,25 @@
+{% extends "dashboard/base.html" %}
+
+{% block page_title %}Delete {{ config.singular }}{% endblock %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <form method="post" class="card">
+        {% csrf_token %}
+        <div class="card-status-top bg-danger"></div>
+        <div class="card-body text-center">
+          <span class="avatar avatar-xl bg-danger-lt mb-3">
+            <i class="ti ti-trash fs-1"></i>
+          </span>
+          <h2>Delete this {{ config.singular|lower }}?</h2>
+          <p class="text-muted">This will permanently delete <strong>{{ object }}</strong>. This action cannot be undone.</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <a href="{% url 'dashboard_list' resource=resource %}" class="btn btn-outline-secondary">Cancel</a>
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

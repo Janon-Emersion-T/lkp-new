@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title|default:"Dashboard" }} | LK Professionals</title>
+  <link rel="shortcut icon" href="/assets/image/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="/assets/css/dashboard.css">
+</head>
+<body>
+  <div class="page">
+    <aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <h1 class="navbar-brand navbar-brand-autodark">
+          <a href="{% url 'dashboard' %}">
+            <img src="/assets/image/logo-white.png" height="42" alt="LK Professionals">
+          </a>
+        </h1>
+        <div class="collapse navbar-collapse" id="sidebar-menu">
+          <ul class="navbar-nav pt-lg-3">
+            <li class="nav-item {% if active_resource == 'dashboard' %}active{% endif %}">
+              <a class="nav-link" href="{% url 'dashboard' %}">
+                <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-layout-dashboard"></i></span>
+                <span class="nav-link-title">Command Center</span>
+              </a>
+            </li>
+
+            {% for item in nav_items %}
+              {% if item.resource == "dashboard" %}
+              {% elif item.children %}
+                <li class="nav-item">
+                  <details {% if item.expanded %}open{% endif %}>
+                  <summary class="nav-link">
+                    <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti {{ item.icon }}"></i></span>
+                    <span class="nav-link-title">{{ item.label }}</span>
+                  </summary>
+                  <div class="dashboard-subnav">
+                    {% for child in item.children %}
+                      <a class="dropdown-item {% if active_resource == child.resource %}active{% endif %}" href="{% if child.url_name %}{% url child.url_name %}{% else %}{% url 'dashboard_list' resource=child.resource %}{% endif %}">
+                        {{ child.label }}
+                      </a>
+                    {% endfor %}
+                  </div>
+                  </details>
+                </li>
+              {% else %}
+                <li class="nav-item {% if active_resource == item.resource %}active{% endif %}">
+                  <a class="nav-link" href="{% url 'dashboard_list' resource=item.resource %}">
+                    <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti {{ item.icon }}"></i></span>
+                    <span class="nav-link-title">{{ item.label }}</span>
+                  </a>
+                </li>
+              {% endif %}
+            {% endfor %}
+
+            <li class="nav-item mt-lg-3">
+              <a class="nav-link" href="/admin/">
+                <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-settings"></i></span>
+                <span class="nav-link-title">Django Admin</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-world"></i></span>
+                <span class="nav-link-title">Website</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <header class="navbar navbar-expand-md d-print-none">
+      <div class="container-xl">
+        <div class="navbar-nav flex-row order-md-last ms-auto">
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
+              <span class="avatar avatar-sm bg-primary text-white">{{ request.user.email|default:request.user.username|slice:":1"|upper }}</span>
+              <div class="d-none d-xl-block ps-2">
+                <div>{{ request.user.email|default:request.user.username }}</div>
+                <div class="mt-1 small text-muted">{% if request.user.is_superuser %}Super admin{% else %}Staff{% endif %}</div>
+              </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+              <a href="/admin/" class="dropdown-item">Django Admin</a>
+              <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="dropdown-item" type="submit">Logout</button></form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-wrapper">
+      <div class="page-header d-print-none">
+        <div class="container-xl">
+          <div class="row g-2 align-items-center">
+            <div class="col">
+              <div class="page-pretitle">LK Professionals</div>
+              <h2 class="page-title">{% block page_title %}{{ title|default:"Dashboard" }}{% endblock %}</h2>
+            </div>
+            <div class="col-auto ms-auto d-print-none">
+              {% block page_actions %}{% endblock %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-body">
+        <div class="container-xl">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'warning' %}alert-warning{% elif message.tags == 'info' %}alert-info{% else %}alert-success{% endif %} alert-dismissible" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+
+      <footer class="footer footer-transparent d-print-none">
+        <div class="container-xl text-muted">LK Professionals admin dashboard</div>
+      </footer>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/js/tabler.min.js"></script>
+</body>
+</html>

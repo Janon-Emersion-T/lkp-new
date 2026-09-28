@@ -1,0 +1,24 @@
+<!-- PRELOADER -->
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-glass backdrop-blur-xl transition-opacity duration-500 ease-in-out opacity-0 hidden">
+      <div class="flex flex-col items-center justify-center gap-6">
+    
+        <!-- Logo (Scaled slightly larger for prominence) -->
+        <img src="assets/image/logo-white.png" alt="Logo" class="w-40 sm:w-48 drop-shadow-lg">    
+
+        <!-- Modern Dual-Ring Spinner -->
+        <div class="relative flex items-center justify-center">
+          <!-- Outer Ring: Spinning -->
+          <div class="h-16 w-16 rounded-full border-4 border-gray-200 border-t-primary animate-spin"></div>
+          <!-- Inner Ring: Pulsing/Subtle -->
+          <div class="absolute h-10 w-10 rounded-full border-2 border-primary/30 animate-ping"></div>
+          <!-- Center Dot (Optional aesthetic touch) -->
+          <div class="absolute h-3 w-3 rounded-full bg-primary shadow-[0_0_10px_rgba(var(--primary),0.6)]"></div>
+        </div>
+
+        <!-- Loading Text (Refined Typography) -->
+        <p class="text-sm font-medium tracking-[0.2em] text-gray-100 uppercase">
+          Loading...
+        </p>
+      </div>
+    </div>

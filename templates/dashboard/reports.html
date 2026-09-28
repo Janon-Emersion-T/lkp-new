@@ -1,0 +1,11 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<form method="get" class="d-flex flex-wrap gap-2 align-items-end mb-4">
+<div><label class="form-label" for="start">From</label><input id="start" name="start" type="date" value="{{ start|date:'Y-m-d' }}" class="form-control" required></div>
+<div><label class="form-label" for="end">To</label><input id="end" name="end" type="date" value="{{ end|date:'Y-m-d' }}" class="form-control" required></div>
+<button class="btn btn-primary" type="submit">Apply</button><button class="btn" name="export" value="csv" type="submit"><i class="ti ti-download me-2"></i>Export</button>
+</form>
+<div class="report-metrics">{% for label, value in metrics %}<div><div class="subheader">{{ label }}</div><div class="h2">{{ value }}</div></div>{% endfor %}</div>
+{% for section in sections %}<section class="related-section"><h3>{{ section.title }}</h3><div class="table-responsive"><table class="table"><thead><tr>{% for label in section.headers %}<th>{{ label }}</th>{% endfor %}</tr></thead><tbody>{% for row in section.rows %}<tr>{% for value in row %}<td>{{ value }}</td>{% endfor %}</tr>{% empty %}<tr><td colspan="4" class="text-muted">No records for this period.</td></tr>{% endfor %}</tbody></table></div></section>{% endfor %}
+{% if can_snapshot %}<form method="post">{% csrf_token %}<button class="btn" type="submit"><i class="ti ti-camera me-2"></i>Save snapshot</button></form>{% endif %}
+{% endblock %}

@@ -1,0 +1,921 @@
+<!-- =======================================
+     LKP HEADER SECTION START
+======================================= -->
+
+<!-- =========================================
+     DESKTOP HEADER
+========================================= -->
+<header id="header-v2-desktop"
+        class="site-header lkp-site-header absolute top-0 left-0 w-full hidden xl:block is-sticky">
+
+  <!-- =========================================
+       TOP BAR
+  ========================================= -->
+  <div id="header-address"
+       class="lkp-topbar py-3 px-16 text-white xl:flex justify-between gap-4 flex-wrap hidden">
+
+    <!-- Left: Address & Email -->
+    <div class="flex">
+      <div class="flex gap-2 items-center">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>Vidhan's Lane, Eachchamoddai, Jaffna - 40000, Sri Lanka</span>
+      </div>
+
+      <hr class="h-6 w-px mx-4 bg-[#E1E1E1] border-0">
+
+      <a href="mailto:info@lkprofessionals.com"
+         class="flex gap-2 items-center">
+        <i class="fa-solid fa-envelope"></i>
+        info@lkprofessionals.com
+      </a>
+    </div>
+
+    <!-- Right: Opening Hours & Socials -->
+    <div class="flex">
+      <div class="flex gap-2 items-center">
+        <i class="fa-solid fa-clock"></i>
+        <p>Opening Hours: Mon - Sat: 10:00 - 22:00</p>
+      </div>
+
+      <hr class="h-6 w-px mx-4 bg-[#E1E1E1] border-0">
+
+      <div class="flex gap-4 items-center">
+
+        <a href="https://web.facebook.com/lkprofessionals"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="LKProfessionals on Facebook">
+          <span class="hover:text-primary">
+            <i class="fa-brands fa-facebook"></i>
+          </span>
+        </a>
+
+        <a href="https://x.com/lkprofess"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="LKProfessionals on X">
+          <span class="hover:text-primary">
+            <i class="fa-brands fa-x-twitter"></i>
+          </span>
+        </a>
+
+        <a href="https://www.instagram.com/lkprofessionalspvtltd/"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="LKProfessionals on Instagram">
+          <span class="hover:text-primary">
+            <i class="fa-brands fa-instagram"></i>
+          </span>
+        </a>
+
+        <a href="https://www.linkedin.com/company/lkprofessionals"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="LKProfessionals on LinkedIn">
+          <span class="hover:text-primary">
+            <i class="fa-brands fa-linkedin"></i>
+          </span>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- END TOP BAR -->
+
+
+  <!-- =========================================
+     MAIN NAVIGATION
+========================================== -->
+<div class="lkp-nav-shell bg-white relative z-50 shadow-sm">
+
+  <div
+    class="lkp-nav-inner flex items-center justify-between"
+    style="
+      min-height: 92px;
+      padding-left: 64px;
+      padding-right: 64px;
+    "
+  >
+
+    <!-- =====================================
+         LEFT: LOGO + NAVIGATION
+    ====================================== -->
+    <div class="flex items-center min-w-0">
+
+      <!-- Logo -->
+      <a
+        href="index.html"
+        class="flex items-center shrink-0"
+        style="
+          padding: 10px 0;
+          margin-right: 54px;
+        "
+        aria-label="LKProfessionals Home"
+      >
+        <img
+          src="assets/image/logo.png"
+          alt="LKProfessionals"
+          style="
+            display: block;
+            width: 115px;
+            max-height: 58px;
+            height: auto;
+            object-fit: contain;
+          "
+        >
+      </a>
+
+
+      <!-- Desktop Navigation -->
+      <nav
+        class="hidden xl:flex items-center"
+        aria-label="Main navigation"
+      >
+
+        <ul
+          class="flex items-center text-secondary font-semibold text-lg"
+          style="gap: 46px;"
+        >
+
+          <!-- HOME -->
+          <li class="group">
+            <a
+              href="index.html"
+              class="relative flex items-center py-8 text-[#0E0E0E] hover:text-primary transition-colors duration-300"
+              style="color: var(--lkp-nav-link-color) !important;"
+            >
+              Home
+
+              <span
+                class="absolute bottom-0 left-0 w-full h-0.5 bg-primary
+                       scale-x-0 group-hover:scale-x-100
+                       transition-transform duration-300 origin-left">
+              </span>
+            </a>
+          </li>
+
+
+          <!-- SERVICES -->
+          <li class="group relative">
+
+            <a
+              href="services.html"
+              class="relative flex items-center gap-2 py-8 text-[#0E0E0E] hover:text-primary transition-colors duration-300"
+              style="color: var(--lkp-nav-link-color) !important;"
+            >
+              Services
+
+              <i class="fa-solid fa-chevron-down text-[10px]"></i>
+
+              <span
+                class="absolute bottom-0 left-0 w-full h-0.5 bg-primary
+                       scale-x-0 group-hover:scale-x-100
+                       transition-transform duration-300 origin-left">
+              </span>
+            </a>
+
+            <ul
+              class="absolute top-full left-0 min-w-[240px]
+                     bg-white border-t-2 border-primary
+                     shadow-xl
+                     opacity-0 invisible translate-y-3
+                     group-hover:opacity-100
+                     group-hover:visible
+                     group-hover:translate-y-0
+                     transition-all duration-300"
+            >
+              <li>
+                <a
+                  href="services.html"
+                  class="block px-5 py-3 text-secondary hover:bg-primary hover:text-white transition-colors"
+                >
+                  All Services
+                </a>
+              </li>
+
+              <li class="border-t border-gray-100">
+                <a
+                  href="service single.html"
+                  class="block px-5 py-3 text-secondary hover:bg-primary hover:text-white transition-colors"
+                >
+                  Service Details
+                </a>
+              </li>
+            </ul>
+
+          </li>
+
+
+          <!-- PORTFOLIO -->
+          <li class="group relative">
+
+            <a
+              href="portfolio.html"
+              class="relative flex items-center gap-2 py-8 text-[#0E0E0E] hover:text-primary transition-colors duration-300"
+              style="color: var(--lkp-nav-link-color) !important;"
+            >
+              Portfolio
+
+              <i class="fa-solid fa-chevron-down text-[10px]"></i>
+
+              <span
+                class="absolute bottom-0 left-0 w-full h-0.5 bg-primary
+                       scale-x-0 group-hover:scale-x-100
+                       transition-transform duration-300 origin-left">
+              </span>
+            </a>
+
+            <ul
+              class="absolute top-full left-0 min-w-[240px]
+                     bg-white border-t-2 border-primary
+                     shadow-xl
+                     opacity-0 invisible translate-y-3
+                     group-hover:opacity-100
+                     group-hover:visible
+                     group-hover:translate-y-0
+                     transition-all duration-300"
+            >
+              <li>
+                <a
+                  href="portfolio.html"
+                  class="block px-5 py-3 text-secondary hover:bg-primary hover:text-white transition-colors"
+                >
+                  Our Work
+                </a>
+              </li>
+
+              <li class="border-t border-gray-100">
+                <a
+                  href="portfolio single.html"
+                  class="block px-5 py-3 text-secondary hover:bg-primary hover:text-white transition-colors"
+                >
+                  Project Details
+                </a>
+              </li>
+            </ul>
+
+          </li>
+
+
+          <!-- INSIGHTS -->
+          <li class="group relative">
+
+            <a
+              href="insights.html"
+              class="relative flex items-center gap-2 py-8 text-[#0E0E0E] hover:text-primary transition-colors duration-300"
+              style="color: var(--lkp-nav-link-color) !important;"
+            >
+              Insights
+
+              <i class="fa-solid fa-chevron-down text-[10px]"></i>
+
+              <span
+                class="absolute bottom-0 left-0 w-full h-0.5 bg-primary
+                       scale-x-0 group-hover:scale-x-100
+                       transition-transform duration-300 origin-left">
+              </span>
+            </a>
+
+            <ul
+              class="absolute top-full left-0 min-w-[240px]
+                     bg-white border-t-2 border-primary
+                     shadow-xl
+                     opacity-0 invisible translate-y-3
+                     group-hover:opacity-100
+                     group-hover:visible
+                     group-hover:translate-y-0
+                     transition-all duration-300"
+            >
+              <li>
+                <a
+                  href="insights.html"
+                  class="block px-5 py-3 text-secondary hover:bg-primary hover:text-white transition-colors"
+                >
+                  All Insights
+                </a>
+              </li>
+
+              <li class="border-t border-gray-100">
+                <a
+                  href="insight single.html"
+                  class="block px-5 py-3 text-secondary hover:bg-primary hover:text-white transition-colors"
+                >
+                  Insight Article
+                </a>
+              </li>
+            </ul>
+
+          </li>
+
+
+          <!-- COMPANY -->
+          <li class="group relative">
+
+            <a
+              href="about us.html"
+              class="relative flex items-center gap-2 py-8 text-[#0E0E0E] hover:text-primary transition-colors duration-300"
+              style="color: var(--lkp-nav-link-color) !important;"
+            >
+              Company
+
+              <i class="fa-solid fa-chevron-down text-[10px]"></i>
+
+              <span
+                class="absolute bottom-0 left-0 w-full h-0.5 bg-primary
+                       scale-x-0 group-hover:scale-x-100
+                       transition-transform duration-300 origin-left">
+              </span>
+            </a>
+
+            <ul
+              class="absolute top-full left-0 min-w-[240px]
+                     bg-white border-t-2 border-primary
+                     shadow-xl
+                     opacity-0 invisible translate-y-3
+                     group-hover:opacity-100
+                     group-hover:visible
+                     group-hover:translate-y-0
+                     transition-all duration-300"
+            >
+              <li>
+                <a
+                  href="about us.html"
+                  class="block px-5 py-3 text-secondary hover:bg-primary hover:text-white transition-colors"
+                >
+                  About Us
+                </a>
+              </li>
+
+              <li class="border-t border-gray-100">
+                <a
+                  href="team.html"
+                  class="block px-5 py-3 text-secondary hover:bg-primary hover:text-white transition-colors"
+                >
+                  Our Team
+                </a>
+              </li>
+
+              <li class="border-t border-gray-100">
+                <a
+                  href="careers.html"
+                  class="block px-5 py-3 text-secondary hover:bg-primary hover:text-white transition-colors"
+                >
+                  Careers
+                </a>
+              </li>
+
+              <li class="border-t border-gray-100">
+                <a
+                  href="pricing.html"
+                  class="block px-5 py-3 text-secondary hover:bg-primary hover:text-white transition-colors"
+                >
+                  Pricing
+                </a>
+              </li>
+
+              <li class="border-t border-gray-100">
+                <a
+                  href="faq.html"
+                  class="block px-5 py-3 text-secondary hover:bg-primary hover:text-white transition-colors"
+                >
+                  FAQs
+                </a>
+              </li>
+            </ul>
+
+          </li>
+
+
+          <!-- CONTACT -->
+          <li class="group">
+
+            <a
+              href="contact us.html"
+              class="relative flex items-center py-8 text-[#0E0E0E] hover:text-primary transition-colors duration-300"
+              style="color: var(--lkp-nav-link-color) !important;"
+            >
+              Contact
+
+              <span
+                class="absolute bottom-0 left-0 w-full h-0.5 bg-primary
+                       scale-x-0 group-hover:scale-x-100
+                       transition-transform duration-300 origin-left">
+              </span>
+            </a>
+
+          </li>
+
+        </ul>
+
+      </nav>
+
+    </div>
+
+
+    <!-- =====================================
+         RIGHT: SEARCH + CTA
+    ====================================== -->
+    <div class="hidden xl:flex items-center shrink-0">
+
+
+
+      <!-- Quote CTA -->
+      <a
+        href="#quoteModal"
+        data-quote-open
+        class="btn btn-primary !inline-flex items-center justify-center gap-2"
+        style="
+          min-width: 174px;
+          min-height: 52px;
+          padding-left: 28px;
+          padding-right: 28px;
+        "
+      >
+        <span>Get a Quote</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+</header>
+
+
+<!-- =========================================
+     MOBILE HEADER
+========================================= -->
+<header id="header-v2-mobile"
+        class="site-header lkp-site-header z-50 absolute top-0 w-full block xl:hidden border-b border-gray-600 bg-white is-sticky">
+
+  <div class="lkp-mobile-bar flex items-center justify-between container py-3">
+
+    <!-- Logo -->
+    <a href="index.html"
+       class="flex items-center gap-2"
+       aria-label="LKProfessionals Home">
+
+      <img src="assets/image/logo.png"
+           class="lkp-mobile-logo"
+           alt="LKProfessionals">
+
+    </a>
+
+
+    <!-- Actions -->
+    <div class="flex items-center gap-3">
+
+      <button id="searchBtn-v2-mobile"
+              data-search-open=""
+              class="js-search-open inline-block text-2xl p-3 text-secondary"
+              aria-label="Search">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+      </button>
+
+      <button id="openDrawer"
+              class="text-xl size-10 grid place-items-center border border-secondary rounded-md text-secondary"
+              aria-label="Open Menu">
+
+        <i class="fa-solid fa-bars"></i>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- =========================================
+     DRAWER OVERLAY
+========================================= -->
+<div id="drawerOverlay"
+     class="fixed inset-0 bg-black/40 z-50 hidden">
+</div>
+
+
+<!-- =========================================
+     MOBILE OFF-CANVAS DRAWER
+========================================= -->
+<div id="drawer"
+     class="fixed top-0 left-0 h-full w-80 bg-white shadow transform -translate-x-full transition-transform duration-300 z-50 flex flex-col xl:hidden">
+
+  <!-- Drawer Header -->
+  <div class="flex items-center justify-between p-4 border-b flex-shrink-0">
+
+    <a href="index.html" aria-label="LKProfessionals Home">
+      <img src="assets/image/logo.png"
+           class="lkp-drawer-logo"
+           alt="LKProfessionals">
+    </a>
+
+    <button id="closeDrawer"
+            class="text-xl"
+            aria-label="Close Menu">
+
+      <i class="fa-solid fa-xmark"></i>
+
+    </button>
+
+  </div>
+
+
+  <!-- Scrollable Drawer Content -->
+  <div class="overflow-y-auto flex-grow flex flex-col justify-between gap-5">
+
+    <ul>
+
+      <!-- HOME -->
+      <li class="border-b border-gray-200">
+
+        <a href="index.html"
+           class="block py-3 font-medium text-gray-800 hover:bg-gray-50 hover:text-primary rounded-md px-3 transition-colors duration-200">
+
+          Home
+
+        </a>
+
+      </li>
+
+
+      <!-- SERVICES -->
+      <li class="border-b border-gray-200">
+
+        <button class="w-full flex items-center justify-between py-3 font-medium text-gray-800 hover:bg-gray-50 rounded-md px-3 transition-colors duration-200"
+                onclick="toggleMenu('servicesMenu')"
+                aria-expanded="false">
+
+          Services
+
+          <i class="fa-solid fa-chevron-down text-sm transition-transform duration-200"></i>
+
+        </button>
+
+        <ul id="servicesMenu"
+            class="hidden px-4 border-t border-gray-100 overflow-hidden max-h-0 transition-all duration-300">
+
+          <li class="border-b border-gray-100">
+            <a href="services.html"
+               class="block py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md px-3 transition-colors duration-200">
+              All Services
+            </a>
+          </li>
+
+          <li>
+            <a href="service single.html"
+               class="block py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md px-3 transition-colors duration-200">
+              Service Details
+            </a>
+          </li>
+
+        </ul>
+
+      </li>
+
+
+      <!-- PORTFOLIO -->
+      <li class="border-b border-gray-200">
+
+        <button class="w-full flex items-center justify-between py-3 font-medium text-gray-800 hover:bg-gray-50 rounded-md px-3 transition-colors duration-200"
+                onclick="toggleMenu('portfolioMenu')"
+                aria-expanded="false">
+
+          Portfolio
+
+          <i class="fa-solid fa-chevron-down text-sm transition-transform duration-200"></i>
+
+        </button>
+
+        <ul id="portfolioMenu"
+            class="hidden px-4 border-t border-gray-100 overflow-hidden max-h-0 transition-all duration-300">
+
+          <li class="border-b border-gray-100">
+            <a href="portfolio.html"
+               class="block py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md px-3 transition-colors duration-200">
+              Our Work
+            </a>
+          </li>
+
+          <li>
+            <a href="portfolio single.html"
+               class="block py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md px-3 transition-colors duration-200">
+              Project Details
+            </a>
+          </li>
+
+        </ul>
+
+      </li>
+
+
+      <!-- INSIGHTS -->
+      <li class="border-b border-gray-200">
+
+        <button class="w-full flex items-center justify-between py-3 font-medium text-gray-800 hover:bg-gray-50 rounded-md px-3 transition-colors duration-200"
+                onclick="toggleMenu('insightsMenu')"
+                aria-expanded="false">
+
+          Insights
+
+          <i class="fa-solid fa-chevron-down text-sm transition-transform duration-200"></i>
+
+        </button>
+
+        <ul id="insightsMenu"
+            class="hidden px-4 border-t border-gray-100 overflow-hidden max-h-0 transition-all duration-300">
+
+          <li class="border-b border-gray-100">
+            <a href="insights.html"
+               class="block py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md px-3 transition-colors duration-200">
+              All Insights
+            </a>
+          </li>
+
+          <li>
+            <a href="insight single.html"
+               class="block py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md px-3 transition-colors duration-200">
+              Insight Article
+            </a>
+          </li>
+
+        </ul>
+
+      </li>
+
+
+      <!-- COMPANY -->
+      <li class="border-b border-gray-200">
+
+        <button class="w-full flex items-center justify-between py-3 font-medium text-gray-800 hover:bg-gray-50 rounded-md px-3 transition-colors duration-200"
+                onclick="toggleMenu('companyMenu')"
+                aria-expanded="false">
+
+          Company
+
+          <i class="fa-solid fa-chevron-down text-sm transition-transform duration-200"></i>
+
+        </button>
+
+        <ul id="companyMenu"
+            class="hidden px-4 border-t border-gray-100 overflow-hidden max-h-0 transition-all duration-300">
+
+          <li class="border-b border-gray-100">
+            <a href="about us.html"
+               class="block py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md px-3 transition-colors duration-200">
+              About Us
+            </a>
+          </li>
+
+          <li class="border-b border-gray-100">
+            <a href="team.html"
+               class="block py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md px-3 transition-colors duration-200">
+              Our Team
+            </a>
+          </li>
+
+          <li class="border-b border-gray-100">
+            <a href="careers.html"
+               class="block py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md px-3 transition-colors duration-200">
+              Careers
+            </a>
+          </li>
+
+          <li class="border-b border-gray-100">
+            <a href="pricing.html"
+               class="block py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md px-3 transition-colors duration-200">
+              Pricing
+            </a>
+          </li>
+
+          <li>
+            <a href="faq.html"
+               class="block py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md px-3 transition-colors duration-200">
+              FAQs
+            </a>
+          </li>
+
+        </ul>
+
+      </li>
+
+
+      <!-- CONTACT -->
+      <li class="border-b border-gray-200">
+
+        <a href="contact us.html"
+           class="block py-3 font-medium text-gray-800 hover:bg-gray-50 hover:text-primary rounded-md px-3 transition-colors duration-200">
+
+          Contact
+
+        </a>
+
+      </li>
+
+
+      <!-- CTA -->
+      <li class="p-4">
+
+        <a href="#quoteModal"
+           data-quote-open
+           class="btn btn-primary w-full">
+
+          Get a Quote
+
+          <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+      </li>
+
+    </ul>
+
+
+    <!-- =========================================
+         MOBILE CONTACT INFORMATION
+    ========================================= -->
+    <div class="px-4 pb-6 border-t border-gray-200">
+
+      <div class="space-y-3 mt-4 text-gray-700">
+
+        <!-- Email -->
+        <div class="flex items-center gap-3">
+
+          <i class="fa-solid fa-envelope text-primary text-lg"></i>
+
+          <a href="mailto:info@lkprofessionals.com"
+             class="hover:text-primary">
+
+            info@lkprofessionals.com
+
+          </a>
+
+        </div>
+
+
+        <!-- Location -->
+        <div class="flex items-start gap-3">
+
+          <i class="fa-solid fa-location-dot text-primary text-lg mt-1"></i>
+
+          <span>
+            Vidhan's Lane, Eachchamoddai,<br>
+            Jaffna - 40000, Sri Lanka
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- Social Media -->
+      <div class="flex items-center gap-4 mt-5">
+
+        <a href="https://web.facebook.com/lkprofessionals"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="size-10 flex items-center justify-center rounded-full bg-gray-200 hover:bg-primary text-gray-700 hover:text-white transition"
+           aria-label="Facebook">
+
+          <i class="fa-brands fa-facebook-f"></i>
+
+        </a>
+
+        <a href="https://x.com/lkprofess"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="size-10 flex items-center justify-center rounded-full bg-gray-200 hover:bg-primary text-gray-700 hover:text-white transition"
+           aria-label="X">
+
+          <i class="fa-brands fa-x-twitter"></i>
+
+        </a>
+
+        <a href="https://www.instagram.com/lkprofessionalspvtltd/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="size-10 flex items-center justify-center rounded-full bg-gray-200 hover:bg-primary text-gray-700 hover:text-white transition"
+           aria-label="Instagram">
+
+          <i class="fa-brands fa-instagram"></i>
+
+        </a>
+
+        <a href="https://www.linkedin.com/company/lkprofessionals"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="size-10 flex items-center justify-center rounded-full bg-gray-200 hover:bg-primary text-gray-700 hover:text-white transition"
+           aria-label="LinkedIn">
+
+          <i class="fa-brands fa-linkedin-in"></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =========================================
+     QUOTE REQUEST MODAL
+========================================= -->
+<div id="quoteModal"
+     class="fixed inset-0 invisible opacity-0 transition-all duration-300"
+     style="z-index: 9998;"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="quoteModalTitle">
+
+  <div class="absolute inset-0 bg-secondary/80 backdrop-blur-sm" data-quote-close></div>
+
+  <div class="relative min-h-screen w-full flex items-center justify-center px-4 py-6 sm:px-6">
+    <div class="w-full max-w-3xl max-h-[92vh] overflow-y-auto bg-white rounded-lg shadow-2xl">
+
+      <div class="flex items-start justify-between gap-6 border-b border-gray-100 px-5 py-5 sm:px-8">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-wide text-primary">Request a quote</p>
+          <h2 id="quoteModalTitle" class="mt-1 text-2xl sm:text-3xl font-bold text-secondary">Tell us what you need</h2>
+        </div>
+
+        <button type="button"
+                class="size-10 shrink-0 rounded-full bg-gray-100 text-secondary hover:bg-primary hover:text-white transition-colors"
+                data-quote-close
+                aria-label="Close quote request">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="quoteForm" class="px-5 py-6 sm:px-8 sm:py-8 space-y-5">
+        <div class="grid md:grid-cols-2 gap-5">
+          <label class="block">
+            <span class="block text-sm font-semibold text-secondary mb-2">Full name</span>
+            <input type="text" name="name" required
+                   class="w-full rounded-md border border-gray-200 px-4 py-3 outline-none focus:border-primary"
+                   placeholder="Your name">
+          </label>
+
+          <label class="block">
+            <span class="block text-sm font-semibold text-secondary mb-2">Email address</span>
+            <input type="email" name="email" required
+                   class="w-full rounded-md border border-gray-200 px-4 py-3 outline-none focus:border-primary"
+                   placeholder="you@example.com">
+          </label>
+
+          <label class="block">
+            <span class="block text-sm font-semibold text-secondary mb-2">Phone number</span>
+            <input type="tel" name="phone"
+                   class="w-full rounded-md border border-gray-200 px-4 py-3 outline-none focus:border-primary"
+                   placeholder="+94 77 123 4567">
+          </label>
+
+          <label class="block">
+            <span class="block text-sm font-semibold text-secondary mb-2">Service</span>
+            <select name="service" required
+                    class="w-full rounded-md border border-gray-200 px-4 py-3 outline-none focus:border-primary bg-white">
+              <option value="">Select a service</option>
+              <option>Business Consulting</option>
+              <option>Digital Strategy</option>
+              <option>Accounting & Tax</option>
+              <option>Company Registration</option>
+              <option>Web & Software Solutions</option>
+              <option>Other</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="block">
+          <span class="block text-sm font-semibold text-secondary mb-2">Project details</span>
+          <textarea name="message" rows="5" required
+                    class="w-full rounded-md border border-gray-200 px-4 py-3 outline-none focus:border-primary resize-none"
+                    placeholder="Share a short summary of your requirement, timeline, and budget if available."></textarea>
+        </label>
+
+        <div id="quoteFormStatus"
+             class="hidden rounded-md bg-primary/10 text-secondary px-4 py-3 text-sm"
+             role="status"
+             aria-live="polite"></div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
+          <p class="text-sm text-small-text">We will review your request and contact you shortly.</p>
+          <button type="submit" class="btn btn-primary justify-center">
+            Submit Request
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- =======================================
+     LKP HEADER SECTION END
+======================================= -->

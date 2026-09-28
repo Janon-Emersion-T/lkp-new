@@ -1,0 +1,81 @@
+{% extends "dashboard/base.html" %}
+
+{% block page_title %}{{ config.title }}{% endblock %}
+
+{% block page_actions %}
+<div class="btn-list">
+  {% if resource == 'backups' and request.user.is_superuser %}<form method="post" action="{% url 'dashboard_backup' %}">{% csrf_token %}<button class="btn btn-primary" type="submit"><i class="ti ti-database-export me-2"></i>Create backup</button></form>{% endif %}
+  {% if resource == 'leads' or resource == 'project-tasks' %}<a href="{% url 'dashboard_board' resource=resource %}" class="btn"><i class="ti ti-layout-kanban me-2"></i>Board</a>{% endif %}
+  <a href="?{{ query_string }}&export=csv" class="btn" title="Export CSV"><i class="ti ti-download me-2"></i>Export</a>
+  {% if can_add %}
+  <a href="{% url 'dashboard_create' resource=resource %}" class="btn btn-primary">
+    <i class="ti ti-plus me-2"></i>
+    Add {{ config.singular }}
+  </a>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block content %}
+  <div class="mb-3">
+          <form method="get" class="d-flex flex-wrap gap-2 align-items-center">
+            <span class="text-muted me-auto">{{ page_obj.paginator.count }} records</span>
+            <div class="input-icon">
+              <span class="input-icon-addon"><i class="ti ti-search"></i></span>
+              <input type="search" name="q" value="{{ query }}" class="form-control" placeholder="Search {{ config.title|lower }}">
+            </div>
+            {% if status_choices %}<select class="form-select filter-select" name="status" aria-label="Status"><option value="">All statuses</option>{% for value, label in status_choices %}<option value="{{ value }}" {% if selected_status == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>{% endif %}
+            <button class="btn" type="submit"><i class="ti ti-filter me-2"></i>Filter</button>
+            <a class="btn btn-ghost-secondary" href="{% url 'dashboard_list' resource=resource %}">Reset</a>
+          </form>
+  </div>
+
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table card-table table-vcenter">
+        <thead>
+          <tr>
+            {% for field, label in config.columns %}
+              <th>{{ label }}</th>
+            {% endfor %}
+            <th class="w-1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+            <tr>
+              {% for value in row.values %}
+                <td>{% if forloop.first %}<a class="fw-semibold" href="{% url 'dashboard_detail' resource=resource pk=row.object.pk %}">{{ value }}</a>{% else %}{{ value }}{% endif %}</td>
+              {% endfor %}
+              <td class="text-end">
+                <div class="btn-list flex-nowrap">
+                  <a href="{% url 'dashboard_detail' resource=resource pk=row.object.pk %}" class="btn btn-sm btn-icon" title="Open record" aria-label="Open record"><i class="ti ti-eye"></i></a>
+                  {% if can_change %}<a href="{% url 'dashboard_edit' resource=resource pk=row.object.pk %}" class="btn btn-sm btn-icon" title="Edit" aria-label="Edit"><i class="ti ti-pencil"></i></a>{% endif %}
+                  {% if can_delete %}<a href="{% url 'dashboard_delete' resource=resource pk=row.object.pk %}" class="btn btn-sm btn-icon text-danger" title="Delete" aria-label="Delete"><i class="ti ti-trash"></i></a>{% endif %}
+                </div>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="8" class="text-center text-muted py-5">No {{ config.title|lower }} found.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {% if page_obj.has_other_pages %}
+    <div class="d-flex justify-content-end mt-3">
+      <ul class="pagination">
+        {% if page_obj.has_previous %}
+          <li class="page-item"><a class="page-link" href="?{{ query_string }}&page={{ page_obj.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        <li class="page-item active"><span class="page-link">{{ page_obj.number }}</span></li>
+        {% if page_obj.has_next %}
+          <li class="page-item"><a class="page-link" href="?{{ query_string }}&page={{ page_obj.next_page_number }}">Next</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  {% endif %}
+{% endblock %}

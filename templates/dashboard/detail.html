@@ -1,0 +1,36 @@
+{% extends 'dashboard/base.html' %}
+{% block page_actions %}
+<div class="btn-list">
+  {% if public_url %}<a class="btn" href="{{ public_url }}" target="_blank" rel="noopener"><i class="ti ti-external-link me-2"></i>View published page</a>{% endif %}
+  <a class="btn" href="{% url 'dashboard_list' resource=resource %}"><i class="ti ti-arrow-left me-2"></i>{{ config.title }}</a>
+  {% if can_pdf %}<a class="btn" href="{% url 'dashboard_document' resource=resource pk=object.pk %}"><i class="ti ti-file-type-pdf me-2"></i>{% if resource == 'clients' %}Statement{% else %}Download PDF{% endif %}</a>{% endif %}
+  {% if can_change %}<a class="btn btn-primary" href="{% url 'dashboard_edit' resource=resource pk=object.pk %}"><i class="ti ti-pencil me-2"></i>Edit</a>{% endif %}
+</div>
+{% endblock %}
+{% block content %}
+{% if duplicates %}<div class="alert alert-warning">Possible duplicate leads: {% for lead in duplicates %}<a href="{% url 'dashboard_detail' resource='leads' pk=lead.pk %}">{{ lead.name }} (#{{ lead.pk }})</a>{% if not forloop.last %}, {% endif %}{% endfor %}</div>{% endif %}
+{% if financials %}<div class="row g-3 mb-4">{% for label, value in financials %}<div class="col-sm"><div class="subheader">{{ label }}</div><div class="h2">{{ value|floatformat:2 }}</div></div>{% endfor %}</div>{% endif %}
+<div class="btn-list mb-4">
+{% for operation, label in actions %}<form method="post" action="{% url 'dashboard_action' resource=resource pk=object.pk operation=operation %}">{% csrf_token %}<button class="btn" type="submit">{{ label }}</button></form>{% endfor %}
+{% if can_convert and not object.converted_lead_id %}<form method="post" action="{% url 'convert_enquiry' pk=object.pk %}">{% csrf_token %}<button class="btn btn-primary" type="submit">Convert to CRM lead</button></form>{% endif %}
+{% if resource == 'projects' %}<a class="btn" href="{% url 'dashboard_board' resource='project-tasks' %}?project={{ object.pk }}"><i class="ti ti-layout-kanban me-2"></i>Task board</a>{% endif %}
+</div>
+{% if can_add_item and object.status == 'draft' %}
+<form class="d-flex gap-2 mb-4" method="post" action="{% url 'dashboard_action' resource=resource pk=object.pk operation='package' %}">{% csrf_token %}<select name="package" class="form-select" required aria-label="Service package"><option value="">Select a service package</option>{% for package in packages %}<option value="{{ package.pk }}">{{ package.title }} - {{ package.price }}</option>{% endfor %}</select><button class="btn" type="submit">Add package</button></form>
+{% endif %}
+<div class="record-layout">
+<section>
+<h3>Record Details</h3>
+<dl class="record-fields">{% for label, value in fields %}<div><dt>{{ label }}</dt><dd>{{ value|linebreaksbr }}</dd></div>{% endfor %}</dl>
+{% if object.file_url %}<a href="{{ object.file_url }}" class="btn"><i class="ti ti-download me-2"></i>Open file</a>{% endif %}
+</section>
+<div>
+{% for section in related %}
+<section class="related-section">
+  <div class="d-flex flex-wrap align-items-center gap-2 mb-2"><h3 class="mb-0">{{ section.title }} <span class="badge bg-secondary-lt">{{ section.count }}</span></h3><a class="ms-auto" href="{% url 'dashboard_list' resource=section.resource %}?{{ section.fk }}={{ object.pk }}">View all</a>{% if section.can_add %}<a class="btn btn-sm btn-icon" title="Add {{ section.title }}" aria-label="Add {{ section.title }}" href="{% url 'dashboard_create' resource=section.resource %}?{{ section.fk }}={{ object.pk }}"><i class="ti ti-plus"></i></a>{% endif %}</div>
+  {% for item in section.items %}<a class="related-row" href="{% url 'dashboard_detail' resource=section.resource pk=item.pk %}"><span>{{ item }}</span><span class="text-muted">{{ item.get_status_display }}{% if item.total %} {{ item.total }}{% endif %}</span><i class="ti ti-chevron-right"></i></a>{% empty %}<p class="text-muted py-3">No records yet.</p>{% endfor %}
+</section>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,152 @@
+{% extends "dashboard/base.html" %}
+
+{% block page_actions %}
+  <a href="{% url 'dashboard_list' resource='leads' %}" class="btn btn-primary">
+    <i class="ti ti-message-2 me-2"></i>
+    View Leads
+  </a>
+{% endblock %}
+
+{% block content %}
+  <div class="row row-deck row-cards">
+    {% for stat in dashboard_stats %}
+      <div class="col-sm-6 col-lg-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="subheader">{{ stat.label }}</div>
+              <div class="ms-auto">
+                <span class="avatar avatar-sm bg-{{ stat.tone }}-lt">
+                  <i class="ti {{ stat.icon }}"></i>
+                </span>
+              </div>
+            </div>
+            <div class="h1 mb-2">{{ stat.value }}</div>
+            <div class="text-muted">{{ stat.change }}</div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Website Enquiries</h3>
+          <div class="card-actions">
+            <a href="{% url 'dashboard_list' resource='enquiries' %}" class="btn btn-outline-primary btn-sm">Open Inbox</a>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table card-table table-vcenter">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Source</th>
+                <th>Service</th>
+                <th>Status</th>
+                <th>Received</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for enquiry in recent_requests %}
+                <tr>
+                  <td>
+                    <a href="{% url 'dashboard_edit' resource='enquiries' pk=enquiry.pk %}" class="fw-semibold">{{ enquiry.name }}</a>
+                    <div class="text-muted small">{{ enquiry.email }}</div>
+                  </td>
+                  <td><span class="badge bg-blue-lt">{{ enquiry.get_source_display }}</span></td>
+                  <td>{{ enquiry.service|default:"-" }}</td>
+                  <td><span class="badge bg-primary-lt">{{ enquiry.get_status_display }}</span></td>
+                  <td class="text-muted">{{ enquiry.created_at|date:"M j, Y H:i" }}</td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="5" class="text-center text-muted py-5">No website enquiries yet.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h3 class="card-title">Alerts</h3>
+        </div>
+        <div class="list-group list-group-flush">
+          {% for alert in alerts %}
+            <div class="list-group-item">
+              <div class="row align-items-center">
+                <div class="col-auto"><span class="status-dot status-dot-animated bg-{{ alert.tone }}"></span></div>
+                <div class="col">
+                  <div class="fw-semibold">{{ alert.title }}</div>
+                  <div class="text-muted small">{{ alert.message }}</div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Quick Create</h3>
+        </div>
+        <div class="list-group list-group-flush">
+          <a href="{% url 'dashboard_create' resource='insights' %}" class="list-group-item list-group-item-action">
+            <i class="ti ti-news me-2 text-primary"></i>
+            New insight
+          </a>
+          <a href="{% url 'dashboard_create' resource='portfolios' %}" class="list-group-item list-group-item-action">
+            <i class="ti ti-briefcase me-2 text-primary"></i>
+            New portfolio item
+          </a>
+          <a href="{% url 'dashboard_create' resource='newsletters' %}" class="list-group-item list-group-item-action">
+            <i class="ti ti-mail me-2 text-primary"></i>
+            New newsletter
+          </a>
+          <a href="{% url 'dashboard_create' resource='service-areas' %}" class="list-group-item list-group-item-action">
+            <i class="ti ti-map-pin me-2 text-primary"></i>
+            New service area
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Recent Activity</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table card-table table-vcenter">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Record</th>
+                <th>Detail</th>
+                <th>When</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in recent_activity %}
+                <tr>
+                  <td><span class="badge bg-secondary-lt">{{ item.type }}</span></td>
+                  <td class="fw-semibold">{{ item.label }}</td>
+                  <td>{{ item.detail }}</td>
+                  <td class="text-muted">{{ item.created_at|date:"M j, Y H:i" }}</td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="4" class="text-center text-muted py-5">No activity yet.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

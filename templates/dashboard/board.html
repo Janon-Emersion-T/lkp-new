@@ -1,0 +1,18 @@
+{% extends 'dashboard/base.html' %}
+{% block page_actions %}<a class="btn" href="{% url 'dashboard_list' resource=resource %}"><i class="ti ti-list me-2"></i>List</a>{% endblock %}
+{% block content %}
+<div class="kanban">
+{% for column in columns %}
+<section class="kanban-column"><h3>{{ column.label }} <span class="badge bg-secondary-lt">{{ column.items|length }}</span></h3>
+{% for item in column.items %}
+<article class="card mb-3"><div class="card-body">
+<a class="fw-semibold" href="{% url 'dashboard_detail' resource=resource pk=item.pk %}">{% if resource == 'leads' %}{{ item.name }}{% else %}{{ item.title }}{% endif %}</a>
+<p class="text-muted small mt-2">{% if resource == 'leads' %}{{ item.service }} &middot; {{ item.estimated_value }}{% else %}{{ item.project }}<br>{{ item.assigned_to|default:'Unassigned' }}{% endif %}</p>
+{% if item.due_date %}<p class="small">Due {{ item.due_date }}</p>{% endif %}
+{% if can_change %}<form method="post" action="{% url 'dashboard_move' resource=resource pk=item.pk %}">{% csrf_token %}<input type="hidden" name="project" value="{{ project }}"><div class="d-flex gap-1"><select class="form-select form-select-sm" name="status" aria-label="Status for {{ item }}">{% for value, label in statuses %}<option value="{{ value }}" {% if item.status == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select><button class="btn btn-sm btn-icon" title="Update status" aria-label="Update status" type="submit"><i class="ti ti-check"></i></button></div>{% if resource == 'leads' %}<input class="form-control form-control-sm mt-2" name="lost_reason" value="{{ item.lost_reason }}" placeholder="Lost reason" aria-label="Lost reason">{% endif %}</form>{% endif %}
+</div></article>
+{% empty %}<p class="text-muted small">No items</p>{% endfor %}
+</section>
+{% endfor %}
+</div>
+{% endblock %}

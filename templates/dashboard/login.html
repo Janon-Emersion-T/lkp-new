@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login | LK Professionals</title>
+  <link rel="shortcut icon" href="/assets/image/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+<body class="d-flex flex-column bg-light">
+  <div class="page page-center">
+    <div class="container container-tight py-4">
+      <div class="text-center mb-4">
+        <a href="/" class="navbar-brand navbar-brand-autodark">
+          <img src="/assets/image/logo.png" height="56" alt="LK Professionals">
+        </a>
+      </div>
+
+      <div class="card card-md shadow-sm">
+        <div class="card-body">
+          <h1 class="h2 text-center mb-4">Admin Login</h1>
+
+          {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+              {% for error in form.non_field_errors %}{{ error }}{% endfor %}
+            </div>
+          {% endif %}
+
+          <form method="post" autocomplete="off" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+              <label class="form-label" for="{{ form.username.id_for_label }}">Email address</label>
+              <input type="email" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" class="form-control" placeholder="admin@example.com" required autofocus>
+              {% for error in form.username.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+            </div>
+
+            <div class="mb-2">
+              <label class="form-label" for="{{ form.password.id_for_label }}">Password</label>
+              <input type="password" name="{{ form.password.html_name }}" id="{{ form.password.id_for_label }}" class="form-control" placeholder="Your password" required>
+              {% for error in form.password.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+            </div>
+
+            <div class="form-footer">
+              <button type="submit" class="btn btn-primary w-100">
+                <i class="ti ti-login me-2"></i>
+                Sign in
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="text-center text-muted mt-3">
+        <a href="/">Back to website</a>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/js/tabler.min.js"></script>
+</body>
+</html>

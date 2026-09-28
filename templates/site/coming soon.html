@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://palaiche-template.vercel.app/coming-soon.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Set the character encoding to UTF-8 -->
+    
+
+    <!-- Set the compatibility mode for Internet Explorer -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Define the viewport settings for responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Set the title of the web page -->
+    <title>Coming Soon | LKProfessionals - Multipurpose Business Agency Html Tailwind CSS Template</title>
+
+    <!-- Define the description and keywords for the web page -->
+    <meta name="description" content="Responsive Multipurpose Business Agency Html Tailwind CSS Template">
+    <meta name="keywords" content="Digital Agency, Business, Agency, Modern, Tailwind CSS, multipurpose, clean">
+
+    <!-- Define the author and version of the web page -->
+    <meta name="author" content="mktemplatewizard">
+
+    <!-- Define the website and email address -->
+    <meta name="website" content="https://mkmonir.vercel.app">
+    <meta name="email" content="khanmonir1335@gmail.com">
+
+    <!-- Define the version of the web page -->
+    <meta name="version" content="1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#33b6ff">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="LKProfessionals - Multipurpose Business Agency Html Tailwind CSS Template">
+    <meta property="og:description" content="Responsive multipurpose business agency HTML template built with Tailwind CSS.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:image" content="assets/images/logo.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="LKProfessionals- Multipurpose Business Agency Html Tailwind CSS Template">
+    <meta name="twitter:description" content="Responsive multipurpose business agency HTML template built with Tailwind CSS.">
+    <meta name="twitter:image" content="assets/images/logo.png">
+    <!-- favicon -->
+    <link href="assets/image/favicon.ico" rel="shortcut icon">
+ <!--
+  Template: Palaiche
+  Partial: head-css.html
+  Purpose: CSS + font/icon sources loaded in <head>
+-->
+
+<!-- Link to the Font Awesome icon library -->
+<link rel="stylesheet" href="assets/css/all.min.css">
+
+<!-- Vendor CSS -->
+<link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+
+<!-- Link to the main CSS file of the website -->
+<link rel="stylesheet" href="assets/css/tailwind.css">
+<link rel="stylesheet" href="assets/css/animation.css">
+
+<!-- Link to a custom CSS file for additional styles -->
+<link rel="stylesheet" href="assets/css/custom.css"></head>
+
+  <body class="bg-gray-900 overflow-hidden h-screen w-screen relative" cz-shortcut-listen="true">
+    <!-- PRELOADER (Optional: Usually disabled for coming soon to show content immediately) -->
+    
+
+    <!-- ======================================= COMING SOON HERO START ======================================= -->
+    <section class="relative h-full w-full flex items-center justify-center bg-[url('../images/coming-soon/bg-image.jpg')] bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:bg-[#04172e]/80">
+      <!-- Main Container: Full Height, Centered Content -->
+      <div class="container relative z-10 h-full flex flex-col items-center justify-center py-10">
+        <div class="max-w-4xl mx-auto text-center text-white w-full">
+          <!-- Logo -->
+          <div class="mb-8 flex justify-center">
+            <a href="index.html" class="inline-block">
+              <img src="assets/image/logo-white.png" alt="LKProfessionalsLogo" class="h-12 md:h-16 w-auto object-contain">
+            </a>
+          </div>
+
+          <!-- Badge -->
+          <div class="inline-block bg-primary/20 backdrop-blur-sm border border-primary/30 text-primary font-semibold py-2 px-6 rounded-full mb-6 animate-bounce-slow">
+            <i class="fa-solid fa-hourglass-half mr-2"></i>
+            Coming Soon
+          </div>
+
+          <!-- Main Heading -->
+          <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            We Are Building Something
+            <span class="text-primary italic">Amazing</span>
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">Our new website is under construction. We are working hard to bring you a better experience. Stay tuned for our launch!</p>
+
+          <!-- Countdown Timer -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12 max-w-3xl mx-auto">
+            <!-- Days -->
+            <div class="countdown-item p-4 md:p-6 rounded-xl text-center">
+              <span class="block text-3xl md:text-5xl font-bold text-white mb-1" id="days">09</span>
+              <span class="text-xs md:text-sm text-gray-400 uppercase tracking-wider">Days</span>
+            </div>
+            <!-- Hours -->
+            <div class="countdown-item p-4 md:p-6 rounded-xl text-center">
+              <span class="block text-3xl md:text-5xl font-bold text-white mb-1" id="hours">23</span>
+              <span class="text-xs md:text-sm text-gray-400 uppercase tracking-wider">Hours</span>
+            </div>
+            <!-- Minutes -->
+            <div class="countdown-item p-4 md:p-6 rounded-xl text-center">
+              <span class="block text-3xl md:text-5xl font-bold text-white mb-1" id="minutes">59</span>
+              <span class="text-xs md:text-sm text-gray-400 uppercase tracking-wider">Minutes</span>
+            </div>
+            <!-- Seconds -->
+            <div class="countdown-item p-4 md:p-6 rounded-xl text-center">
+              <span class="block text-3xl md:text-5xl font-bold text-white mb-1" id="seconds">46</span>
+              <span class="text-xs md:text-sm text-gray-400 uppercase tracking-wider">Seconds</span>
+            </div>
+          </div>
+
+          <!-- Newsletter Form -->
+          <div class="max-w-xl mx-auto mb-12">
+            <form action="{% url 'subscribe' %}" method="post" class="flex flex-col sm:flex-row gap-3">
+              {% csrf_token %}
+              <input name="email" type="email" placeholder="Enter your email address" class="flex-grow px-6 py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/50 backdrop-blur-sm transition-all" required="">
+              <button type="submit" class="btn btn-primary px-8 py-4 rounded-lg font-semibold whitespace-nowrap">
+                Notify Me
+                <i class="fa-solid fa-paper-plane ml-2"></i>
+              </button>
+            </form>
+            <p class="text-xs text-gray-400 mt-3">We won't share your email with anyone.</p>
+          </div>
+
+          <!-- Social Links -->
+          <div class="flex justify-center gap-4">
+            <a href="https://web.facebook.com/lkprofessionals" class="w-12 h-12 rounded-full bg-white/10 hover:bg-primary border border-white/20 hover:border-primary flex items-center justify-center text-white hover:text-white transition-all duration-300 transform hover:-translate-y-1">
+              <i class="fa-brands fa-facebook-f text-xl"></i>
+            </a>
+            <a href="https://x.com/lkprofess" class="w-12 h-12 rounded-full bg-white/10 hover:bg-primary border border-white/20 hover:border-primary flex items-center justify-center text-white hover:text-white transition-all duration-300 transform hover:-translate-y-1">
+              <i class="fa-brands fa-x-twitter text-xl"></i>
+            </a>
+            <a href="https://www.instagram.com/lkprofessionalspvtltd/" class="w-12 h-12 rounded-full bg-white/10 hover:bg-primary border border-white/20 hover:border-primary flex items-center justify-center text-white hover:text-white transition-all duration-300 transform hover:-translate-y-1">
+              <i class="fa-brands fa-instagram text-xl"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/lkprofessionals" class="w-12 h-12 rounded-full bg-white/10 hover:bg-primary border border-white/20 hover:border-primary flex items-center justify-center text-white hover:text-white transition-all duration-300 transform hover:-translate-y-1">
+              <i class="fa-brands fa-linkedin-in text-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ======================================= COMING SOON HERO END ======================================= -->
+
+    <!-- JAVASCRIPT -->
+    <!--
+      Template: Palaiche
+      Partial: script-file.html
+      Purpose: JavaScript sources loaded before </body>
+    -->
+
+    <!-- Vendor JS -->
+    <!-- Swiper JS -->
+    <script src="assets/js/swiper-bundle.min.js"></script>
+
+    <!-- Theme JS -->
+    <!-- ANIMATE JS -->
+    <script src="assets/js/animate.js"></script>
+    <!-- Back to Top -->
+    <script src="assets/js/back-to-top.js"></script>
+    <!-- Accordion -->
+    <script src="assets/js/accordion.js"></script>
+    <!-- Responsive Menu -->
+    <script src="assets/js/responsive-menu.js"></script>
+    <!-- Pre Loader -->
+    <script src="assets/js/pre-loader.js"></script>
+    <!-- Coming Soon -->
+    <script src="assets/js/coming-soon.js"></script>
+    <!-- Slider Config -->
+    <script src="assets/js/slider-config.js"></script>
+    <!-- EmailJS SDK for client-side contact form submission -->
+    <script src="assets/js/email.min.js"></script>
+
+    <!-- Contact Form (no-op unless #contactForm exists) -->
+    <script src="assets/js/contact-form.js"></script>
+    <!-- Main JS -->
+    <script src="assets/js/script.js"></script>
+
+  
+
+</body></html>
