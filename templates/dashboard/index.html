@@ -121,22 +121,22 @@
           <h3 class="card-title">Recent Activity</h3>
         </div>
         <div class="table-responsive">
-          <table class="table card-table table-vcenter">
+          <table class="table card-table table-vcenter dashboard-activity-table">
             <thead>
               <tr>
-                <th>Type</th>
+                <th class="activity-type">Type</th>
                 <th>Record</th>
-                <th>Detail</th>
-                <th>When</th>
+                <th class="activity-detail">Detail</th>
+                <th class="activity-when">When</th>
               </tr>
             </thead>
             <tbody>
               {% for item in recent_activity %}
                 <tr>
-                  <td><span class="badge bg-secondary-lt">{{ item.type }}</span></td>
+                  <td class="activity-type"><span class="badge bg-secondary-lt">{{ item.type }}</span></td>
                   <td class="fw-semibold">{{ item.label }}</td>
-                  <td>{{ item.detail }}</td>
-                  <td class="text-muted">{{ item.created_at|date:"M j, Y H:i" }}</td>
+                  <td class="activity-detail">{{ item.detail }}</td>
+                  <td class="text-muted activity-when">{{ item.created_at|date:"M j, Y H:i" }}</td>
                 </tr>
               {% empty %}
                 <tr>

@@ -1,7 +1,9 @@
 :root { --tblr-border-radius: 6px; }
 body { letter-spacing: 0; }
 .navbar-vertical { background: #18252b; }
-.navbar-brand img { max-width: 185px; object-fit: contain; }
+.navbar-brand { background: #fff; border-radius: 6px; margin: 10px 14px; padding: 7px 10px; width: calc(100% - 28px); }
+.navbar-brand img { width: 100%; height: 48px; object-fit: contain; }
+@media (max-width: 991px) { .navbar-brand { width: 185px; margin: 8px auto; } }
 .dashboard-subnav { padding: 0 12px 10px 36px; }
 .dashboard-subnav a { color: #bccad0; padding: 7px 12px; white-space: normal; border-radius: 4px; }
 .dashboard-subnav a:hover, .dashboard-subnav a.active { color: #fff; background: #31464c; }
@@ -27,4 +29,13 @@ details[open] > summary.nav-link::after { content: '-'; }
 .report-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding: 20px 0 30px; }
 .btn-list form { margin: 0; }
 @media (min-width: 992px) { .navbar-vertical.navbar-expand-lg { overflow-y: auto; height: 100vh; } }
-@media (max-width: 767px) { .record-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; } .report-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } .page-header .col-auto { width: 100%; } .btn { white-space: normal; } }
+@media (max-width: 767px) {
+  .record-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .report-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .page-header .col-auto { width: 100%; }
+  .btn { white-space: normal; }
+  .dashboard-activity-table .activity-type,
+  .dashboard-activity-table .activity-detail { display: none; }
+  .dashboard-activity-table td { max-width: none; word-break: normal; }
+  .dashboard-activity-table .activity-when { width: 112px; white-space: normal; }
+}
