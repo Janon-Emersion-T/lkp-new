@@ -1,11 +1,7 @@
-from pathlib import Path
-from uuid import uuid4
 from xml.etree.ElementTree import Element, SubElement, tostring
 
 from django import forms
 from django.core import signing
-from django.core.exceptions import ValidationError
-from django.core.files.storage import default_storage
 from django.db import transaction
 from django.http import Http404, HttpResponse, HttpResponsePermanentRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, render
@@ -44,26 +40,6 @@ def unsubscribe(request, token):
         subscriber.save()
         return render(request, 'site/submission.html', {'title': 'Unsubscribed', 'message': 'You will no longer receive newsletters.'})
     return render(request, 'site/submission.html', {'title': 'Unsubscribe', 'message': 'Confirm that you want to stop receiving newsletters.', 'confirm': True})
-
-
-@require_POST
-def apply_for_job(request):
-    name, email = request.POST.get('name', '').strip(), request.POST.get('email', '').strip()
-    application = m.CareerApplication(name=name, email=email, phone=request.POST.get('phone', ''), position=request.POST.get('position', '') or 'General application', message=request.POST.get('message', ''))
-    upload = request.FILES.get('resume')
-    try:
-        application.full_clean()
-        if upload:
-            if Path(upload.name).suffix.lower() not in ['.pdf', '.docx'] or upload.size > 5 * 1024 * 1024:
-                raise ValidationError('Upload a PDF or DOCX no larger than 5 MB.')
-            path = default_storage.save(f'dashboard/resumes/{uuid4().hex}{Path(upload.name).suffix.lower()}', upload)
-            application.resume_url = f'/dashboard/files/{path}'
-        with transaction.atomic():
-            application.save()
-            m.Enquiry.objects.create(source='career', name=name, email=email, phone=application.phone, subject=application.position, message=application.message or 'Career application')
-    except ValidationError as error:
-        return render(request, 'site/submission.html', {'title': 'Application needs attention', 'message': '; '.join(error.messages)}, status=400)
-    return render(request, 'site/submission.html', {'title': 'Application received', 'message': 'Thank you. Our team will review your application.'})
 
 
 PUBLISHED_MODELS = {'insights': m.Insight, 'services': m.ServicePackage, 'industries': m.Industry, 'markets': m.Market}

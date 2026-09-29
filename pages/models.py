@@ -484,7 +484,7 @@ class Project(TimeStampedModel):
     profitability_estimate = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     requirements = models.TextField(blank=True)
     deployment_info = models.TextField(blank=True)
-    team = models.ManyToManyField('Employee', blank=True, related_name='projects')
+    team = models.ManyToManyField('hr.Employee', blank=True, related_name='projects')
 
     class Meta:
         ordering = ['-created_at']
@@ -519,7 +519,13 @@ class ProjectTask(TimeStampedModel):
     title = models.CharField(max_length=220)
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.TODO)
     assigned_to = models.CharField(max_length=180, blank=True)
-    employee = models.ForeignKey('Employee', on_delete=models.SET_NULL, null=True, blank=True, related_name='tasks')
+    employee = models.ForeignKey(
+        'hr.Employee',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='tasks',
+    )
     due_date = models.DateField(null=True, blank=True)
     notes = models.TextField(blank=True)
 
@@ -750,43 +756,6 @@ class SEOSetting(TimeStampedModel):
         return self.path
 
 
-class CareerApplication(TimeStampedModel):
-    class Status(models.TextChoices):
-        NEW = 'new', 'New'
-        SCREENING = 'screening', 'Screening'
-        INTERVIEW = 'interview', 'Interview'
-        OFFER = 'offer', 'Offer'
-        REJECTED = 'rejected', 'Rejected'
-
-    name = models.CharField(max_length=180)
-    email = models.EmailField()
-    phone = models.CharField(max_length=80, blank=True)
-    position = models.CharField(max_length=180)
-    status = models.CharField(max_length=20, choices=Status.choices, default=Status.NEW)
-    resume_url = models.CharField(max_length=500, blank=True)
-    message = models.TextField(blank=True)
-
-    def __str__(self):
-        return f'{self.name} - {self.position}'
-
-
-class Employee(TimeStampedModel):
-    class Status(models.TextChoices):
-        ACTIVE = 'active', 'Active'
-        ON_LEAVE = 'on_leave', 'On Leave'
-        INACTIVE = 'inactive', 'Inactive'
-
-    name = models.CharField(max_length=180)
-    email = models.EmailField(unique=True)
-    role = models.CharField(max_length=160, blank=True)
-    status = models.CharField(max_length=20, choices=Status.choices, default=Status.ACTIVE)
-    start_date = models.DateField(null=True, blank=True)
-    notes = models.TextField(blank=True)
-
-    def __str__(self):
-        return self.name
-
-
 class HostingSubscription(TimeStampedModel):
     class Status(models.TextChoices):
         ACTIVE = 'active', 'Active'
@@ -906,7 +875,12 @@ class SupportTicket(TimeStampedModel):
     subject = models.CharField(max_length=220)
     message = models.TextField()
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.OPEN)
-    assigned_to = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True, blank=True)
+    assigned_to = models.ForeignKey(
+        'hr.Employee',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+    )
     resolution = models.TextField(blank=True)
 
     def __str__(self):

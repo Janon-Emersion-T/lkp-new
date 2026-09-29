@@ -1,3 +1,4 @@
+from hr.models import CareerApplication
 from datetime import timedelta
 from decimal import Decimal
 from io import BytesIO, StringIO
@@ -279,7 +280,7 @@ class DashboardTests(TestCase):
 
     def test_career_and_newsletter_capture(self):
         self.assertEqual(self.client.post('/careers/apply/', {'name': 'Applicant', 'email': 'applicant@example.com', 'position': 'Developer'}).status_code, 200)
-        self.assertEqual(m.CareerApplication.objects.count(), 1)
+        self.assertEqual(CareerApplication.objects.count(), 1)
         for _ in range(2):
             self.assertEqual(self.client.post('/newsletter/subscribe/', {'email': 'reader@example.com'}).status_code, 200)
         self.assertEqual(m.Subscriber.objects.count(), 1)

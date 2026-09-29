@@ -6,7 +6,6 @@ from . import views, workflows, operations, public
 urlpatterns = [
     path('newsletter/subscribe/', public.subscribe, name='subscribe'),
     path('newsletter/unsubscribe/<str:token>/', public.unsubscribe, name='unsubscribe'),
-    path('careers/apply/', public.apply_for_job, name='apply_for_job'),
     path('sitemap.xml', public.sitemap, name='sitemap'),
     path('api/leads/', views.lead_capture, name='lead_capture'),
     path('login/', views.AdminLoginView.as_view(), name='login'),

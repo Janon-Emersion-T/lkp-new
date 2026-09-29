@@ -22,13 +22,14 @@ from django.views.decorators.csrf import csrf_exempt
 from case_studies.forms import CaseStudyForm, CaseStudyGalleryImageForm, CaseStudyMetricForm, CaseStudyTechnologyForm
 from case_studies.models import CaseStudy, CaseStudyGalleryImage, CaseStudyMetric, CaseStudyTechnology
 from .forms import CategoryForm, DashboardModelForm, InsightForm, LeadForm, NewsletterForm, PortfolioForm, ServiceAreaForm, SubscriberForm, TagForm, AccessRoleForm, UserForm
+from hr.resources import HR_NAV, HR_RESOURCES
+
 from .models import (
     AuditLog,
     AccessRole,
     APIKeyCredential,
     BackupRecord,
     Campaign,
-    CareerApplication,
     Category,
     Client,
     ClientCommunication,
@@ -36,7 +37,6 @@ from .models import (
     ClientFile,
     Company,
     Contact,
-    Employee,
     Enquiry,
     Expense,
     FAQItem,
@@ -193,15 +193,7 @@ DASHBOARD_NAV = [
             {'label': 'Subscribers', 'resource': 'subscribers'},
         ],
     },
-    {
-        'label': 'HR & Team',
-        'icon': 'ti-users-group',
-        'children': [
-            {'label': 'Employees', 'resource': 'employees'},
-            {'label': 'Applications', 'resource': 'career-applications'},
-            {'label': 'Tasks', 'resource': 'project-tasks'},
-        ],
-    },
+    HR_NAV,
     {
         'label': 'Hosting & Subscriptions',
         'icon': 'ti-server',
@@ -294,8 +286,6 @@ CRUD_RESOURCES = {
     'campaigns': resource(Campaign, 'Campaigns', 'Campaign', 'Marketing campaigns, channels, budgets, and attribution notes.', [('name', 'Campaign'), ('channel', 'Channel'), ('status', 'Status'), ('budget', 'Budget'), ('end_date', 'Ends')], ['name', 'channel', 'notes']),
     'seo-settings': resource(SEOSetting, 'SEO Metadata', 'SEO Setting', 'SEO titles, descriptions, noindex controls, and schema JSON.', [('path', 'Path'), ('title', 'Title'), ('noindex', 'Noindex'), ('updated_at', 'Updated')], ['path', 'title', 'description', 'schema_json']),
     'redirects': resource(RedirectRule, 'Redirects', 'Redirect', 'SEO redirects and URL migration rules.', [('from_path', 'From'), ('to_path', 'To'), ('status_code', 'Code'), ('is_active', 'Active')], ['from_path', 'to_path']),
-    'career-applications': resource(CareerApplication, 'Career Applications', 'Application', 'Recruitment pipeline and career submissions.', [('name', 'Name'), ('position', 'Position'), ('email', 'Email'), ('status', 'Status'), ('created_at', 'Received')], ['name', 'email', 'phone', 'position', 'message']),
-    'employees': resource(Employee, 'Employees', 'Employee', 'Team members, roles, status, and internal assignment references.', [('name', 'Name'), ('email', 'Email'), ('role', 'Role'), ('status', 'Status'), ('start_date', 'Start')], ['name', 'email', 'role', 'notes']),
     'hosting-subscriptions': resource(HostingSubscription, 'Hosting & Subscriptions', 'Subscription', 'Domains, hosting, SSL, maintenance, SEO retainers, marketing retainers, and renewal reminders.', [('client', 'Client'), ('service_type', 'Type'), ('domain', 'Domain'), ('status', 'Status'), ('expiry_date', 'Expiry')], ['service_type', 'domain', 'provider', 'notes']),
     'report-snapshots': resource(ReportSnapshot, 'Reports', 'Report', 'Snapshots for revenue, sales funnel, lead sources, conversions, profitability, and marketing performance.', [('title', 'Title'), ('report_type', 'Type'), ('period_start', 'Start'), ('period_end', 'End'), ('created_at', 'Created')], ['title', 'report_type', 'notes', 'data_json']),
     'audit-logs': resource(AuditLog, 'Audit Logs', 'Audit Log', 'System activity, admin actions, and compliance audit trails.', [('actor', 'Actor'), ('action', 'Action'), ('model_name', 'Model'), ('created_at', 'When')], ['actor', 'action', 'model_name', 'object_repr']),
@@ -305,6 +295,8 @@ CRUD_RESOURCES = {
     'api-keys': resource(APIKeyCredential, 'API Keys', 'API Key Reference', 'API key references and provider access notes. Store real secrets outside the dashboard.', [('name', 'Name'), ('provider', 'Provider'), ('key_reference', 'Reference'), ('is_active', 'Active')], ['name', 'provider', 'key_reference', 'notes']),
     'backups': resource(BackupRecord, 'Backups', 'Backup', 'Backup history, scheduled runs, and restore references.', [('label', 'Label'), ('status', 'Status'), ('file_url', 'File'), ('created_at', 'Created')], ['label', 'file_url', 'notes']),
 }
+
+CRUD_RESOURCES.update(HR_RESOURCES)
 
 CRUD_RESOURCES['access-roles']['form'] = AccessRoleForm
 CRUD_RESOURCES['audit-logs']['readonly'] = True

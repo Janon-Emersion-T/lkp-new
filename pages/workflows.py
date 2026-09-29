@@ -1,3 +1,4 @@
+from hr.files import can_access_hr_file
 import csv
 from datetime import date, timedelta
 from decimal import Decimal
@@ -346,7 +347,7 @@ def download_file(request, path):
     from case_studies.models import CaseStudyGalleryImage
     file_url = f'/dashboard/files/{path}'
     permitted = any(allowed(request.user, model) and model.objects.filter(file_url=file_url).exists() for model in [m.ClientFile, m.ProjectFile, m.BackupRecord])
-    permitted = permitted or (allowed(request.user, m.CareerApplication) and m.CareerApplication.objects.filter(resume_url=file_url).exists())
+    permitted = permitted or can_access_hr_file(request.user, file_url, allowed)
     if not permitted or not path.startswith('dashboard/') or '..' in path.split('/') or not default_storage.exists(path):
         raise Http404
     return FileResponse(default_storage.open(path, 'rb'), as_attachment=True)
