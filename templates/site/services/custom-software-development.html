@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ title|default:"Web Design & Development | LKProfessionals" }}</title>
+    <title>{{ title|default:"Custom Software Development | LKProfessionals" }}</title>
 
     <meta name="description"
-          content="{{ description|default:'Professional web design and development by LKProfessionals. We engineer fast, scalable and commercially focused websites for businesses in Sri Lanka and international markets.' }}">
+          content="{{ description|default:'Custom software development by LKProfessionals. We design and engineer secure, scalable business systems, platforms, portals and workflow solutions around real operational requirements.' }}">
 
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="author" content="LKProfessionals (Pvt) Ltd">
@@ -20,18 +20,18 @@
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="LKProfessionals">
-    <meta property="og:title" content="{{ title|default:'Web Design & Development | LKProfessionals' }}">
+    <meta property="og:title" content="{{ title|default:'Custom Software Development | LKProfessionals' }}">
     <meta property="og:description"
-          content="{{ description|default:'Professional websites engineered for credibility, visibility, conversion and long-term business growth.' }}">
+          content="{{ description|default:'Purpose-built software engineered around your workflows, operations, customers and long-term business requirements.' }}">
     <meta property="og:url"
           content="{{ request.scheme }}://{{ request.get_host }}{{ canonical_path }}">
     <meta property="og:image"
           content="{{ request.scheme }}://{{ request.get_host }}/assets/image/logo.png">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ title|default:'Web Design & Development | LKProfessionals' }}">
+    <meta name="twitter:title" content="{{ title|default:'Custom Software Development | LKProfessionals' }}">
     <meta name="twitter:description"
-          content="{{ description|default:'Professional websites engineered for credibility, visibility, conversion and long-term business growth.' }}">
+          content="{{ description|default:'Purpose-built software engineered around your workflows, operations, customers and long-term business requirements.' }}">
     <meta name="twitter:image"
           content="{{ request.scheme }}://{{ request.get_host }}/assets/image/logo.png">
 
@@ -45,137 +45,137 @@
 
 <style>
 /* =========================================================
-   WEB DESIGN & DEVELOPMENT PAGE ONLY
+   CUSTOM SOFTWARE DEVELOPMENT PAGE ONLY
    Scoped intentionally to avoid affecting the rest of LKP.
 ========================================================= */
 
-.lkp-web-service .lkp-service-hero {
+.lkp-software-service .lkp-service-hero {
     background:
         radial-gradient(circle at 78% 20%, rgba(51, 182, 255, .16), transparent 34%),
         radial-gradient(circle at 14% 90%, rgba(59, 130, 246, .08), transparent 38%),
         #071426;
 }
 
-.lkp-web-service .lkp-service-hero h1 {
+.lkp-software-service .lkp-service-hero h1 {
     color: #ffffff;
 }
 
-.lkp-web-service .lkp-service-hero-copy {
+.lkp-software-service .lkp-service-hero-copy {
     color: #cbd5e1;
 }
 
-.lkp-web-service .lkp-service-glass {
+.lkp-software-service .lkp-service-glass {
     background: rgba(7, 20, 38, .84);
     border: 1px solid rgba(255,255,255,.12);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 }
 
-.lkp-web-service .lkp-service-metric strong {
+.lkp-software-service .lkp-service-metric strong {
     color: #ffffff !important;
 }
 
-.lkp-web-service .lkp-service-metric span {
+.lkp-software-service .lkp-service-metric span {
     color: #94a3b8;
 }
 
-.lkp-web-service .lkp-capabilities {
+.lkp-software-service .lkp-capabilities {
     background: #071426;
     color: #ffffff;
 }
 
-.lkp-web-service .lkp-capabilities h2,
-.lkp-web-service .lkp-capabilities h3 {
+.lkp-software-service .lkp-capabilities h2,
+.lkp-software-service .lkp-capabilities h3 {
     color: #ffffff;
 }
 
-.lkp-web-service .lkp-capabilities-copy {
+.lkp-software-service .lkp-capabilities-copy {
     color: #cbd5e1;
 }
 
-.lkp-web-service .lkp-capability-card {
+.lkp-software-service .lkp-capability-card {
     border: 1px solid rgba(255,255,255,.11);
     background: rgba(255,255,255,.035);
     border-radius: 18px;
 }
 
-.lkp-web-service .lkp-capability-card p {
+.lkp-software-service .lkp-capability-card p {
     color: #94a3b8;
 }
 
-.lkp-web-service .lkp-dark-service-card {
+.lkp-software-service .lkp-dark-service-card {
     background: #071426 !important;
     color: #ffffff;
 }
 
-.lkp-web-service .lkp-dark-service-card h3 {
+.lkp-software-service .lkp-dark-service-card h3 {
     color: #ffffff !important;
 }
 
-.lkp-web-service .lkp-dark-service-card p {
+.lkp-software-service .lkp-dark-service-card p {
     color: #cbd5e1 !important;
 }
 
-.lkp-web-service .lkp-radius-xl {
+.lkp-software-service .lkp-radius-xl {
     border-radius: 32px;
 }
 
-.lkp-web-service .lkp-eyebrow {
+.lkp-software-service .lkp-eyebrow {
     letter-spacing: .16em;
 }
 
 @media (max-width: 1023px) {
-    .lkp-web-service .lkp-service-hero {
+    .lkp-software-service .lkp-service-hero {
         padding-top: 100px;
     }
 }
 
 
 /* =========================================================
-   WEB DESIGN SERVICE — CAPABILITIES SECTION
+   CUSTOM SOFTWARE DEVELOPMENT — CAPABILITIES SECTION
    Explicit layout because this project uses precompiled
    Tailwind and some arbitrary/grid utilities are unavailable.
    Scoped to this page only.
 ========================================================= */
 
-.lkp-web-service .lkp-capabilities {
+.lkp-software-service .lkp-capabilities {
     background: #071426;
     color: #ffffff;
 }
 
-.lkp-web-service .lkp-capabilities > .container {
+.lkp-software-service .lkp-capabilities > .container {
     width: 100%;
 }
 
-.lkp-web-service .lkp-capabilities .grid.lg\:grid-cols-12 {
+.lkp-software-service .lkp-capabilities .grid.lg\:grid-cols-12 {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 4rem;
     align-items: start;
 }
 
-.lkp-web-service .lkp-capabilities .lg\:col-span-6 {
+.lkp-software-service .lkp-capabilities .lg\:col-span-6 {
     min-width: 0;
     width: 100%;
 }
 
-.lkp-web-service .lkp-capabilities .lg\:col-span-6.grid {
+.lkp-software-service .lkp-capabilities .lg\:col-span-6.grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
 }
 
-.lkp-web-service .lkp-capabilities h2 {
+.lkp-software-service .lkp-capabilities h2 {
     color: #ffffff;
     max-width: 620px;
 }
 
-.lkp-web-service .lkp-capabilities-copy {
+.lkp-software-service .lkp-capabilities-copy {
     color: #94a3b8;
     max-width: 620px;
 }
 
-.lkp-web-service .lkp-capability-card {
+.lkp-software-service .lkp-capability-card {
     width: 100%;
     min-width: 0;
     min-height: 190px;
@@ -190,26 +190,26 @@
         background-color .25s ease;
 }
 
-.lkp-web-service .lkp-capability-card:hover {
+.lkp-software-service .lkp-capability-card:hover {
     transform: translateY(-3px);
     border-color: rgba(51, 182, 255, .45);
     background: rgba(15, 35, 58, .85);
 }
 
-.lkp-web-service .lkp-capability-card i {
+.lkp-software-service .lkp-capability-card i {
     display: block;
     font-size: 1.15rem;
     color: #33b6ff;
 }
 
-.lkp-web-service .lkp-capability-card h3 {
+.lkp-software-service .lkp-capability-card h3 {
     color: #ffffff;
     margin-top: 1rem;
     font-size: 1rem;
     line-height: 1.4;
 }
 
-.lkp-web-service .lkp-capability-card p {
+.lkp-software-service .lkp-capability-card p {
     color: #94a3b8;
     margin-top: .5rem;
     line-height: 1.65;
@@ -217,7 +217,7 @@
 
 /* Tablet */
 @media (max-width: 1023px) {
-    .lkp-web-service .lkp-capabilities .grid.lg\:grid-cols-12 {
+    .lkp-software-service .lkp-capabilities .grid.lg\:grid-cols-12 {
         grid-template-columns: 1fr;
         gap: 2.5rem;
     }
@@ -225,11 +225,11 @@
 
 /* Mobile */
 @media (max-width: 639px) {
-    .lkp-web-service .lkp-capabilities .lg\:col-span-6.grid {
+    .lkp-software-service .lkp-capabilities .lg\:col-span-6.grid {
         grid-template-columns: 1fr;
     }
 
-    .lkp-web-service .lkp-capability-card {
+    .lkp-software-service .lkp-capability-card {
         min-height: auto;
     }
 }
@@ -238,7 +238,7 @@
 
 </head>
 
-<body class="bg-white text-slate-900 lkp-web-service">
+<body class="bg-white text-slate-900 lkp-software-service">
 
 {% include 'partials/preloader.html' %}
 {% include 'partials/header.html' %}
@@ -265,19 +265,19 @@
                 <div class="flex items-center gap-3 mb-7">
                     <span class="w-8 h-px bg-primary"></span>
                     <span class="text-primary uppercase tracking-[0.18em] text-xs sm:text-sm font-semibold">
-                        Web Design & Development
+                        Custom Software Development
                     </span>
                 </div>
 
                 <h1 class="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-[72px] font-bold leading-[1.05] tracking-[-0.035em] max-w-5xl">
-                    Websites engineered to
-                    <span class="text-primary">win business.</span>
+                    Software engineered around
+                    <span class="text-primary">your business.</span>
                 </h1>
 
                 <p class="mt-7 text-base sm:text-lg lg:text-xl leading-8 max-w-2xl lkp-service-hero-copy">
-                    We design and develop professional websites that strengthen credibility,
-                    attract the right audience and turn digital attention into measurable
-                    commercial opportunities.
+                    We design and engineer purpose-built software around the way your business
+                    actually operates — connecting workflows, data, teams and customers
+                    in systems built for long-term use.
                 </p>
 
                 <div class="mt-9 flex flex-col sm:flex-row gap-4">
@@ -339,8 +339,8 @@
                     <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-3">
 
                         <img
-                            src="/assets/image/web-development-hero.png"
-                            alt="Professional web design and development by LKProfessionals"
+                            src="/assets/image/custom-software-development-hero.png"
+                            alt="Custom software development and business systems engineering by LKProfessionals"
                             class="w-full h-[420px] lg:h-[520px] object-cover rounded-[1.55rem]"
                         >
 
@@ -358,8 +358,8 @@
                                     </p>
 
                                     <p class="text-slate-300 text-sm leading-6 mt-1">
-                                        Strategy, design, engineering, SEO foundations and
-                                        deployment handled by one accountable technology partner.
+                                        Discovery, architecture, engineering, integration and deployment
+                                        handled by one accountable technology partner.
                                     </p>
                                 </div>
 
@@ -393,11 +393,11 @@
             <div class="lg:col-span-5">
 
                 <span class="text-primary font-semibold uppercase tracking-[0.16em] text-xs">
-                    More than a website
+                    Built for your operation
                 </span>
 
                 <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary leading-tight tracking-tight">
-                    Your website should work as hard as your business does.
+                    Software should fit the business. Not the other way around.
                 </h2>
 
             </div>
@@ -405,16 +405,17 @@
             <div class="lg:col-span-7">
 
                 <p class="text-lg text-gray-600 leading-8">
-                    A modern business website cannot simply exist. It needs to communicate
-                    trust quickly, explain what you do clearly, perform well across devices,
-                    support search visibility and give prospective customers a reason to act.
+                    Off-the-shelf software works well when your operation fits the assumptions
+                    it was designed around. The problems begin when teams depend on spreadsheets,
+                    duplicate data entry, disconnected tools and manual workarounds simply to keep
+                    everyday operations moving.
                 </p>
 
                 <p class="mt-6 text-base text-gray-600 leading-8">
-                    LKProfessionals combines business thinking, interface design and
-                    software engineering to build digital platforms with commercial purpose.
-                    We focus on the entire journey — from the first search result to the
-                    final enquiry, booking, purchase or business conversation.
+                    LKProfessionals approaches custom software from the business process first.
+                    We study how information moves, where decisions happen, what your team repeats
+                    manually and which systems need to communicate — then engineer a solution around
+                    those realities rather than forcing your business into a generic product.
                 </p>
 
                 <div class="mt-10 grid sm:grid-cols-2 gap-x-10 gap-y-7">
@@ -422,9 +423,9 @@
                     <div class="flex gap-4">
                         <i class="fa-solid fa-circle-check text-primary mt-1"></i>
                         <div>
-                            <h3 class="font-bold text-secondary">Clear positioning</h3>
+                            <h3 class="font-bold text-secondary">Process aligned</h3>
                             <p class="text-gray-500 text-sm leading-6 mt-1">
-                                Visitors understand your business and value proposition quickly.
+                                The system is designed around real operational workflows and responsibilities.
                             </p>
                         </div>
                     </div>
@@ -432,9 +433,9 @@
                     <div class="flex gap-4">
                         <i class="fa-solid fa-circle-check text-primary mt-1"></i>
                         <div>
-                            <h3 class="font-bold text-secondary">Conversion focused</h3>
+                            <h3 class="font-bold text-secondary">Connected data</h3>
                             <p class="text-gray-500 text-sm leading-6 mt-1">
-                                Pages are structured around meaningful customer actions.
+                                Bring fragmented information and business processes into a more coherent system.
                             </p>
                         </div>
                     </div>
@@ -442,9 +443,9 @@
                     <div class="flex gap-4">
                         <i class="fa-solid fa-circle-check text-primary mt-1"></i>
                         <div>
-                            <h3 class="font-bold text-secondary">Search ready</h3>
+                            <h3 class="font-bold text-secondary">Automation ready</h3>
                             <p class="text-gray-500 text-sm leading-6 mt-1">
-                                Technical foundations support sustainable organic visibility.
+                                Reduce repetitive administration with practical workflow and process automation.
                             </p>
                         </div>
                     </div>
@@ -454,7 +455,7 @@
                         <div>
                             <h3 class="font-bold text-secondary">Built to evolve</h3>
                             <p class="text-gray-500 text-sm leading-6 mt-1">
-                                Architecture that can grow alongside your operations.
+                                Maintainable architecture designed to adapt as requirements, teams and operations change.
                             </p>
                         </div>
                     </div>
@@ -485,12 +486,13 @@
             </span>
 
             <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary tracking-tight">
-                The right web platform for the job.
+                Purpose-built systems for real operations.
             </h2>
 
             <p class="mt-5 text-gray-600 leading-8 text-lg">
-                From focused company websites to sophisticated digital platforms,
-                the technology follows the business requirement — not the other way around.
+                From internal management systems to customer-facing platforms and complex
+                integrations, we engineer software around the operational requirement —
+                not around the limitations of a pre-packaged product.
             </p>
 
         </div>
@@ -500,61 +502,61 @@
 
             <article class="bg-white p-8 lg:p-10 group">
                 <span class="text-xs text-gray-400 font-semibold">01</span>
-                <i class="fa-solid fa-building text-primary text-2xl block mt-8"></i>
+                <i class="fa-solid fa-diagram-project text-primary text-2xl block mt-8"></i>
                 <h3 class="text-xl font-bold text-secondary mt-5">
-                    Corporate Websites
+                    Business Management Systems
                 </h3>
                 <p class="text-gray-600 leading-7 mt-3">
-                    Professional company websites designed to establish authority,
-                    explain services and generate qualified enquiries.
+                    Centralised platforms for managing operations, records, approvals,
+                    reporting and the day-to-day processes that keep a business moving.
                 </p>
             </article>
 
             <article class="bg-white p-8 lg:p-10 group">
                 <span class="text-xs text-gray-400 font-semibold">02</span>
-                <i class="fa-solid fa-cart-shopping text-primary text-2xl block mt-8"></i>
+                <i class="fa-solid fa-database text-primary text-2xl block mt-8"></i>
                 <h3 class="text-xl font-bold text-secondary mt-5">
-                    E-commerce
+                    CRM & ERP Platforms
                 </h3>
                 <p class="text-gray-600 leading-7 mt-3">
-                    Online commerce experiences connecting products, payments,
-                    operations and customer journeys.
+                    Purpose-built systems connecting customers, sales, inventory,
+                    finance, teams and operational data around your actual workflow.
                 </p>
             </article>
 
             <article class="bg-white p-8 lg:p-10 group">
                 <span class="text-xs text-gray-400 font-semibold">03</span>
-                <i class="fa-solid fa-layer-group text-primary text-2xl block mt-8"></i>
+                <i class="fa-solid fa-users-gear text-primary text-2xl block mt-8"></i>
                 <h3 class="text-xl font-bold text-secondary mt-5">
-                    Business Platforms
+                    Client & Staff Portals
                 </h3>
                 <p class="text-gray-600 leading-7 mt-3">
-                    Portals, booking systems, dashboards and web applications
-                    supporting real operational workflows.
+                    Secure role-based environments where customers, employees,
+                    suppliers or partners can access the information and tools they need.
                 </p>
             </article>
 
             <article class="bg-white p-8 lg:p-10 group">
                 <span class="text-xs text-gray-400 font-semibold">04</span>
-                <i class="fa-solid fa-bullseye text-primary text-2xl block mt-8"></i>
+                <i class="fa-solid fa-gears text-primary text-2xl block mt-8"></i>
                 <h3 class="text-xl font-bold text-secondary mt-5">
-                    Landing Pages
+                    Workflow Automation
                 </h3>
                 <p class="text-gray-600 leading-7 mt-3">
-                    Focused campaign and acquisition pages built around a specific
-                    audience, offer and conversion objective.
+                    Automate repetitive administration, approvals, notifications,
+                    document flows and multi-step business processes.
                 </p>
             </article>
 
             <article class="bg-white p-8 lg:p-10 group">
                 <span class="text-xs text-gray-400 font-semibold">05</span>
-                <i class="fa-solid fa-arrows-rotate text-primary text-2xl block mt-8"></i>
+                <i class="fa-solid fa-plug-circle-bolt text-primary text-2xl block mt-8"></i>
                 <h3 class="text-xl font-bold text-secondary mt-5">
-                    Website Redesign
+                    APIs & Integrations
                 </h3>
                 <p class="text-gray-600 leading-7 mt-3">
-                    Strategic redesigns for outdated websites suffering from weak
-                    UX, poor positioning or technical limitations.
+                    Connect payments, third-party platforms, existing software,
+                    external services and internal systems into one dependable workflow.
                 </p>
             </article>
 
@@ -562,16 +564,17 @@
                 <span class="text-xs text-slate-500 font-semibold">06</span>
                 <i class="fa-solid fa-code-branch text-primary text-2xl block mt-8"></i>
                 <h3 class="text-xl font-bold text-white mt-5">
-                    Something more specific?
+                    Have a complex requirement?
                 </h3>
                 <p class="text-slate-300 leading-7 mt-3">
-                    If an off-the-shelf website cannot support the requirement,
-                    our software engineering capability can take it further.
+                    If your requirement does not fit neatly into a category, that is
+                    exactly where custom software becomes valuable.
                 </p>
 
-                <a href="/services/custom-software-development/"
+                <a href="#quoteModal"
+                   data-quote-open
                    class="inline-flex items-center gap-2 text-primary font-semibold mt-6">
-                    Custom Software
+                    Discuss the Requirement
                     <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
             </article>
@@ -619,11 +622,12 @@
                         <span class="text-primary font-bold">01</span>
                         <div>
                             <h3 class="text-xl font-bold text-secondary">
-                                Discovery & commercial direction
+                                Discovery & requirements
                             </h3>
                             <p class="mt-3 text-gray-600 leading-7">
-                                We establish your audience, objectives, competitive environment,
-                                functionality and the role the website needs to play in the business.
+                                We establish the business problem, users, objectives,
+                                constraints, existing systems and the outcomes the software
+                                is expected to support.
                             </p>
                         </div>
                     </div>
@@ -632,11 +636,12 @@
                         <span class="text-primary font-bold">02</span>
                         <div>
                             <h3 class="text-xl font-bold text-secondary">
-                                Information architecture & UX
+                                Process mapping
                             </h3>
                             <p class="mt-3 text-gray-600 leading-7">
-                                We structure pages, navigation and customer journeys before
-                                decoration gets in the way of good decisions.
+                                We map the real workflow before writing code — identifying
+                                roles, decisions, data movement, bottlenecks and opportunities
+                                for sensible automation.
                             </p>
                         </div>
                     </div>
@@ -645,11 +650,12 @@
                         <span class="text-primary font-bold">03</span>
                         <div>
                             <h3 class="text-xl font-bold text-secondary">
-                                Design & engineering
+                                Architecture & solution design
                             </h3>
                             <p class="mt-3 text-gray-600 leading-7">
-                                The approved direction becomes a responsive, maintainable and
-                                production-ready website using technology appropriate to the project.
+                                We define the system structure, database model, permissions,
+                                integrations and technical approach required for a maintainable
+                                production system.
                             </p>
                         </div>
                     </div>
@@ -658,11 +664,12 @@
                         <span class="text-primary font-bold">04</span>
                         <div>
                             <h3 class="text-xl font-bold text-secondary">
-                                Quality assurance & launch
+                                Engineering & integration
                             </h3>
                             <p class="mt-3 text-gray-600 leading-7">
-                                We validate responsive behaviour, functionality, content,
-                                technical foundations and deployment before launch.
+                                The approved solution is engineered in controlled stages,
+                                connecting interfaces, business logic, data and external
+                                services into a working system.
                             </p>
                         </div>
                     </div>
@@ -671,11 +678,25 @@
                         <span class="text-primary font-bold">05</span>
                         <div>
                             <h3 class="text-xl font-bold text-secondary">
-                                Improvement & support
+                                Testing & validation
                             </h3>
                             <p class="mt-3 text-gray-600 leading-7">
-                                Hosting, maintenance, SEO, marketing and further development
-                                can continue after launch as the business evolves.
+                                We validate critical workflows, permissions, edge cases,
+                                integrations and production behaviour before deployment.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                        <span class="text-primary font-bold">06</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary">
+                                Deployment & evolution
+                            </h3>
+                            <p class="mt-3 text-gray-600 leading-7">
+                                We deploy the system into its operating environment and can
+                                continue with maintenance, monitoring, improvements and new
+                                functionality as the business evolves.
                             </p>
                         </div>
                     </div>
@@ -704,18 +725,18 @@
             <div class="lg:col-span-6">
 
                 <span class="text-primary uppercase tracking-[0.16em] text-xs font-semibold">
-                    Engineering behind the experience
+                    Engineering behind the operation
                 </span>
 
                 <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
-                    Good design gets attention.
-                    <span class="text-slate-400">Good engineering keeps it working.</span>
+                    Software is only useful when it works in the real world.
+                    <span class="text-slate-400">We engineer for the operation behind it.</span>
                 </h2>
 
                 <p class="mt-7 text-lg leading-8 max-w-xl lkp-capabilities-copy">
-                    We treat performance, maintainability, integrations, security and
-                    search foundations as part of the product — not technical housekeeping
-                    to think about later.
+                    Architecture, data integrity, permissions, integrations, maintainability
+                    and deployment are treated as core parts of the product — because custom
+                    software has to survive real users, real data and real business change.
                 </p>
 
             </div>
@@ -724,50 +745,66 @@
             <div class="lg:col-span-6 grid sm:grid-cols-2 gap-4">
 
                 <div class="p-6 lkp-capability-card">
-                    <i class="fa-solid fa-gauge-high text-primary"></i>
-                    <h3 class="font-bold mt-4">Performance</h3>
+                    <i class="fa-solid fa-server text-primary"></i>
+                    <h3 class="font-bold mt-4">Backend Engineering</h3>
                     <p class="text-slate-400 text-sm leading-6 mt-2">
-                        Fast-loading experiences engineered with performance in mind.
+                        Business logic and application services engineered for dependable operation.
                     </p>
                 </div>
 
                 <div class="p-6 lkp-capability-card">
-                    <i class="fa-solid fa-mobile-screen text-primary"></i>
-                    <h3 class="font-bold mt-4">Responsive UX</h3>
+                    <i class="fa-solid fa-database text-primary"></i>
+                    <h3 class="font-bold mt-4">Database Architecture</h3>
                     <p class="text-slate-400 text-sm leading-6 mt-2">
-                        Consistent usability across phones, tablets and desktops.
+                        Structured data models designed around real operational relationships.
                     </p>
                 </div>
 
                 <div class="p-6 lkp-capability-card">
-                    <i class="fa-solid fa-magnifying-glass text-primary"></i>
-                    <h3 class="font-bold mt-4">Technical SEO</h3>
+                    <i class="fa-solid fa-code text-primary"></i>
+                    <h3 class="font-bold mt-4">API Development</h3>
                     <p class="text-slate-400 text-sm leading-6 mt-2">
-                        Search-friendly structure, metadata and technical foundations.
+                        APIs for connecting applications, services and external platforms.
+                    </p>
+                </div>
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-user-shield text-primary"></i>
+                    <h3 class="font-bold mt-4">Authentication & RBAC</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Controlled access based on users, roles, permissions and responsibilities.
+                    </p>
+                </div>
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-gears text-primary"></i>
+                    <h3 class="font-bold mt-4">Business Automation</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Workflow automation that reduces repetitive operational work.
                     </p>
                 </div>
 
                 <div class="p-6 lkp-capability-card">
                     <i class="fa-solid fa-plug text-primary"></i>
-                    <h3 class="font-bold mt-4">Integrations</h3>
+                    <h3 class="font-bold mt-4">System Integrations</h3>
                     <p class="text-slate-400 text-sm leading-6 mt-2">
-                        APIs, payments, CRM, analytics and business systems where required.
+                        Payments, external APIs and existing business systems connected where required.
                     </p>
                 </div>
 
                 <div class="p-6 lkp-capability-card">
-                    <i class="fa-solid fa-shield-halved text-primary"></i>
-                    <h3 class="font-bold mt-4">Security</h3>
+                    <i class="fa-solid fa-chart-column text-primary"></i>
+                    <h3 class="font-bold mt-4">Reporting & Analytics</h3>
                     <p class="text-slate-400 text-sm leading-6 mt-2">
-                        Sensible production security practices built into delivery.
+                        Operational dashboards and reporting built around useful business data.
                     </p>
                 </div>
 
                 <div class="p-6 lkp-capability-card">
-                    <i class="fa-solid fa-chart-line text-primary"></i>
-                    <h3 class="font-bold mt-4">Analytics</h3>
+                    <i class="fa-solid fa-cloud-arrow-up text-primary"></i>
+                    <h3 class="font-bold mt-4">Deployment & Infrastructure</h3>
                     <p class="text-slate-400 text-sm leading-6 mt-2">
-                        Measurement foundations for understanding real website performance.
+                        Production deployment, infrastructure and operational support for the system.
                     </p>
                 </div>
 
@@ -961,8 +998,8 @@
                 </h2>
 
                 <p class="mt-5 text-gray-600 leading-7">
-                    A few straightforward answers to the questions businesses usually
-                    ask before commissioning a website.
+                    Straightforward answers to the questions businesses usually ask
+                    before investing in custom software.
                 </p>
 
             </div>
@@ -972,61 +1009,77 @@
 
                 <details class="group py-6">
                     <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
-                        How much does a business website cost?
+                        How much does custom software development cost?
                         <i class="fa-solid fa-plus text-primary mt-1"></i>
                     </summary>
                     <p class="mt-4 text-gray-600 leading-7 pr-10">
-                        Cost depends on the scope, functionality, content requirements,
-                        integrations and level of custom design. We can provide a defined
-                        package for straightforward requirements or prepare a custom quotation
-                        for more complex projects.
+                        Cost depends on the workflows, user roles, integrations, data model,
+                        interfaces, infrastructure and overall complexity of the requirement.
+                        We define the scope before providing a project quotation rather than
+                        forcing complex requirements into a generic package.
                     </p>
                 </details>
 
                 <details class="group py-6">
                     <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
-                        How long does website development take?
+                        How long does custom software take to develop?
                         <i class="fa-solid fa-plus text-primary mt-1"></i>
                     </summary>
                     <p class="mt-4 text-gray-600 leading-7 pr-10">
-                        Delivery time varies with scope. A focused business website can move
-                        considerably faster than a custom platform with integrations and
-                        complex workflows. We establish the delivery plan before development begins.
+                        Delivery time depends on scope and complexity. A focused internal
+                        application may be delivered considerably faster than a multi-module
+                        platform with integrations and complex permissions. We establish
+                        milestones and delivery expectations before engineering begins.
                     </p>
                 </details>
 
                 <details class="group py-6">
                     <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
-                        Can LKProfessionals handle the domain and hosting?
+                        Can the software integrate with our existing systems?
                         <i class="fa-solid fa-plus text-primary mt-1"></i>
                     </summary>
                     <p class="mt-4 text-gray-600 leading-7 pr-10">
-                        Yes. Domain registration, hosting, deployment, SSL, maintenance and
-                        ongoing technical support can be managed as part of the engagement.
+                        Where suitable APIs or integration methods are available, yes.
+                        We can connect payment providers, third-party platforms, existing
+                        databases, external services and other business systems as part
+                        of the solution architecture.
                     </p>
                 </details>
 
                 <details class="group py-6">
                     <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
-                        Will the website be SEO friendly?
+                        Who owns the custom software and source code?
                         <i class="fa-solid fa-plus text-primary mt-1"></i>
                     </summary>
                     <p class="mt-4 text-gray-600 leading-7 pr-10">
-                        We build with technical SEO foundations in mind, including semantic
-                        structure, metadata, responsive behaviour, performance and crawlability.
-                        Ongoing SEO campaigns are available separately where competitive organic
-                        growth is required.
+                        Ownership, licensing, source-code access and any third-party
+                        dependencies should be defined clearly in the project agreement.
+                        We make those commercial and technical terms explicit before
+                        development begins.
                     </p>
                 </details>
 
                 <details class="group py-6">
                     <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
-                        Can you redesign an existing website?
+                        What happens when our requirements change?
                         <i class="fa-solid fa-plus text-primary mt-1"></i>
                     </summary>
                     <p class="mt-4 text-gray-600 leading-7 pr-10">
-                        Yes. We can assess the existing website, retain what remains valuable,
-                        address technical and UX limitations, and rebuild where necessary.
+                        Business requirements evolve. We assess requested changes against
+                        the agreed scope, architecture, budget and delivery plan, then
+                        handle them as an approved adjustment or a subsequent development phase.
+                    </p>
+                </details>
+
+                <details class="group py-6">
+                    <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
+                        Can LKProfessionals maintain the software after launch?
+                        <i class="fa-solid fa-plus text-primary mt-1"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7 pr-10">
+                        Yes. Ongoing maintenance can include infrastructure, monitoring,
+                        issue resolution, security updates, operational support and further
+                        development as the system and business evolve.
                     </p>
                 </details>
 
@@ -1036,9 +1089,9 @@
                         <i class="fa-solid fa-plus text-primary mt-1"></i>
                     </summary>
                     <p class="mt-4 text-gray-600 leading-7 pr-10">
-                        Yes. LKProfessionals works with businesses locally and internationally,
-                        with projects delivered remotely through structured communication,
-                        review and deployment processes.
+                        Yes. LKProfessionals can deliver software projects remotely through
+                        structured discovery, communication, review, testing and deployment
+                        processes for both local and international businesses.
                     </p>
                 </details>
 
@@ -1072,21 +1125,22 @@
                     </span>
 
                     <h2 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight max-w-3xl">
-                        Build a website that earns its place in your business.
+                        Build software around the business you actually run.
                     </h2>
 
                     <p class="mt-5 text-white/80 text-lg leading-8 max-w-2xl">
-                        Tell us what you're trying to achieve. We'll help determine the
-                        right scope, technology and route forward.
+                        Tell us what the business needs to do, where the current process
+                        breaks down and what a better system should make possible.
                     </p>
 
                 </div>
 
                 <div class="lg:col-span-4 lg:text-right">
 
-                    <a href="/contact-us.html"
+                    <a href="#quoteModal"
+                       data-quote-open
                        class="inline-flex items-center justify-center gap-3 bg-white text-secondary font-bold px-7 py-4 rounded-lg hover:bg-[#071426] hover:text-white transition-all duration-300">
-                        Discuss Your Project
+                        Get a Quote
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
 
