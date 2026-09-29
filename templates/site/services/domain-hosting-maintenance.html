@@ -1,0 +1,1201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ title|default:"Domain, Hosting & Maintenance | LKProfessionals" }}</title>
+
+    <meta name="description"
+          content="{{ description|default:'Managed domain, hosting and maintenance services by LKProfessionals. Reliable hosting, DNS, SSL, backups, monitoring, migrations and ongoing technical maintenance for business-critical websites and applications.' }}">
+
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="LKProfessionals (Pvt) Ltd">
+    <meta name="theme-color" content="#33b6ff">
+
+    <link rel="canonical"
+          href="{{ request.scheme }}://{{ request.get_host }}{{ canonical_path }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LKProfessionals">
+    <meta property="og:title" content="{{ title|default:'Domain, Hosting & Maintenance | LKProfessionals' }}">
+    <meta property="og:description"
+          content="{{ description|default:'Reliable domain, hosting and maintenance services that keep business websites, applications and digital infrastructure secure, available and properly maintained.' }}">
+    <meta property="og:url"
+          content="{{ request.scheme }}://{{ request.get_host }}{{ canonical_path }}">
+    <meta property="og:image"
+          content="{{ request.scheme }}://{{ request.get_host }}/assets/image/logo.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title|default:'Domain, Hosting & Maintenance | LKProfessionals' }}">
+    <meta name="twitter:description"
+          content="{{ description|default:'Reliable domain, hosting and maintenance services that keep business websites, applications and digital infrastructure secure, available and properly maintained.' }}">
+    <meta name="twitter:image"
+          content="{{ request.scheme }}://{{ request.get_host }}/assets/image/logo.png">
+
+    <link href="/assets/image/favicon.ico" rel="shortcut icon">
+
+    <link rel="stylesheet" href="/assets/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/css/tailwind.css">
+    <link rel="stylesheet" href="/assets/css/animation.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+
+<style>
+/* =========================================================
+   DOMAIN HOSTING & MAINTENANCE PAGE ONLY
+   Scoped intentionally to avoid affecting the rest of LKP.
+========================================================= */
+
+.lkp-hosting-service .lkp-service-hero {
+    background:
+        radial-gradient(circle at 78% 20%, rgba(51, 182, 255, .16), transparent 34%),
+        radial-gradient(circle at 14% 90%, rgba(59, 130, 246, .08), transparent 38%),
+        #071426;
+}
+
+.lkp-hosting-service .lkp-service-hero h1 {
+    color: #ffffff;
+}
+
+.lkp-hosting-service .lkp-service-hero-copy {
+    color: #cbd5e1;
+}
+
+.lkp-hosting-service .lkp-service-glass {
+    background: rgba(7, 20, 38, .84);
+    border: 1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.lkp-hosting-service .lkp-service-metric strong {
+    color: #ffffff !important;
+}
+
+.lkp-hosting-service .lkp-service-metric span {
+    color: #94a3b8;
+}
+
+.lkp-hosting-service .lkp-capabilities {
+    background: #071426;
+    color: #ffffff;
+}
+
+.lkp-hosting-service .lkp-capabilities h2,
+.lkp-hosting-service .lkp-capabilities h3 {
+    color: #ffffff;
+}
+
+.lkp-hosting-service .lkp-capabilities-copy {
+    color: #cbd5e1;
+}
+
+.lkp-hosting-service .lkp-capability-card {
+    border: 1px solid rgba(255,255,255,.11);
+    background: rgba(255,255,255,.035);
+    border-radius: 18px;
+}
+
+.lkp-hosting-service .lkp-capability-card p {
+    color: #94a3b8;
+}
+
+.lkp-hosting-service .lkp-dark-service-card {
+    background: #071426 !important;
+    color: #ffffff;
+}
+
+.lkp-hosting-service .lkp-dark-service-card h3 {
+    color: #ffffff !important;
+}
+
+.lkp-hosting-service .lkp-dark-service-card p {
+    color: #cbd5e1 !important;
+}
+
+.lkp-hosting-service .lkp-radius-xl {
+    border-radius: 32px;
+}
+
+.lkp-hosting-service .lkp-eyebrow {
+    letter-spacing: .16em;
+}
+
+@media (max-width: 1023px) {
+    .lkp-hosting-service .lkp-service-hero {
+        padding-top: 100px;
+    }
+}
+
+
+/* =========================================================
+   DOMAIN HOSTING & MAINTENANCE — CAPABILITIES SECTION
+   Explicit layout because this project uses precompiled
+   Tailwind and some arbitrary/grid utilities are unavailable.
+   Scoped to this page only.
+========================================================= */
+
+.lkp-hosting-service .lkp-capabilities {
+    background: #071426;
+    color: #ffffff;
+}
+
+.lkp-hosting-service .lkp-capabilities > .container {
+    width: 100%;
+}
+
+.lkp-hosting-service .lkp-capabilities .grid.lg\:grid-cols-12 {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4rem;
+    align-items: start;
+}
+
+.lkp-hosting-service .lkp-capabilities .lg\:col-span-6 {
+    min-width: 0;
+    width: 100%;
+}
+
+.lkp-hosting-service .lkp-capabilities .lg\:col-span-6.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.lkp-hosting-service .lkp-capabilities h2 {
+    color: #ffffff;
+    max-width: 620px;
+}
+
+.lkp-hosting-service .lkp-capabilities-copy {
+    color: #94a3b8;
+    max-width: 620px;
+}
+
+.lkp-hosting-service .lkp-capability-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 190px;
+    padding: 1.5rem;
+    border: 1px solid rgba(148, 163, 184, .20);
+    border-radius: 1rem;
+    background: rgba(15, 35, 58, .58);
+    box-sizing: border-box;
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background-color .25s ease;
+}
+
+.lkp-hosting-service .lkp-capability-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(51, 182, 255, .45);
+    background: rgba(15, 35, 58, .85);
+}
+
+.lkp-hosting-service .lkp-capability-card i {
+    display: block;
+    font-size: 1.15rem;
+    color: #33b6ff;
+}
+
+.lkp-hosting-service .lkp-capability-card h3 {
+    color: #ffffff;
+    margin-top: 1rem;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.lkp-hosting-service .lkp-capability-card p {
+    color: #94a3b8;
+    margin-top: .5rem;
+    line-height: 1.65;
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+    .lkp-hosting-service .lkp-capabilities .grid.lg\:grid-cols-12 {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 639px) {
+    .lkp-hosting-service .lkp-capabilities .lg\:col-span-6.grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lkp-hosting-service .lkp-capability-card {
+        min-height: auto;
+    }
+}
+
+</style>
+
+</head>
+
+<body class="bg-white text-slate-900 lkp-hosting-service">
+
+{% include 'partials/preloader.html' %}
+{% include 'partials/header.html' %}
+
+
+<!-- =========================================================
+     HERO
+========================================================== -->
+<main>
+
+<section class="relative overflow-hidden pt-[132px] lkp-service-hero">
+
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute -right-40 -top-40 w-[600px] h-[600px] rounded-full bg-primary/10 blur-3xl"></div>
+        <div class="absolute left-[10%] bottom-[-240px] w-[500px] h-[500px] rounded-full bg-blue-400/5 blur-3xl"></div>
+    </div>
+
+    <div class="container relative z-10">
+
+        <div class="grid lg:grid-cols-12 gap-12 xl:gap-16 items-center py-20 lg:py-28 xl:py-32">
+
+            <div class="lg:col-span-7">
+
+                <div class="flex items-center gap-3 mb-7">
+                    <span class="w-8 h-px bg-primary"></span>
+                    <span class="text-primary uppercase tracking-[0.18em] text-xs sm:text-sm font-semibold">
+                        Domain, Hosting & Maintenance
+                    </span>
+                </div>
+
+                <h1 class="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-[72px] font-bold leading-[1.05] tracking-[-0.035em] max-w-5xl">
+                    Keep your digital infrastructure
+                    <span class="text-primary">dependable.</span>
+                </h1>
+
+                <p class="mt-7 text-base sm:text-lg lg:text-xl leading-8 max-w-2xl lkp-service-hero-copy">
+                    We manage the technical foundations behind your digital operations —
+                    from domains and hosting to SSL, backups, monitoring, migrations
+                    and ongoing maintenance.
+                </p>
+
+                <div class="mt-9 flex flex-col sm:flex-row gap-4">
+
+                    <a href="#quoteModal" data-quote-open
+                       class="btn btn-primary inline-flex items-center justify-center gap-3">Get a Quote
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                    <a href="/case-studies/"
+                       class="inline-flex items-center justify-center gap-3 px-6 py-3 border border-white/20 rounded-lg text-white font-semibold hover:bg-white hover:text-slate-950 transition-all duration-300">
+                        View Case Studies
+                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                    </a>
+
+                </div>
+
+                <div class="mt-12 pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-7">
+
+                    <div class="lkp-service-metric">
+                        <strong class="block text-white text-2xl lg:text-3xl font-bold">
+                            <span data-founded-year="2013">13</span>+
+                        </strong>
+                        <span class="text-slate-400 text-sm mt-1 block">
+                            Years in technology
+                        </span>
+                    </div>
+
+                    <div class="lkp-service-metric">
+                        <strong class="block text-white text-2xl lg:text-3xl font-bold">540+</strong>
+                        <span class="text-slate-400 text-sm mt-1 block">
+                            Projects delivered
+                        </span>
+                    </div>
+
+                    <div class="lkp-service-metric">
+                        <strong class="block text-white text-2xl lg:text-3xl font-bold">250+</strong>
+                        <span class="text-slate-400 text-sm mt-1 block">
+                            Clients served
+                        </span>
+                    </div>
+
+                    <div class="lkp-service-metric">
+                        <strong class="block text-white text-2xl lg:text-3xl font-bold">30+</strong>
+                        <span class="text-slate-400 text-sm mt-1 block">
+                            Industries served
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="lg:col-span-5">
+
+                <div class="relative">
+
+                    <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-3">
+
+                        <img
+                            src="/assets/image/domain-hosting-maintenance-hero.png"
+                            alt="Managed domain, hosting and website maintenance services by LKProfessionals"
+                            class="w-full h-[420px] lg:h-[520px] object-cover rounded-[1.55rem]"
+                        >
+
+                        <div class="absolute left-7 right-7 bottom-7 rounded-2xl p-5 lkp-service-glass">
+
+                            <div class="flex items-start gap-4">
+
+                                <div class="w-11 h-11 shrink-0 rounded-xl bg-primary flex items-center justify-center text-white">
+                                    <i class="fa-solid fa-code"></i>
+                                </div>
+
+                                <div>
+                                    <p class="text-white font-semibold">
+                                        Advice grounded in the business
+                                    </p>
+
+                                    <p class="text-slate-300 text-sm leading-6 mt-1">
+                                        Domains, hosting, SSL, backups, monitoring and technical maintenance
+                                        planning handled with commercial and operational context in mind.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     POSITIONING
+========================================================== -->
+
+<section class="py-20 lg:py-28 bg-white">
+
+    <div class="container">
+
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-20">
+
+            <div class="lg:col-span-5">
+
+                <span class="text-primary font-semibold uppercase tracking-[0.16em] text-xs">
+                    Infrastructure that stays out of the way
+                </span>
+
+                <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary leading-tight tracking-tight">
+                    The infrastructure behind your business should simply work.
+                </h2>
+
+            </div>
+
+            <div class="lg:col-span-7">
+
+                <p class="text-lg text-gray-600 leading-8">
+                    Domains, DNS, hosting, SSL certificates, deployments, backups and
+                    maintenance are easy to overlook when everything is working. When one
+                    of them fails, the impact can reach customers, staff, revenue and reputation.
+                </p>
+
+                <p class="mt-6 text-base text-gray-600 leading-8">
+                    LKProfessionals manages these technical foundations as one connected
+                    environment. We focus on reliability, sensible security, recoverability
+                    and maintainability so your digital operations are not dependent on a
+                    collection of disconnected services.
+                </p>
+
+                <div class="mt-10 grid sm:grid-cols-2 gap-x-10 gap-y-7">
+
+                    <div class="flex gap-4">
+                        <i class="fa-solid fa-circle-check text-primary mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-secondary">One technical owner</h3>
+                            <p class="text-gray-500 text-sm leading-6 mt-1">
+                                Domain, hosting, deployment and maintenance can be managed
+                                through one accountable technology partner.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <i class="fa-solid fa-circle-check text-primary mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-secondary">Built for continuity</h3>
+                            <p class="text-gray-500 text-sm leading-6 mt-1">
+                                Backups, recovery planning and monitoring reduce avoidable
+                                operational risk.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <i class="fa-solid fa-circle-check text-primary mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-secondary">Security maintained</h3>
+                            <p class="text-gray-500 text-sm leading-6 mt-1">
+                                SSL, access controls, updates and infrastructure hygiene are
+                                treated as ongoing responsibilities.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <i class="fa-solid fa-circle-check text-primary mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-secondary">Ready to evolve</h3>
+                            <p class="text-gray-500 text-sm leading-6 mt-1">
+                                Infrastructure can be adjusted as traffic, applications and
+                                business requirements change.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MANAGED INFRASTRUCTURE SERVICES
+========================================================== -->
+
+<section class="py-20 lg:py-28 bg-gray-50">
+
+    <div class="container">
+
+        <div class="max-w-3xl">
+
+            <span class="text-primary font-semibold uppercase tracking-[0.16em] text-xs">
+                What we manage
+            </span>
+
+            <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary tracking-tight">
+                The technical foundations your digital operations depend on.
+            </h2>
+
+            <p class="mt-5 text-gray-600 leading-8 text-lg">
+                From the domain customers type into their browser to the server running
+                the application behind it, we manage the infrastructure required to keep
+                your digital services available and maintainable.
+            </p>
+
+        </div>
+
+        <div class="mt-14 grid md:grid-cols-2 xl:grid-cols-3 gap-px bg-gray-200 border border-gray-200 rounded-3xl overflow-hidden">
+
+            <article class="bg-white p-8 lg:p-10 group">
+                <span class="text-xs text-gray-400 font-semibold">01</span>
+                <i class="fa-solid fa-globe text-primary text-2xl block mt-8"></i>
+                <h3 class="text-xl font-bold text-secondary mt-5">
+                    Domain & DNS Management
+                </h3>
+                <p class="text-gray-600 leading-7 mt-3">
+                    Registration, renewals, DNS records, nameservers, subdomains and
+                    technical domain configuration managed correctly and consistently.
+                </p>
+            </article>
+
+            <article class="bg-white p-8 lg:p-10 group">
+                <span class="text-xs text-gray-400 font-semibold">02</span>
+                <i class="fa-solid fa-server text-primary text-2xl block mt-8"></i>
+                <h3 class="text-xl font-bold text-secondary mt-5">
+                    Web & Application Hosting
+                </h3>
+                <p class="text-gray-600 leading-7 mt-3">
+                    Hosting environments selected and configured around the actual
+                    requirements of your website, platform or business application.
+                </p>
+            </article>
+
+            <article class="bg-white p-8 lg:p-10 group">
+                <span class="text-xs text-gray-400 font-semibold">03</span>
+                <i class="fa-solid fa-cloud text-primary text-2xl block mt-8"></i>
+                <h3 class="text-xl font-bold text-secondary mt-5">
+                    VPS & Cloud Infrastructure
+                </h3>
+                <p class="text-gray-600 leading-7 mt-3">
+                    Server provisioning, operating environments, deployment architecture
+                    and cloud resources for workloads requiring greater control.
+                </p>
+            </article>
+
+            <article class="bg-white p-8 lg:p-10 group">
+                <span class="text-xs text-gray-400 font-semibold">04</span>
+                <i class="fa-solid fa-arrow-right-arrow-left text-primary text-2xl block mt-8"></i>
+                <h3 class="text-xl font-bold text-secondary mt-5">
+                    Migration & Deployment
+                </h3>
+                <p class="text-gray-600 leading-7 mt-3">
+                    Structured migration of websites, applications, domains and hosting
+                    environments with careful planning around service continuity.
+                </p>
+            </article>
+
+            <article class="bg-white p-8 lg:p-10 group">
+                <span class="text-xs text-gray-400 font-semibold">05</span>
+                <i class="fa-solid fa-shield-halved text-primary text-2xl block mt-8"></i>
+                <h3 class="text-xl font-bold text-secondary mt-5">
+                    SSL, Backups & Monitoring
+                </h3>
+                <p class="text-gray-600 leading-7 mt-3">
+                    HTTPS configuration, backup routines, recovery considerations and
+                    service monitoring for stronger operational resilience.
+                </p>
+            </article>
+
+            <article class="p-8 lg:p-10 lkp-dark-service-card">
+                <span class="text-xs text-slate-500 font-semibold">06</span>
+                <i class="fa-solid fa-screwdriver-wrench text-primary text-2xl block mt-8"></i>
+                <h3 class="text-xl font-bold text-white mt-5">
+                    Ongoing Maintenance
+                </h3>
+                <p class="text-slate-300 leading-7 mt-3">
+                    Updates, technical troubleshooting, infrastructure adjustments and
+                    ongoing support to keep your digital environment properly maintained.
+                </p>
+
+                <a href="#quoteModal"
+                   data-quote-open
+                   class="inline-flex items-center gap-2 text-primary font-semibold mt-6">
+                    Discuss Your Infrastructure
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROCESS
+========================================================== -->
+
+<section class="py-20 lg:py-28 bg-white">
+
+    <div class="container">
+
+        <div class="grid lg:grid-cols-12 gap-14">
+
+            <div class="lg:col-span-4">
+
+                <span class="text-primary font-semibold uppercase tracking-[0.16em] text-xs">
+                    How we manage it
+                </span>
+
+                <h2 class="mt-5 text-3xl sm:text-4xl font-bold text-secondary tracking-tight">
+                    From technical assessment to ongoing operation.
+                </h2>
+
+                <p class="text-gray-600 leading-7 mt-6">
+                    Infrastructure should not be changed casually. We first understand
+                    what exists, what the business depends on and what must remain available
+                    before making changes.
+                </p>
+
+            </div>
+
+            <div class="lg:col-span-8">
+
+                <div class="divide-y divide-gray-200 border-y border-gray-200">
+
+                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                        <span class="text-primary font-bold">01</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary">
+                                Infrastructure assessment
+                            </h3>
+                            <p class="mt-3 text-gray-600 leading-7">
+                                We identify the domains, DNS, hosting, applications,
+                                certificates, dependencies and access required to understand
+                                the current environment.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                        <span class="text-primary font-bold">02</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary">
+                                Requirements & risk review
+                            </h3>
+                            <p class="mt-3 text-gray-600 leading-7">
+                                Traffic, workloads, business criticality, recovery needs,
+                                security considerations and future requirements are reviewed
+                                before selecting an approach.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                        <span class="text-primary font-bold">03</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary">
+                                Environment planning
+                            </h3>
+                            <p class="mt-3 text-gray-600 leading-7">
+                                We define an appropriate hosting and deployment environment,
+                                including DNS, SSL, server resources, application dependencies
+                                and backup requirements.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                        <span class="text-primary font-bold">04</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary">
+                                Migration or deployment
+                            </h3>
+                            <p class="mt-3 text-gray-600 leading-7">
+                                Changes are implemented in a controlled sequence with attention
+                                to DNS propagation, application configuration, data integrity
+                                and service continuity.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                        <span class="text-primary font-bold">05</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary">
+                                Validation & protection
+                            </h3>
+                            <p class="mt-3 text-gray-600 leading-7">
+                                We verify the deployed service, HTTPS configuration, connectivity,
+                                key functionality and backup arrangements before considering
+                                the transition complete.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                        <span class="text-primary font-bold">06</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary">
+                                Monitoring & maintenance
+                            </h3>
+                            <p class="mt-3 text-gray-600 leading-7">
+                                Where ongoing management is included, we continue with monitoring,
+                                maintenance, updates, troubleshooting and infrastructure changes
+                                as requirements evolve.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CAPABILITIES
+========================================================== -->
+
+<section class="py-20 lg:py-28 lkp-capabilities">
+
+    <div class="container">
+
+        <div class="grid lg:grid-cols-12 gap-14 items-start">
+
+            <div class="lg:col-span-6">
+
+                <span class="text-primary uppercase tracking-[0.16em] text-xs font-semibold">
+                    Managed across the infrastructure stack
+                </span>
+
+                <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
+                    Hosting is more than server space.
+                    <span class="text-slate-400">
+                        Reliability depends on the whole environment.
+                    </span>
+                </h2>
+
+                <p class="mt-7 text-lg leading-8 max-w-xl lkp-capabilities-copy">
+                    A dependable digital service depends on domains, DNS, certificates,
+                    servers, deployments, backups and maintenance working together.
+                    We manage these layers as connected infrastructure rather than isolated products.
+                </p>
+
+            </div>
+
+            <div class="lg:col-span-6 grid sm:grid-cols-2 gap-4">
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-globe text-primary"></i>
+                    <h3 class="font-bold mt-4">Domains & DNS</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Registration, renewals, nameservers, DNS records, subdomains and routing configuration.
+                    </p>
+                </div>
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-server text-primary"></i>
+                    <h3 class="font-bold mt-4">Servers & Hosting</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Hosting environments, VPS resources and server configuration aligned with application requirements.
+                    </p>
+                </div>
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-lock text-primary"></i>
+                    <h3 class="font-bold mt-4">SSL & HTTPS</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Certificate installation, renewal and secure HTTPS configuration for supported services.
+                    </p>
+                </div>
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-cloud-arrow-up text-primary"></i>
+                    <h3 class="font-bold mt-4">Deployment</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Application deployment, environment configuration and release infrastructure for production systems.
+                    </p>
+                </div>
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-database text-primary"></i>
+                    <h3 class="font-bold mt-4">Backups & Recovery</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Backup routines and recovery considerations designed around the importance of the underlying service.
+                    </p>
+                </div>
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-chart-line text-primary"></i>
+                    <h3 class="font-bold mt-4">Monitoring</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Operational visibility into service availability and infrastructure issues where monitoring is included.
+                    </p>
+                </div>
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-shield-halved text-primary"></i>
+                    <h3 class="font-bold mt-4">Maintenance & Updates</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Technical maintenance, updates and infrastructure hygiene to reduce avoidable operational exposure.
+                    </p>
+                </div>
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-arrow-right-arrow-left text-primary"></i>
+                    <h3 class="font-bold mt-4">Migration</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Planned movement between providers, servers or environments with continuity and configuration considered.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CASE STUDIES - DYNAMIC
+========================================================== -->
+
+{% if case_studies %}
+
+<section class="py-20 lg:py-28 bg-white">
+
+    <div class="container">
+
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+
+            <div class="max-w-3xl">
+                <span class="text-primary uppercase tracking-[0.16em] text-xs font-semibold">
+                    Selected work
+                </span>
+
+                <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary tracking-tight">
+                    See the work behind the claims.
+                </h2>
+            </div>
+
+            <a href="/case-studies/"
+               class="font-semibold text-secondary hover:text-primary transition-colors inline-flex items-center gap-2">
+                Explore all case studies
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+
+        <div class="mt-12 grid md:grid-cols-2 xl:grid-cols-3 gap-7">
+
+            {% for case_study in case_studies %}
+
+            <article class="group">
+
+                <a href="/case-studies/{{ case_study.slug }}/"
+                   class="block overflow-hidden rounded-2xl bg-gray-100">
+
+                    {% if case_study.featured_image %}
+                    <img
+                        src="{{ case_study.featured_image.url }}"
+                        alt="{{ case_study.title }}"
+                        class="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    >
+                    {% else %}
+                    <div class="w-full aspect-[4/3] bg-[#071426] flex items-center justify-center">
+                        <i class="fa-solid fa-code text-primary text-4xl"></i>
+                    </div>
+                    {% endif %}
+
+                </a>
+
+                <div class="pt-6">
+
+                    {% if case_study.industry %}
+                    <span class="text-xs uppercase tracking-wider text-gray-500">
+                        {{ case_study.industry }}
+                    </span>
+                    {% endif %}
+
+                    <h3 class="mt-2 text-xl font-bold text-secondary">
+                        <a href="/case-studies/{{ case_study.slug }}/"
+                           class="hover:text-primary transition-colors">
+                            {{ case_study.title }}
+                        </a>
+                    </h3>
+
+                    {% if case_study.summary %}
+                    <p class="mt-3 text-gray-600 leading-7">
+                        {{ case_study.summary|truncatewords:24 }}
+                    </p>
+                    {% endif %}
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- =========================================================
+     PACKAGES - DYNAMIC
+========================================================== -->
+
+{% if packages %}
+
+<section class="py-20 lg:py-28 bg-gray-50">
+
+    <div class="container">
+
+        <div class="max-w-3xl mx-auto text-center">
+
+            <span class="text-primary uppercase tracking-[0.16em] text-xs font-semibold">
+                Packages
+            </span>
+
+            <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary tracking-tight">
+                A practical starting point.
+            </h2>
+
+            <p class="mt-5 text-gray-600 leading-8">
+                Choose an existing package or speak with us about a requirement
+                that needs a more tailored scope.
+            </p>
+
+        </div>
+
+
+        <div class="mt-12 grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+
+            {% for package in packages %}
+
+            <article class="bg-white border border-gray-200 rounded-2xl p-8">
+
+                <h3 class="text-xl font-bold text-secondary">
+                    {{ package.title }}
+                </h3>
+
+                <div class="mt-6">
+                    <span class="text-sm text-gray-500">From</span>
+
+                    <div class="mt-1 text-3xl font-bold text-secondary">
+                        LKR {{ package.price|floatformat:0 }}
+                    </div>
+                </div>
+
+                {% if package.features %}
+                <div class="mt-6 text-gray-600 leading-7 whitespace-pre-line">
+                    {{ package.features }}
+                </div>
+                {% endif %}
+
+                <a href="#quoteModal"
+                   data-quote-open
+                   class="mt-8 btn btn-primary w-full text-center">
+                    {{ package.cta_label }}
+                </a>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- =========================================================
+     FAQ
+========================================================== -->
+
+<section class="py-20 lg:py-28 bg-white">
+
+    <div class="container">
+
+        <div class="grid lg:grid-cols-12 gap-14">
+
+            <div class="lg:col-span-4">
+
+                <span class="text-primary uppercase tracking-[0.16em] text-xs font-semibold">
+                    Frequently asked
+                </span>
+
+                <h2 class="mt-5 text-3xl sm:text-4xl font-bold text-secondary tracking-tight">
+                    Before we take responsibility for the infrastructure.
+                </h2>
+
+                <p class="mt-5 text-gray-600 leading-7">
+                    Straightforward answers about hosting, domains, migrations,
+                    maintenance and ongoing infrastructure management.
+                </p>
+
+            </div>
+
+            <div class="lg:col-span-8 divide-y divide-gray-200 border-y border-gray-200">
+
+                <details class="group py-6">
+                    <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
+                        How much do hosting and maintenance services cost?
+                        <i class="fa-solid fa-plus text-primary mt-1"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7 pr-10">
+                        Pricing depends on the application, traffic, server resources,
+                        storage, backup requirements and level of ongoing management.
+                        We establish the infrastructure requirement before recommending
+                        an appropriate service and cost.
+                    </p>
+                </details>
+
+                <details class="group py-6">
+                    <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
+                        Can you manage a domain we already own?
+                        <i class="fa-solid fa-plus text-primary mt-1"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7 pr-10">
+                        Yes. Where the registrar and account access allow it, we can work
+                        with existing domains and manage the required DNS, nameserver,
+                        subdomain and service configuration without requiring a new domain.
+                    </p>
+                </details>
+
+                <details class="group py-6">
+                    <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
+                        Can you migrate our existing website or application?
+                        <i class="fa-solid fa-plus text-primary mt-1"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7 pr-10">
+                        Yes. We first review the existing environment, application,
+                        database, DNS and dependencies, then plan the migration around
+                        the technical requirements and acceptable service interruption.
+                    </p>
+                </details>
+
+                <details class="group py-6">
+                    <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
+                        Do you provide SSL certificates and HTTPS configuration?
+                        <i class="fa-solid fa-plus text-primary mt-1"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7 pr-10">
+                        Yes. SSL/TLS certificate installation and HTTPS configuration
+                        can form part of the hosting or infrastructure setup, depending
+                        on the environment and service requirements.
+                    </p>
+                </details>
+
+                <details class="group py-6">
+                    <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
+                        Are backups included?
+                        <i class="fa-solid fa-plus text-primary mt-1"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7 pr-10">
+                        Backup requirements are defined according to the service and
+                        maintenance arrangement. We consider what needs to be backed up,
+                        how frequently and how recovery would be handled rather than
+                        assuming every workload requires the same policy.
+                    </p>
+                </details>
+
+                <details class="group py-6">
+                    <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
+                        Can you maintain systems hosted with another provider?
+                        <i class="fa-solid fa-plus text-primary mt-1"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7 pr-10">
+                        Potentially, yes. We first assess the provider, available access,
+                        server environment and technical constraints. If the environment
+                        can be managed responsibly, ongoing maintenance can be scoped accordingly.
+                    </p>
+                </details>
+
+                <details class="group py-6">
+                    <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
+                        Do you support businesses outside Sri Lanka?
+                        <i class="fa-solid fa-plus text-primary mt-1"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7 pr-10">
+                        Yes. Domain, hosting, deployment and maintenance work can be
+                        managed remotely for businesses in Sri Lanka and international
+                        markets where the required infrastructure access is available.
+                    </p>
+                </details>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FINAL CTA
+========================================================== -->
+
+<section class="pb-20 lg:pb-28 bg-white">
+
+    <div class="container">
+
+        <div class="relative overflow-hidden bg-primary rounded-[2rem] px-6 sm:px-10 lg:px-16 py-14 lg:py-16">
+
+            <div class="absolute -right-20 -top-40 w-96 h-96 border-[70px] border-white/10 rounded-full"></div>
+
+            <div class="relative z-10 grid lg:grid-cols-12 gap-10 items-center">
+
+                <div class="lg:col-span-8">
+
+                    <span class="text-white/70 uppercase tracking-[0.16em] text-xs font-semibold">
+                        Need dependable hosting and technical maintenance?
+                    </span>
+
+                    <h2 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight max-w-3xl">
+                        Get clarity before committing time, money and operations.
+                    </h2>
+
+                    <p class="mt-5 text-white/80 text-lg leading-8 max-w-2xl">
+                        Tell us what decision, system or technical challenge you are dealing with.
+                        We will start with the business requirement and determine the right
+                        technical questions before recommending a direction.
+                    </p>
+
+                </div>
+
+                <div class="lg:col-span-4 lg:text-right">
+
+                    <a href="#quoteModal"
+                       data-quote-open
+                       class="inline-flex items-center justify-center gap-3 bg-white text-secondary font-bold px-7 py-4 rounded-lg hover:bg-[#071426] hover:text-white transition-all duration-300">
+                        Get a Quote
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+{% include 'partials/footer.html' %}
+
+
+<script>
+(function () {
+    const founded = new Date(2013, 9, 12);
+    const now = new Date();
+
+    let years = now.getFullYear() - founded.getFullYear();
+
+    const anniversaryPassed =
+        now.getMonth() > founded.getMonth() ||
+        (now.getMonth() === founded.getMonth() &&
+         now.getDate() >= founded.getDate());
+
+    if (!anniversaryPassed) {
+        years--;
+    }
+
+    document.querySelectorAll("[data-founded-year]").forEach(function (element) {
+        element.textContent = years;
+    });
+})();
+</script>
+
+<script src="/assets/js/swiper-bundle.min.js"></script>
+<script src="/assets/js/animate.js"></script>
+<script src="/assets/js/back-to-top.js"></script>
+<script src="/assets/js/accordion.js"></script>
+<script src="/assets/js/responsive-menu.js"></script>
+<script src="/assets/js/pre-loader.js"></script>
+<script src="/assets/js/coming-soon.js"></script>
+<script src="/assets/js/slider-config.js"></script>
+<script src="/assets/js/email.min.js"></script>
+<script src="/assets/js/contact-form.js"></script>
+<script src="/assets/js/script.js"></script>
+
+</body>
+</html>
