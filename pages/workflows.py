@@ -343,9 +343,11 @@ def document(request, resource, pk):
 @staff_required
 def download_file(request, path):
     from django.core.files.storage import default_storage
+    from case_studies.models import CaseStudyGalleryImage
     file_url = f'/dashboard/files/{path}'
     permitted = any(allowed(request.user, model) and model.objects.filter(file_url=file_url).exists() for model in [m.MediaAsset, m.ClientFile, m.ProjectFile, m.BackupRecord])
     permitted = permitted or (allowed(request.user, m.CareerApplication) and m.CareerApplication.objects.filter(resume_url=file_url).exists())
+    permitted = permitted or (allowed(request.user, CaseStudyGalleryImage) and CaseStudyGalleryImage.objects.filter(image_url=file_url).exists())
     if not permitted or not path.startswith('dashboard/') or '..' in path.split('/') or not default_storage.exists(path):
         raise Http404
     return FileResponse(default_storage.open(path, 'rb'), as_attachment=True)

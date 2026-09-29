@@ -154,10 +154,6 @@ DASHBOARD_NAV = [
             {'label': 'Pages', 'resource': 'cms-pages'},
             {'label': 'Sections', 'resource': 'website-sections'},
             {'label': 'Navigation/Footer', 'resource': 'navigation-items'},
-            {'label': 'Case Studies', 'resource': 'case-studies'},
-            {'label': 'Case Study Technologies', 'resource': 'case-study-technologies'},
-            {'label': 'Case Study Gallery', 'resource': 'case-study-gallery'},
-            {'label': 'Case Study Metrics', 'resource': 'case-study-metrics'},
             {'label': 'Insights', 'resource': 'insights'},
             {'label': 'Industries', 'resource': 'industries'},
             {'label': 'Markets', 'resource': 'markets'},
@@ -165,6 +161,16 @@ DASHBOARD_NAV = [
             {'label': 'Team', 'resource': 'team-members'},
             {'label': 'Media Library', 'resource': 'media-assets'},
             {'label': 'Global Settings', 'resource': 'global-settings'},
+        ],
+    },
+    {
+        'label': 'Case Studies',
+        'icon': 'ti-briefcase',
+        'children': [
+            {'label': 'Case Studies', 'resource': 'case-studies'},
+            {'label': 'Technologies', 'resource': 'case-study-technologies'},
+            {'label': 'Gallery', 'resource': 'case-study-gallery'},
+            {'label': 'Metrics', 'resource': 'case-study-metrics'},
         ],
     },
     {

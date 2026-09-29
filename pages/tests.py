@@ -344,6 +344,21 @@ class DashboardTests(TestCase):
                 self.assertEqual(self.client.get(self.url(resource)).status_code, 200)
                 self.assertEqual(self.client.get(self.url(resource, suffix='new/')).status_code, 200)
 
+    def test_case_study_gallery_upload_sets_image_url(self):
+        case_study = case_models.CaseStudy.objects.create(title='Upload Case', status='published')
+        with tempfile.TemporaryDirectory() as directory, override_settings(MEDIA_ROOT=directory):
+            response = self.client.post('/dashboard/case-study-gallery/new/', {
+                'case_study': case_study.pk,
+                'caption': 'Homepage screen',
+                'display_order': 1,
+                'is_active': True,
+                'upload': SimpleUploadedFile('screen.webp', b'RIFF----WEBPVP8 ', content_type='image/webp'),
+            })
+            self.assertEqual(response.status_code, 302)
+            image = case_models.CaseStudyGalleryImage.objects.get()
+            self.assertTrue(image.image_url.startswith('/dashboard/files/dashboard/case-studies/gallery/'))
+            self.assertEqual(self.client.get(image.image_url).status_code, 200)
+
     def test_redirects_and_cycles(self):
         m.RedirectRule.objects.create(from_path='/old', to_path='/new')
         response = self.client.get('/old')

@@ -1,4 +1,7 @@
 from django import forms
+from django.core.files.storage import default_storage
+from pathlib import Path
+from uuid import uuid4
 
 from pages.forms import DashboardModelForm
 
@@ -64,6 +67,43 @@ class CaseStudyMetricForm(DashboardModelForm):
 
 
 class CaseStudyGalleryImageForm(DashboardModelForm):
+    upload = forms.FileField(
+        required=False,
+        help_text='Upload JPG, PNG, WebP, or GIF up to 20 MB. You can also paste an image URL instead.',
+        widget=forms.ClearableFileInput(attrs={'class': 'form-control', 'accept': 'image/jpeg,image/png,image/webp,image/gif'}),
+    )
+
     class Meta:
         model = CaseStudyGalleryImage
         fields = ['case_study', 'image_url', 'alt_text', 'caption', 'display_order', 'is_active']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['image_url'].required = False
+
+    def clean(self):
+        data = super().clean()
+        upload = data.get('upload')
+        if upload:
+            suffix = Path(upload.name).suffix.lower()
+            if upload.size > 20 * 1024 * 1024:
+                self.add_error('upload', 'Image must be no larger than 20 MB.')
+            if suffix not in ['.jpg', '.jpeg', '.png', '.webp', '.gif']:
+                self.add_error('upload', 'Upload a JPG, PNG, WebP, or GIF image.')
+        elif not data.get('image_url'):
+            self.add_error('image_url', 'Enter an image URL or upload an image.')
+        return data
+
+    def save(self, commit=True):
+        obj = super().save(commit=False)
+        upload = self.cleaned_data.get('upload')
+        if upload:
+            suffix = Path(upload.name).suffix.lower()
+            path = default_storage.save(f'dashboard/case-studies/gallery/{uuid4().hex}{suffix}', upload)
+            obj.image_url = f'/dashboard/files/{path}'
+            if not obj.alt_text:
+                obj.alt_text = obj.caption or obj.case_study.title
+        if commit:
+            obj.save()
+            self.save_m2m()
+        return obj
