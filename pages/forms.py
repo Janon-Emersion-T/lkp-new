@@ -111,11 +111,12 @@ class CategoryForm(DashboardModelForm):
 class InsightForm(DashboardModelForm):
     class Meta:
         model = Insight
-        fields = ['title', 'slug', 'category', 'tags', 'summary', 'content', 'image_url', 'status', 'is_featured', 'published_at']
+        fields = ['title', 'slug', 'category', 'tags', 'summary', 'content', 'featured_image', 'status', 'is_featured', 'published_at']
         widgets = {
             'tags': forms.SelectMultiple(attrs={'size': 8}),
             'summary': forms.Textarea(attrs={'rows': 3}),
             'content': forms.Textarea(attrs={'rows': 10}),
+            'featured_image': forms.ClearableFileInput(attrs={'accept': 'image/jpeg,image/png,image/webp'}),
             'published_at': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }
 

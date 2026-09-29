@@ -28,6 +28,11 @@
                   </label>
                 {% else %}
                   <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                  {% if field.field.widget.input_type == 'file' and field.value %}
+                    <div class="mb-2">
+                      <img src="/media/{{ field.value }}" alt="" class="rounded border" style="max-width: 180px; height: auto;">
+                    </div>
+                  {% endif %}
                   {{ field }}
                 {% endif %}
                 {% if field.help_text %}<div class="form-hint">{{ field.help_text }}</div>{% endif %}

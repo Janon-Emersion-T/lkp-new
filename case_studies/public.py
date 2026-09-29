@@ -60,8 +60,8 @@ def case_study_detail(request, slug):
     }
     if obj.client_name:
         schema['about'] = obj.client_name
-    if obj.featured_image_url:
-        schema['image'] = request.build_absolute_uri(obj.featured_image_url) if obj.featured_image_url.startswith('/') else obj.featured_image_url
+    if obj.featured_image:
+        schema['image'] = request.build_absolute_uri(obj.featured_image.url)
     return render(request, 'site/case_study_detail.html', {
         'object': obj,
         'title': title,

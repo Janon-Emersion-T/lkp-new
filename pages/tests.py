@@ -1,10 +1,12 @@
 from datetime import timedelta
 from decimal import Decimal
-from io import StringIO
+from io import BytesIO, StringIO
 import tempfile
 from unittest.mock import patch
+from PIL import Image
 from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.files.storage import default_storage
 from django.core.management import call_command, CommandError
 from django.test import TestCase, Client as TestClient, override_settings
 from django.utils import timezone
@@ -12,6 +14,12 @@ from case_studies import models as case_models
 from . import models as m
 from .forms import AccessRoleForm
 from .views import CRUD_RESOURCES, _get_form_class
+
+
+def uploaded_png(name):
+    buffer = BytesIO()
+    Image.new('RGB', (1, 1), '#33b6ff').save(buffer, format='PNG')
+    return SimpleUploadedFile(name, buffer.getvalue(), content_type='image/png')
 
 
 class DashboardTests(TestCase):
@@ -306,7 +314,7 @@ class DashboardTests(TestCase):
             status='published',
         )
         published.technologies.add(technology)
-        case_models.CaseStudyGalleryImage.objects.create(case_study=published, image_url='/assets/image/project-1.jpg', alt_text='Project screen')
+        case_models.CaseStudyGalleryImage.objects.create(case_study=published, image='case-studies/gallery/project-1.png', alt_text='Project screen')
         case_models.CaseStudyMetric.objects.create(case_study=published, value='2x', label='Faster admin')
         draft = case_models.CaseStudy.objects.create(title='Private Draft', slug='private-draft')
 
@@ -344,20 +352,70 @@ class DashboardTests(TestCase):
                 self.assertEqual(self.client.get(self.url(resource)).status_code, 200)
                 self.assertEqual(self.client.get(self.url(resource, suffix='new/')).status_code, 200)
 
-    def test_case_study_gallery_upload_sets_image_url(self):
+    def test_direct_image_uploads(self):
         case_study = case_models.CaseStudy.objects.create(title='Upload Case', status='published')
         with tempfile.TemporaryDirectory() as directory, override_settings(MEDIA_ROOT=directory):
+            self.assertEqual(self.client.post('/dashboard/team-members/new/', {
+                'name': 'Team Person',
+                'role': 'Developer',
+                'email': 'team@example.com',
+                'bio': 'Builds useful systems.',
+                'display_order': 1,
+                'is_active': True,
+                'profile_image': uploaded_png('profile.png'),
+            }).status_code, 302)
+            self.assertTrue(m.TeamMember.objects.get().profile_image.name.startswith('team/'))
+            self.assertEqual(self.client.post('/dashboard/insights/new/', {
+                'title': 'Image Insight',
+                'slug': 'image-insight',
+                'summary': 'Direct upload',
+                'content': 'Body',
+                'status': 'published',
+                'is_featured': True,
+                'featured_image': uploaded_png('insight.png'),
+            }).status_code, 302)
+            self.assertTrue(m.Insight.objects.get(slug='image-insight').featured_image.name.startswith('insights/'))
+            response = self.client.post(f'/dashboard/case-studies/{case_study.pk}/edit/', {
+                'title': case_study.title,
+                'slug': case_study.slug,
+                'client_name': '',
+                'company': '',
+                'primary_service': '',
+                'related_services': [],
+                'industry': '',
+                'technologies': [],
+                'summary': '',
+                'overview': '',
+                'challenge': '',
+                'solution': '',
+                'results': '',
+                'key_features': '',
+                'key_result': '',
+                'featured_image_alt': 'Case image',
+                'project_url': '',
+                'completion_date': '',
+                'status': 'published',
+                'is_featured': False,
+                'display_order': 0,
+                'seo_title': '',
+                'seo_description': '',
+                'published_at': '',
+                'featured_image': uploaded_png('case.png'),
+            })
+            self.assertEqual(response.status_code, 302)
+            case_study.refresh_from_db()
+            self.assertTrue(case_study.featured_image.name.startswith('case-studies/'))
             response = self.client.post('/dashboard/case-study-gallery/new/', {
                 'case_study': case_study.pk,
                 'caption': 'Homepage screen',
                 'display_order': 1,
                 'is_active': True,
-                'upload': SimpleUploadedFile('screen.webp', b'RIFF----WEBPVP8 ', content_type='image/webp'),
+                'image': uploaded_png('screen.png'),
             })
             self.assertEqual(response.status_code, 302)
             image = case_models.CaseStudyGalleryImage.objects.get()
-            self.assertTrue(image.image_url.startswith('/dashboard/files/dashboard/case-studies/gallery/'))
-            self.assertEqual(self.client.get(image.image_url).status_code, 200)
+            self.assertTrue(image.image.name.startswith('case-studies/gallery/'))
+            self.assertTrue(default_storage.exists(image.image.name))
 
     def test_redirects_and_cycles(self):
         m.RedirectRule.objects.create(from_path='/old', to_path='/new')

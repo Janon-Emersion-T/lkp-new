@@ -31,7 +31,6 @@ urlpatterns = [
     path('portfolio/<slug:slug>/', public.portfolio_redirect, name='portfolio_detail_redirect'),
     path('insights/', public.content, {'kind': 'insights'}, name='published_insights'),
     path('insights/<slug:slug>/', public.content, {'kind': 'insights'}, name='published_insight'),
-    path('pages/<slug:slug>/', public.content, {'kind': 'pages'}, name='published_page'),
     path('services/<slug:slug>/', public.content, {'kind': 'services'}, name='published_service'),
     path('industries/<slug:slug>/', public.content, {'kind': 'industries'}, name='published_industry'),
     path('markets/<slug:slug>/', public.content, {'kind': 'markets'}, name='published_market'),

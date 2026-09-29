@@ -23,6 +23,9 @@
 <h3>Record Details</h3>
 <dl class="record-fields">{% for label, value in fields %}<div><dt>{{ label }}</dt><dd>{{ value|linebreaksbr }}</dd></div>{% endfor %}</dl>
 {% if object.file_url %}<a href="{{ object.file_url }}" class="btn"><i class="ti ti-download me-2"></i>Open file</a>{% endif %}
+{% if object.featured_image %}<img src="{{ object.featured_image.url }}" alt="" class="rounded border mt-3" style="max-width: 220px; height: auto;">{% endif %}
+{% if object.profile_image %}<img src="{{ object.profile_image.url }}" alt="" class="rounded border mt-3" style="max-width: 220px; height: auto;">{% endif %}
+{% if object.image %}<img src="{{ object.image.url }}" alt="" class="rounded border mt-3" style="max-width: 220px; height: auto;">{% endif %}
 </section>
 <div>
 {% for section in related %}

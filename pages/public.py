@@ -66,7 +66,7 @@ def apply_for_job(request):
     return render(request, 'site/submission.html', {'title': 'Application received', 'message': 'Thank you. Our team will review your application.'})
 
 
-PUBLISHED_MODELS = {'insights': m.Insight, 'pages': m.CMSPage, 'services': m.ServicePackage, 'industries': m.Industry, 'markets': m.Market}
+PUBLISHED_MODELS = {'insights': m.Insight, 'services': m.ServicePackage, 'industries': m.Industry, 'markets': m.Market}
 
 
 def portfolio_redirect(request, slug=None):
@@ -87,11 +87,10 @@ def content(request, kind, slug=None):
         records = records.filter(published_at__lte=timezone.now())
     obj = get_object_or_404(records, slug=slug) if slug else None
     seo = m.SEOSetting.objects.filter(path=request.path).first()
-    sections = obj.sections.filter(is_active=True) if kind == 'pages' and obj else []
     title = str(obj) if obj else kind.title()
     description = (seo.description if seo else '') or getattr(obj, 'seo_description', '') or getattr(obj, 'summary', '')
     body = getattr(obj, 'content', '') or getattr(obj, 'body', '') or getattr(obj, 'features', '')
-    return render(request, 'site/content.html', {'title': title, 'description': description, 'body': body, 'object': obj, 'records': records if not obj else [], 'kind': kind, 'seo': seo, 'sections': sections})
+    return render(request, 'site/content.html', {'title': title, 'description': description, 'body': body, 'object': obj, 'records': records if not obj else [], 'kind': kind, 'seo': seo})
 
 
 def sitemap(request):

@@ -3,6 +3,7 @@ from django.conf import settings
 from decimal import Decimal
 from django.utils import timezone
 from django.utils.text import slugify
+from .validators import validate_image_upload
 
 
 class TimeStampedModel(models.Model):
@@ -71,7 +72,7 @@ class Insight(TimeStampedModel):
     tags = models.ManyToManyField(Tag, blank=True, related_name='insights')
     summary = models.TextField(blank=True)
     content = models.TextField(blank=True)
-    image_url = models.CharField(max_length=500, blank=True)
+    featured_image = models.ImageField(upload_to='insights/', blank=True, null=True, validators=[validate_image_upload])
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.DRAFT)
     is_featured = models.BooleanField(default=False)
     published_at = models.DateTimeField(null=True, blank=True)
@@ -618,56 +619,6 @@ class Expense(TimeStampedModel):
         return self.title
 
 
-class CMSPage(TimeStampedModel):
-    class Status(models.TextChoices):
-        DRAFT = 'draft', 'Draft'
-        PUBLISHED = 'published', 'Published'
-        ARCHIVED = 'archived', 'Archived'
-
-    title = models.CharField(max_length=220)
-    slug = models.SlugField(max_length=240, unique=True)
-    status = models.CharField(max_length=20, choices=Status.choices, default=Status.DRAFT)
-    seo_title = models.CharField(max_length=220, blank=True)
-    seo_description = models.TextField(blank=True)
-    body = models.TextField(blank=True)
-
-    class Meta:
-        ordering = ['title']
-
-    def __str__(self):
-        return self.title
-
-
-class WebsiteSection(TimeStampedModel):
-    page = models.ForeignKey(CMSPage, on_delete=models.CASCADE, related_name='sections', null=True, blank=True)
-    title = models.CharField(max_length=220)
-    key = models.CharField(max_length=120, blank=True)
-    content = models.TextField(blank=True)
-    display_order = models.PositiveIntegerField(default=0)
-    is_active = models.BooleanField(default=True)
-
-    class Meta:
-        ordering = ['display_order', 'title']
-
-    def __str__(self):
-        return self.title
-
-
-class NavigationItem(TimeStampedModel):
-    label = models.CharField(max_length=160)
-    url = models.CharField(max_length=260)
-    location = models.CharField(max_length=80, default='header')
-    parent_label = models.CharField(max_length=160, blank=True)
-    display_order = models.PositiveIntegerField(default=0)
-    is_active = models.BooleanField(default=True)
-
-    class Meta:
-        ordering = ['location', 'display_order', 'label']
-
-    def __str__(self):
-        return self.label
-
-
 class Industry(TimeStampedModel):
     name = models.CharField(max_length=180)
     slug = models.SlugField(max_length=200, unique=True, blank=True)
@@ -710,7 +661,7 @@ class TeamMember(TimeStampedModel):
     role = models.CharField(max_length=160, blank=True)
     email = models.EmailField(blank=True)
     bio = models.TextField(blank=True)
-    image_url = models.CharField(max_length=500, blank=True)
+    profile_image = models.ImageField(upload_to='team/', blank=True, null=True, validators=[validate_image_upload])
     display_order = models.PositiveIntegerField(default=0)
     is_active = models.BooleanField(default=True)
 
@@ -745,16 +696,6 @@ class FAQItem(TimeStampedModel):
 
     def __str__(self):
         return self.question
-
-
-class MediaAsset(TimeStampedModel):
-    title = models.CharField(max_length=220)
-    file_url = models.CharField(max_length=500)
-    alt_text = models.CharField(max_length=220, blank=True)
-    notes = models.TextField(blank=True)
-
-    def __str__(self):
-        return self.title
 
 
 class GlobalSetting(TimeStampedModel):

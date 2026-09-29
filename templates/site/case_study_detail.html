@@ -47,8 +47,8 @@
             </dl>
           </div>
           <div class="relative">
-            {% if object.featured_image_url %}
-              <img src="{{ object.featured_image_url }}" alt="{{ object.featured_image_alt|default:object.title }}" class="w-full aspect-[4/3] object-cover rounded-xl shadow-2xl">
+            {% if object.featured_image %}
+              <img src="{{ object.featured_image.url }}" alt="{{ object.featured_image_alt|default:object.title }}" class="w-full aspect-[4/3] object-cover rounded-xl shadow-2xl">
             {% else %}
               <img src="/assets/image/project-img-2.png" alt="{{ object.title }} case study featured image" class="w-full aspect-[4/3] object-cover rounded-xl shadow-2xl">
             {% endif %}
@@ -133,7 +133,7 @@
               <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-6">Screenshots / Visual Gallery</h2>
               <div class="grid md:grid-cols-2 gap-5">
                 {% for image in gallery %}
-                  <img src="{{ image.image_url }}" alt="{{ image.alt_text|default:object.title }}" class="w-full aspect-[4/3] object-cover rounded-xl border border-gray-100 shadow-sm" loading="lazy">
+                  <img src="{{ image.image.url }}" alt="{{ image.alt_text|default:object.title }}" class="w-full aspect-[4/3] object-cover rounded-xl border border-gray-100 shadow-sm" loading="lazy">
                 {% endfor %}
               </div>
             </section>

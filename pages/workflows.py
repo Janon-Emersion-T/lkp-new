@@ -116,8 +116,8 @@ def detail(request, resource, pk):
                 can_pdf=resource in ['quotations', 'invoices', 'payments'] or resource == 'clients' and allowed(request.user, m.Invoice),
                 can_add_item=resource == 'quotations' and allowed(request.user, m.QuotationLineItem, 'add'),
                 packages=m.ServicePackage.objects.filter(is_active=True) if resource == 'quotations' else [])
-    if resource in ['insights', 'portfolios', 'case-studies', 'cms-pages', 'service-packages', 'industries', 'markets']:
-        kind = {'insights': 'insights', 'portfolios': 'portfolio', 'case-studies': 'case-studies', 'cms-pages': 'pages', 'service-packages': 'services', 'industries': 'industries', 'markets': 'markets'}[resource]
+    if resource in ['insights', 'portfolios', 'case-studies', 'service-packages', 'industries', 'markets']:
+        kind = {'insights': 'insights', 'portfolios': 'portfolio', 'case-studies': 'case-studies', 'service-packages': 'services', 'industries': 'industries', 'markets': 'markets'}[resource]
         if getattr(obj, 'status', 'published') == 'published' and getattr(obj, 'is_active', True):
             data['public_url'] = f'/{kind}/{obj.slug}/'
     return render(request, 'dashboard/detail.html', data)
@@ -345,9 +345,8 @@ def download_file(request, path):
     from django.core.files.storage import default_storage
     from case_studies.models import CaseStudyGalleryImage
     file_url = f'/dashboard/files/{path}'
-    permitted = any(allowed(request.user, model) and model.objects.filter(file_url=file_url).exists() for model in [m.MediaAsset, m.ClientFile, m.ProjectFile, m.BackupRecord])
+    permitted = any(allowed(request.user, model) and model.objects.filter(file_url=file_url).exists() for model in [m.ClientFile, m.ProjectFile, m.BackupRecord])
     permitted = permitted or (allowed(request.user, m.CareerApplication) and m.CareerApplication.objects.filter(resume_url=file_url).exists())
-    permitted = permitted or (allowed(request.user, CaseStudyGalleryImage) and CaseStudyGalleryImage.objects.filter(image_url=file_url).exists())
     if not permitted or not path.startswith('dashboard/') or '..' in path.split('/') or not default_storage.exists(path):
         raise Http404
     return FileResponse(default_storage.open(path, 'rb'), as_attachment=True)

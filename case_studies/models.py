@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
+from pages.validators import validate_image_upload
 
 
 class TimeStampedModel(models.Model):
@@ -53,7 +54,7 @@ class CaseStudy(TimeStampedModel):
     results = models.TextField(blank=True)
     key_features = models.TextField(blank=True, help_text='One feature per line')
     key_result = models.CharField(max_length=260, blank=True)
-    featured_image_url = models.CharField(max_length=500, blank=True)
+    featured_image = models.ImageField(upload_to='case-studies/', blank=True, null=True, validators=[validate_image_upload])
     featured_image_alt = models.CharField(max_length=220, blank=True)
     project_url = models.URLField(blank=True)
     completion_date = models.DateField(null=True, blank=True)
@@ -102,7 +103,7 @@ class CaseStudyMetric(TimeStampedModel):
 
 class CaseStudyGalleryImage(TimeStampedModel):
     case_study = models.ForeignKey(CaseStudy, on_delete=models.CASCADE, related_name='gallery')
-    image_url = models.CharField(max_length=500)
+    image = models.ImageField(upload_to='case-studies/gallery/', blank=True, null=True, validators=[validate_image_upload])
     alt_text = models.CharField(max_length=220, blank=True)
     caption = models.CharField(max_length=260, blank=True)
     display_order = models.PositiveIntegerField(default=0)
@@ -114,4 +115,4 @@ class CaseStudyGalleryImage(TimeStampedModel):
         verbose_name_plural = 'Case Study Gallery'
 
     def __str__(self):
-        return self.caption or self.alt_text or self.image_url
+        return self.caption or self.alt_text or str(self.image)
