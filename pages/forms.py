@@ -129,10 +129,39 @@ class SubscriberForm(DashboardModelForm):
 class PortfolioForm(DashboardModelForm):
     class Meta:
         model = Portfolio
-        fields = ['title', 'slug', 'client_name', 'service_area', 'summary', 'content', 'image_url', 'status', 'is_featured', 'completed_at']
+        fields = [
+            'title',
+            'slug',
+            'client_name',
+            'service_area',
+            'industry',
+            'summary',
+            'content',
+            'challenge',
+            'solution',
+            'results',
+            'key_features',
+            'technology_stack',
+            'key_result',
+            'image_url',
+            'gallery_urls',
+            'project_url',
+            'seo_title',
+            'seo_description',
+            'status',
+            'is_featured',
+            'completed_at',
+        ]
         widgets = {
             'summary': forms.Textarea(attrs={'rows': 3}),
             'content': forms.Textarea(attrs={'rows': 8}),
+            'challenge': forms.Textarea(attrs={'rows': 5}),
+            'solution': forms.Textarea(attrs={'rows': 5}),
+            'results': forms.Textarea(attrs={'rows': 5}),
+            'key_features': forms.Textarea(attrs={'rows': 5}),
+            'technology_stack': forms.Textarea(attrs={'rows': 4}),
+            'gallery_urls': forms.Textarea(attrs={'rows': 4}),
+            'seo_description': forms.Textarea(attrs={'rows': 3}),
             'completed_at': forms.DateInput(attrs={'type': 'date'}),
         }
 
@@ -186,7 +215,7 @@ class LeadForm(DashboardModelForm):
 
 
 class AccessRoleForm(DashboardModelForm):
-    permissions = forms.ModelMultipleChoiceField(queryset=Permission.objects.filter(content_type__app_label='pages'), required=False)
+    permissions = forms.ModelMultipleChoiceField(queryset=Permission.objects.filter(content_type__app_label__in=['pages', 'case_studies']), required=False)
 
     class Meta:
         model = AccessRole

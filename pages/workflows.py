@@ -87,6 +87,7 @@ def detail(request, resource, pk):
         'employees': [('project-tasks', 'employee')],
         'hosting-subscriptions': [('invoices', 'subscription')],
         'newsletters': [('newsletter-deliveries', 'newsletter')],
+        'case-studies': [('case-study-gallery', 'case_study'), ('case-study-metrics', 'case_study')],
     }
     for key, fk in relation_map.get(resource, []):
         model = CRUD_RESOURCES[key]['model']
@@ -115,8 +116,8 @@ def detail(request, resource, pk):
                 can_pdf=resource in ['quotations', 'invoices', 'payments'] or resource == 'clients' and allowed(request.user, m.Invoice),
                 can_add_item=resource == 'quotations' and allowed(request.user, m.QuotationLineItem, 'add'),
                 packages=m.ServicePackage.objects.filter(is_active=True) if resource == 'quotations' else [])
-    if resource in ['insights', 'portfolios', 'cms-pages', 'service-packages', 'industries', 'markets']:
-        kind = {'insights': 'insights', 'portfolios': 'portfolio', 'cms-pages': 'pages', 'service-packages': 'services', 'industries': 'industries', 'markets': 'markets'}[resource]
+    if resource in ['insights', 'portfolios', 'case-studies', 'cms-pages', 'service-packages', 'industries', 'markets']:
+        kind = {'insights': 'insights', 'portfolios': 'portfolio', 'case-studies': 'case-studies', 'cms-pages': 'pages', 'service-packages': 'services', 'industries': 'industries', 'markets': 'markets'}[resource]
         if getattr(obj, 'status', 'published') == 'published' and getattr(obj, 'is_active', True):
             data['public_url'] = f'/{kind}/{obj.slug}/'
     return render(request, 'dashboard/detail.html', data)

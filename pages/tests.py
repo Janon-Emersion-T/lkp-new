@@ -8,6 +8,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.management import call_command, CommandError
 from django.test import TestCase, Client as TestClient, override_settings
 from django.utils import timezone
+from case_studies import models as case_models
 from . import models as m
 from .forms import AccessRoleForm
 from .views import CRUD_RESOURCES, _get_form_class
@@ -284,6 +285,64 @@ class DashboardTests(TestCase):
         self.assertContains(self.client.get('/sitemap.xml'), published.slug)
         m.SEOSetting.objects.create(path=f'/insights/{published.slug}/', noindex=True)
         self.assertNotContains(self.client.get('/sitemap.xml'), published.slug)
+
+    def test_case_studies_are_public_and_portfolio_redirects(self):
+        service = m.ServiceArea.objects.create(name='Web Development', slug='web-development', is_active=True)
+        industry = m.Industry.objects.create(name='Healthcare', slug='healthcare')
+        technology = case_models.CaseStudyTechnology.objects.create(name='Django', slug='django')
+        published = case_models.CaseStudy.objects.create(
+            title='Mekmaa Indoor Sports',
+            slug='mekmaa-indoor-sports',
+            client_name='Mekmaa',
+            primary_service=service,
+            industry=industry,
+            summary='A booking platform built around a real operational problem.',
+            overview='Project overview text',
+            challenge='Manual bookings slowed the team.',
+            solution='LKProfessionals built a digital workflow.',
+            results='The team gained a clearer booking process.',
+            key_features='Online reservations\nAdmin workflow',
+            key_result='Cleaner booking operations',
+            status='published',
+        )
+        published.technologies.add(technology)
+        case_models.CaseStudyGalleryImage.objects.create(case_study=published, image_url='/assets/image/project-1.jpg', alt_text='Project screen')
+        case_models.CaseStudyMetric.objects.create(case_study=published, value='2x', label='Faster admin')
+        draft = case_models.CaseStudy.objects.create(title='Private Draft', slug='private-draft')
+
+        listing = self.client.get('/case-studies/')
+        self.assertContains(listing, 'Mekmaa Indoor Sports')
+        self.assertContains(listing, 'Case Studies')
+        self.assertNotContains(listing, 'Private Draft')
+        self.assertContains(self.client.get('/case-studies/?service=web-development'), 'Mekmaa Indoor Sports')
+
+        detail = self.client.get(f'/case-studies/{published.slug}/')
+        self.assertContains(detail, 'Project overview text')
+        self.assertContains(detail, 'Manual bookings slowed the team.')
+        self.assertContains(detail, 'Online reservations')
+        self.assertContains(detail, 'Django')
+        self.assertContains(detail, '2x')
+        self.assertContains(detail, 'application/ld+json')
+        self.assertEqual(self.client.get(f'/case-studies/{draft.slug}/').status_code, 404)
+        self.assertEqual(self.client.get('/case-studies/not-real/').status_code, 404)
+
+        response = self.client.get('/portfolio/')
+        self.assertEqual(response.status_code, 301)
+        self.assertEqual(response['Location'], '/case-studies/')
+        response = self.client.get(f'/portfolio/{published.slug}/')
+        self.assertEqual(response.status_code, 301)
+        self.assertEqual(response['Location'], f'/case-studies/{published.slug}/')
+        sitemap = self.client.get('/sitemap.xml')
+        self.assertContains(sitemap, f'/case-studies/{published.slug}/')
+        self.assertNotContains(sitemap, f'/portfolio/{published.slug}/')
+        self.assertContains(self.client.get('/partials/header.html'), '/case-studies/')
+        self.assertNotContains(self.client.get('/partials/header.html'), 'Project Details')
+
+    def test_case_study_dashboard_resources(self):
+        for resource in ['case-studies', 'case-study-technologies', 'case-study-gallery', 'case-study-metrics']:
+            with self.subTest(resource=resource):
+                self.assertEqual(self.client.get(self.url(resource)).status_code, 200)
+                self.assertEqual(self.client.get(self.url(resource, suffix='new/')).status_code, 200)
 
     def test_redirects_and_cycles(self):
         m.RedirectRule.objects.create(from_path='/old', to_path='/new')

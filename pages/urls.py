@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 
 from . import views, workflows, operations, public
 
@@ -26,10 +26,11 @@ urlpatterns = [
     path('dashboard/<slug:resource>/<int:pk>/edit/', views.dashboard_edit, name='dashboard_edit'),
     path('dashboard/<slug:resource>/<int:pk>/delete/', views.dashboard_delete, name='dashboard_delete'),
     path('', views.home, name='home'),
+    path('case-studies/', include('case_studies.urls')),
+    path('portfolio/', public.portfolio_redirect, name='portfolio_redirect'),
+    path('portfolio/<slug:slug>/', public.portfolio_redirect, name='portfolio_detail_redirect'),
     path('insights/', public.content, {'kind': 'insights'}, name='published_insights'),
-    path('portfolio/', public.content, {'kind': 'portfolio'}, name='published_portfolio'),
     path('insights/<slug:slug>/', public.content, {'kind': 'insights'}, name='published_insight'),
-    path('portfolio/<slug:slug>/', public.content, {'kind': 'portfolio'}, name='published_portfolio_detail'),
     path('pages/<slug:slug>/', public.content, {'kind': 'pages'}, name='published_page'),
     path('services/<slug:slug>/', public.content, {'kind': 'services'}, name='published_service'),
     path('industries/<slug:slug>/', public.content, {'kind': 'industries'}, name='published_industry'),

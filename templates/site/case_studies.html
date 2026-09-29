@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
+  <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ canonical_path }}">
+  <meta name="robots" content="{% if seo and seo.noindex %}noindex, follow{% else %}index, follow{% endif %}">
+  <link href="/assets/image/favicon.ico" rel="shortcut icon">
+  <link rel="stylesheet" href="/assets/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/animation.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
+</head>
+<body class="bg-white">
+  {% include 'partials/preloader.html' %}
+  {% include 'partials/header.html' %}
+
+  <main>
+    <section class="case-hero w-full flex flex-col relative overflow-hidden pt-[132px] bg-secondary">
+      <div class="absolute inset-0 bg-[linear-gradient(125deg,rgba(0,15,41,.92),rgba(51,182,255,.24)),url('/assets/image/project-img-1.png')] bg-cover bg-center opacity-95"></div>
+      <div class="container relative z-10 py-16 lg:py-20">
+        <div class="max-w-4xl">
+          <div class="title__box-subtitle-box mb-5">
+            <i class="fa-solid fa-star text-sm"></i>
+            <span class="title__box-subtitle">Case Studies</span>
+          </div>
+          <h1 class="text-4xl md:text-6xl font-bold leading-tight text-white max-w-4xl">Digital products built around real business problems.</h1>
+          <p class="mt-6 text-lg md:text-xl text-white/85 max-w-3xl leading-relaxed">LKProfessionals combines strategy, engineering, SEO, marketing and automation to create commercially useful digital systems.</p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="#quoteModal" data-quote-open class="btn btn-primary inline-flex items-center gap-2">Start Your Project <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="/services.html" class="btn bg-white text-secondary hover:bg-primary hover:text-white inline-flex items-center gap-2">Explore Services <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding-primary bg-gray-50">
+      <div class="container">
+        {% if filters %}
+          <nav class="flex flex-wrap gap-3 mb-10" aria-label="Case study filters">
+            <a href="/case-studies/" class="px-5 py-2 rounded-full border font-semibold transition {% if not active_service %}bg-primary text-white border-primary{% else %}bg-white text-secondary border-gray-200 hover:border-primary hover:text-primary{% endif %}">All</a>
+            {% for service in filters %}
+              <a href="/case-studies/?service={{ service.slug }}" class="px-5 py-2 rounded-full border font-semibold transition {% if active_service == service.slug %}bg-primary text-white border-primary{% else %}bg-white text-secondary border-gray-200 hover:border-primary hover:text-primary{% endif %}">{{ service.name }}</a>
+            {% endfor %}
+          </nav>
+        {% endif %}
+
+        {% if records %}
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            {% for item in records %}
+              <article class="case-card group bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
+                <a href="/case-studies/{{ item.slug }}/" class="block relative overflow-hidden aspect-[4/3] bg-secondary">
+                  {% if item.featured_image_url %}
+                    <img src="{{ item.featured_image_url }}" alt="{{ item.featured_image_alt|default:item.title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+                  {% else %}
+                    <img src="/assets/image/project-1.jpg" alt="{{ item.title }} case study" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+                  {% endif %}
+                  {% if item.primary_service %}
+                    <span class="absolute left-4 top-4 bg-white/95 text-primary rounded-full px-3 py-1 text-xs font-bold shadow-sm">{{ item.primary_service.name }}</span>
+                  {% endif %}
+                </a>
+                <div class="p-6 flex flex-col flex-grow">
+                  <div class="flex flex-wrap gap-2 text-sm text-small-text mb-3">
+                    {% if item.client_name %}<span>{{ item.client_name }}</span>{% endif %}
+                    {% if item.industry %}<span>{{ item.industry.name }}</span>{% endif %}
+                    {% if item.completion_date %}<span>{{ item.completion_date|date:"M Y" }}</span>{% endif %}
+                  </div>
+                  <h2 class="text-2xl font-bold text-secondary leading-snug"><a href="/case-studies/{{ item.slug }}/" class="hover:text-primary transition">{{ item.title }}</a></h2>
+                  {% if item.summary %}<p class="mt-3 text-small-text leading-relaxed">{{ item.summary|truncatewords:26 }}</p>{% endif %}
+                  {% if item.key_result %}<p class="mt-5 border-l-4 border-primary pl-4 font-semibold text-secondary">{{ item.key_result }}</p>{% endif %}
+                  <a href="/case-studies/{{ item.slug }}/" class="mt-6 inline-flex items-center gap-2 text-primary font-bold">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="bg-white border border-gray-100 rounded-xl p-8 md:p-12 text-center shadow-sm">
+            <h2 class="text-3xl font-bold text-secondary">Case studies are being prepared.</h2>
+            <p class="mt-4 text-small-text max-w-2xl mx-auto">Our team is curating published client stories. Start a conversation and we can share relevant examples for your project privately.</p>
+            <a href="#quoteModal" data-quote-open class="btn btn-primary inline-flex items-center gap-2 mt-6">Start Your Project <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        {% endif %}
+      </div>
+    </section>
+
+    <section class="bg-secondary py-16 lg:py-20">
+      <div class="container flex flex-col lg:flex-row gap-8 lg:items-center lg:justify-between">
+        <div class="max-w-3xl">
+          <h2 class="text-3xl md:text-5xl font-bold text-white leading-tight">Have a project that needs more than a template?</h2>
+          <p class="mt-4 text-white/80 text-lg">Tell us what the business needs to achieve. We'll help determine the right combination of strategy, design, engineering and growth.</p>
+        </div>
+        <div class="flex flex-wrap gap-4 shrink-0">
+          <a href="#quoteModal" data-quote-open class="btn btn-primary inline-flex items-center gap-2">Start Your Project <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="/services.html" class="btn bg-white text-secondary hover:bg-primary hover:text-white inline-flex items-center gap-2">Explore Services <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  {% include 'partials/footer.html' %}
+  {% include 'partials/site-widgets.html' %}
+  <script src="/assets/js/swiper-bundle.min.js"></script>
+  <script src="/assets/js/animate.js"></script>
+  <script src="/assets/js/back-to-top.js"></script>
+  <script src="/assets/js/accordion.js"></script>
+  <script src="/assets/js/responsive-menu.js"></script>
+  <script src="/assets/js/pre-loader.js"></script>
+  <script src="/assets/js/contact-form.js"></script>
+  <script src="/assets/js/script.js"></script>
+</body>
+</html>

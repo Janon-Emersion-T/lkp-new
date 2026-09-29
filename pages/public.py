@@ -7,11 +7,12 @@ from django.core import signing
 from django.core.exceptions import ValidationError
 from django.core.files.storage import default_storage
 from django.db import transaction
-from django.http import Http404, HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse, HttpResponsePermanentRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from case_studies.models import CaseStudy
 from . import models as m
 
 
@@ -65,7 +66,16 @@ def apply_for_job(request):
     return render(request, 'site/submission.html', {'title': 'Application received', 'message': 'Thank you. Our team will review your application.'})
 
 
-PUBLISHED_MODELS = {'insights': m.Insight, 'portfolio': m.Portfolio, 'pages': m.CMSPage, 'services': m.ServicePackage, 'industries': m.Industry, 'markets': m.Market}
+PUBLISHED_MODELS = {'insights': m.Insight, 'pages': m.CMSPage, 'services': m.ServicePackage, 'industries': m.Industry, 'markets': m.Market}
+
+
+def portfolio_redirect(request, slug=None):
+    path = '/case-studies/'
+    if slug:
+        path = f'/case-studies/{slug}/'
+    if request.GET:
+        return HttpResponsePermanentRedirect(path + '?' + request.GET.urlencode())
+    return HttpResponsePermanentRedirect(path)
 
 
 def content(request, kind, slug=None):
@@ -87,6 +97,17 @@ def content(request, kind, slug=None):
 def sitemap(request):
     root = Element('urlset', xmlns='http://www.sitemaps.org/schemas/sitemap/0.9')
     hidden = set(m.SEOSetting.objects.filter(noindex=True).values_list('path', flat=True))
+    index_paths = ['/', '/case-studies/']
+    for path in index_paths:
+        if path not in hidden:
+            url = SubElement(root, 'url')
+            SubElement(url, 'loc').text = request.build_absolute_uri(path)
+    for obj in CaseStudy.objects.filter(status=CaseStudy.Status.PUBLISHED):
+        path = f'/case-studies/{obj.slug}/'
+        if path not in hidden:
+            url = SubElement(root, 'url')
+            SubElement(url, 'loc').text = request.build_absolute_uri(path)
+            SubElement(url, 'lastmod').text = obj.updated_at.date().isoformat()
     for kind, model in PUBLISHED_MODELS.items():
         records = model.objects.filter(status='published') if hasattr(model, 'status') else model.objects.filter(is_active=True)
         if kind == 'insights':

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
+  <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ canonical_path }}">
+  <meta name="robots" content="{% if seo and seo.noindex %}noindex, follow{% else %}index, follow{% endif %}">
+  <link href="/assets/image/favicon.ico" rel="shortcut icon">
+  <link rel="stylesheet" href="/assets/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/animation.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <script type="application/ld+json">{{ schema_json|safe }}</script>
+</head>
+<body class="bg-white">
+  {% include 'partials/preloader.html' %}
+  {% include 'partials/header.html' %}
+
+  <main>
+    <section class="relative overflow-hidden pt-[132px] bg-secondary">
+      <div class="absolute inset-0 bg-[linear-gradient(120deg,rgba(0,15,41,.94),rgba(51,182,255,.22))]"></div>
+      <div class="container relative z-10 py-14 lg:py-20">
+        <div class="bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-semibold tracking-wider px-4 sm:px-6 py-2 rounded-full inline-flex items-center gap-2 shadow-lg">
+          <a href="/" class="hover:text-primary transition flex items-center gap-2"><i class="fa-solid fa-house text-primary"></i> Home</a>
+          <span class="opacity-70"><i class="fa-solid fa-chevron-right"></i></span>
+          <a href="/case-studies/" class="hover:text-primary transition">Case Studies</a>
+          <span class="opacity-70"><i class="fa-solid fa-chevron-right"></i></span>
+          <span class="opacity-90">{{ object.title }}</span>
+        </div>
+
+        <div class="grid lg:grid-cols-[1.05fr_.95fr] gap-10 lg:gap-14 items-center mt-10">
+          <div>
+            <div class="flex flex-wrap gap-3 mb-5">
+              {% if object.primary_service %}<span class="bg-primary text-white rounded-full px-4 py-2 text-sm font-bold">{{ object.primary_service.name }}</span>{% endif %}
+              {% if object.industry %}<span class="bg-white/10 text-white rounded-full px-4 py-2 text-sm font-bold">{{ object.industry.name }}</span>{% endif %}
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight text-white">{{ object.title }}</h1>
+            {% if object.summary %}<p class="mt-6 text-lg md:text-xl text-white/85 leading-relaxed">{{ object.summary }}</p>{% endif %}
+            <dl class="grid sm:grid-cols-3 gap-4 mt-8">
+              {% if object.client_name %}<div class="bg-white/10 border border-white/15 rounded-lg p-4"><dt class="text-white/60 text-sm">Client</dt><dd class="text-white font-bold mt-1">{{ object.client_name }}</dd></div>{% endif %}
+              {% if object.completion_date %}<div class="bg-white/10 border border-white/15 rounded-lg p-4"><dt class="text-white/60 text-sm">Completed</dt><dd class="text-white font-bold mt-1">{{ object.completion_date|date:"F Y" }}</dd></div>{% endif %}
+              {% if object.key_result %}<div class="bg-white/10 border border-white/15 rounded-lg p-4"><dt class="text-white/60 text-sm">Highlight</dt><dd class="text-white font-bold mt-1">{{ object.key_result }}</dd></div>{% endif %}
+            </dl>
+          </div>
+          <div class="relative">
+            {% if object.featured_image_url %}
+              <img src="{{ object.featured_image_url }}" alt="{{ object.featured_image_alt|default:object.title }}" class="w-full aspect-[4/3] object-cover rounded-xl shadow-2xl">
+            {% else %}
+              <img src="/assets/image/project-img-2.png" alt="{{ object.title }} case study featured image" class="w-full aspect-[4/3] object-cover rounded-xl shadow-2xl">
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding-primary bg-white">
+      <div class="container grid lg:grid-cols-[minmax(0,1fr)_320px] gap-10 lg:gap-14 items-start">
+        <article class="space-y-12">
+          {% if object.overview %}
+            <section>
+              <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-5">Project Overview</h2>
+              <div class="prose max-w-none text-small-text leading-relaxed">{{ object.overview|linebreaks }}</div>
+            </section>
+          {% endif %}
+
+          {% if object.challenge %}
+            <section>
+              <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-5">The Challenge</h2>
+              <div class="prose max-w-none text-small-text leading-relaxed">{{ object.challenge|linebreaks }}</div>
+            </section>
+          {% endif %}
+
+          {% if object.solution %}
+            <section>
+              <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-5">What LKProfessionals Built</h2>
+              <div class="prose max-w-none text-small-text leading-relaxed">{{ object.solution|linebreaks }}</div>
+            </section>
+          {% endif %}
+
+          {% if features %}
+            <section>
+              <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-6">Key Features</h2>
+              <div class="grid sm:grid-cols-2 gap-4">
+                {% for feature in features %}
+                  <div class="flex gap-3 bg-gray-50 border border-gray-100 rounded-lg p-5">
+                    <i class="fa-solid fa-check text-primary mt-1"></i>
+                    <p class="font-semibold text-secondary">{{ feature }}</p>
+                  </div>
+                {% endfor %}
+              </div>
+            </section>
+          {% endif %}
+
+          {% if stack %}
+            <section>
+              <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-6">Technology / Stack</h2>
+              <div class="flex flex-wrap gap-3">
+                {% for item in stack %}
+                  <span class="px-4 py-2 rounded-full bg-secondary text-white font-semibold">{{ item }}</span>
+                {% endfor %}
+              </div>
+            </section>
+          {% endif %}
+
+          {% if object.results %}
+            <section>
+              <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-5">Results / Business Impact</h2>
+              <div class="prose max-w-none text-small-text leading-relaxed">{{ object.results|linebreaks }}</div>
+            </section>
+          {% endif %}
+
+          {% if metrics %}
+            <section>
+              <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-6">Impact Metrics</h2>
+              <div class="grid sm:grid-cols-3 gap-4">
+                {% for metric in metrics %}
+                  <div class="bg-gray-50 border border-gray-100 rounded-lg p-5">
+                    <strong class="block text-3xl text-primary">{{ metric.value }}</strong>
+                    <span class="block mt-2 font-bold text-secondary">{{ metric.label }}</span>
+                    {% if metric.note %}<p class="mt-2 text-sm text-small-text">{{ metric.note }}</p>{% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+            </section>
+          {% endif %}
+
+          {% if gallery %}
+            <section>
+              <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-6">Screenshots / Visual Gallery</h2>
+              <div class="grid md:grid-cols-2 gap-5">
+                {% for image in gallery %}
+                  <img src="{{ image.image_url }}" alt="{{ image.alt_text|default:object.title }}" class="w-full aspect-[4/3] object-cover rounded-xl border border-gray-100 shadow-sm" loading="lazy">
+                {% endfor %}
+              </div>
+            </section>
+          {% endif %}
+        </article>
+
+        <aside class="lg:sticky lg:top-28 space-y-6">
+          <div class="bg-gray-50 border border-gray-100 rounded-xl p-6">
+            <h2 class="text-2xl font-bold text-secondary mb-5">Capabilities Delivered</h2>
+            <div class="space-y-3">
+              {% if object.primary_service %}<a href="/case-studies/?service={{ object.primary_service.slug }}" class="flex items-center justify-between text-secondary font-semibold hover:text-primary">{{ object.primary_service.name }} <i class="fa-solid fa-arrow-right"></i></a>{% endif %}
+              {% if object.project_url %}<a href="{{ object.project_url }}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between text-secondary font-semibold hover:text-primary">Visit Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>{% endif %}
+              <a href="#quoteModal" data-quote-open class="btn btn-primary w-full justify-center mt-5">Start Your Project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          {% if related %}
+            <div class="bg-secondary rounded-xl p-6">
+              <h2 class="text-2xl font-bold text-white mb-5">Related Case Studies</h2>
+              <div class="space-y-4">
+                {% for item in related %}
+                  <a href="/case-studies/{{ item.slug }}/" class="block border-t border-white/15 pt-4 first:border-t-0 first:pt-0">
+                    <span class="text-white font-bold hover:text-primary transition">{{ item.title }}</span>
+                    {% if item.summary %}<p class="text-white/70 text-sm mt-1">{{ item.summary|truncatewords:12 }}</p>{% endif %}
+                  </a>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+        </aside>
+      </div>
+    </section>
+
+    <section class="bg-gray-50 py-16 lg:py-20">
+      <div class="container text-center max-w-4xl">
+        <h2 class="text-3xl md:text-5xl font-bold text-secondary leading-tight">Build the next useful digital system.</h2>
+        <p class="mt-4 text-small-text text-lg">Share the business outcome you need. We'll shape the strategy, design, engineering and growth plan around it.</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a href="#quoteModal" data-quote-open class="btn btn-primary inline-flex items-center gap-2">Start Your Project <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="/services.html" class="btn bg-secondary text-white hover:bg-primary inline-flex items-center gap-2">Explore Services <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  {% include 'partials/footer.html' %}
+  {% include 'partials/site-widgets.html' %}
+  <script src="/assets/js/swiper-bundle.min.js"></script>
+  <script src="/assets/js/animate.js"></script>
+  <script src="/assets/js/back-to-top.js"></script>
+  <script src="/assets/js/accordion.js"></script>
+  <script src="/assets/js/responsive-menu.js"></script>
+  <script src="/assets/js/pre-loader.js"></script>
+  <script src="/assets/js/contact-form.js"></script>
+  <script src="/assets/js/script.js"></script>
+</body>
+</html>

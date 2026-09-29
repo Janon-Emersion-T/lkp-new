@@ -19,6 +19,8 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 
+from case_studies.forms import CaseStudyForm, CaseStudyGalleryImageForm, CaseStudyMetricForm, CaseStudyTechnologyForm
+from case_studies.models import CaseStudy, CaseStudyGalleryImage, CaseStudyMetric, CaseStudyTechnology
 from .forms import CategoryForm, DashboardModelForm, InsightForm, LeadForm, NewsletterForm, PortfolioForm, ServiceAreaForm, SubscriberForm, TagForm, AccessRoleForm, UserForm
 from .models import (
     AuditLog,
@@ -152,7 +154,10 @@ DASHBOARD_NAV = [
             {'label': 'Pages', 'resource': 'cms-pages'},
             {'label': 'Sections', 'resource': 'website-sections'},
             {'label': 'Navigation/Footer', 'resource': 'navigation-items'},
-            {'label': 'Portfolio', 'resource': 'portfolios'},
+            {'label': 'Case Studies', 'resource': 'case-studies'},
+            {'label': 'Case Study Technologies', 'resource': 'case-study-technologies'},
+            {'label': 'Case Study Gallery', 'resource': 'case-study-gallery'},
+            {'label': 'Case Study Metrics', 'resource': 'case-study-metrics'},
             {'label': 'Insights', 'resource': 'insights'},
             {'label': 'Industries', 'resource': 'industries'},
             {'label': 'Markets', 'resource': 'markets'},
@@ -257,6 +262,10 @@ CRUD_RESOURCES = {
     'categories': resource(Category, 'Categories', 'Category', 'Group insights into clear editorial categories.', [('name', 'Name'), ('slug', 'Slug'), ('is_active', 'Active'), ('updated_at', 'Updated')], ['name', 'slug', 'description'], form=CategoryForm),
     'insights': resource(Insight, 'Insights', 'Insight', 'Create and manage articles, updates, and thought leadership.', [('title', 'Title'), ('category', 'Category'), ('status', 'Status'), ('is_featured', 'Featured'), ('published_at', 'Published')], ['title', 'summary', 'content'], form=InsightForm),
     'subscribers': resource(Subscriber, 'Subscribers', 'Subscriber', 'Manage newsletter and campaign subscribers.', [('email', 'Email'), ('name', 'Name'), ('status', 'Status'), ('source', 'Source'), ('created_at', 'Joined')], ['email', 'name', 'source'], form=SubscriberForm),
+    'case-studies': resource(CaseStudy, 'Case Studies', 'Case Study', 'Publish polished client success stories with services, technology, results, SEO, gallery and proof points.', [('title', 'Title'), ('client_name', 'Client'), ('primary_service', 'Service'), ('industry', 'Industry'), ('status', 'Status'), ('completion_date', 'Completed')], ['title', 'client_name', 'summary', 'overview', 'challenge', 'solution', 'results'], form=CaseStudyForm),
+    'case-study-technologies': resource(CaseStudyTechnology, 'Case Study Technologies', 'Technology', 'Reusable technologies, platforms, and capabilities used in case studies.', [('name', 'Name'), ('slug', 'Slug'), ('is_active', 'Active'), ('updated_at', 'Updated')], ['name', 'slug', 'summary'], form=CaseStudyTechnologyForm),
+    'case-study-gallery': resource(CaseStudyGalleryImage, 'Case Study Gallery', 'Gallery Image', 'Screenshots, visual proof, and project images connected to case studies.', [('case_study', 'Case Study'), ('caption', 'Caption'), ('image_url', 'Image'), ('display_order', 'Order'), ('is_active', 'Active')], ['caption', 'alt_text', 'image_url', 'case_study__title'], form=CaseStudyGalleryImageForm),
+    'case-study-metrics': resource(CaseStudyMetric, 'Case Study Metrics', 'Metric', 'Result cards and supporting proof points for case studies.', [('case_study', 'Case Study'), ('value', 'Value'), ('label', 'Label'), ('display_order', 'Order')], ['label', 'value', 'note', 'case_study__title'], form=CaseStudyMetricForm),
     'portfolios': resource(Portfolio, 'Portfolios', 'Portfolio Item', 'Showcase client work, case studies, and delivery outcomes.', [('title', 'Title'), ('client_name', 'Client'), ('service_area', 'Service Area'), ('status', 'Status'), ('completed_at', 'Completed')], ['title', 'client_name', 'summary', 'content'], form=PortfolioForm),
     'newsletters': resource(Newsletter, 'Newsletters', 'Newsletter', 'Draft, schedule, and track newsletter content.', [('subject', 'Subject'), ('status', 'Status'), ('scheduled_at', 'Scheduled'), ('sent_at', 'Sent'), ('created_at', 'Created')], ['subject', 'preheader', 'content'], form=NewsletterForm),
     'service-areas': resource(ServiceArea, 'Service Areas', 'Service Area', 'Maintain services and practice areas shown across the website.', [('name', 'Name'), ('display_order', 'Order'), ('is_active', 'Active'), ('updated_at', 'Updated')], ['name', 'summary', 'slug'], form=ServiceAreaForm),
@@ -744,11 +753,13 @@ def home(request):
 
 def page(request, page_path):
     template_name = PAGE_ALIASES.get(page_path, page_path)
-    if template_name in ['insights.html', 'portfolio.html']:
+    if template_name == 'portfolio.html':
+        from .public import portfolio_redirect
+        return portfolio_redirect(request)
+    if template_name == 'insights.html':
         from .public import content
-        model = Insight if template_name == 'insights.html' else Portfolio
-        if model.objects.filter(status='published').exists():
-            return content(request, 'insights' if model == Insight else 'portfolio')
+        if Insight.objects.filter(status='published').exists():
+            return content(request, 'insights')
 
     if template_name not in PAGES:
         return render(request, 'site/404.html', status=404)
