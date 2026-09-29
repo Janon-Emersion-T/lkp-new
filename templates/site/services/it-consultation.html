@@ -1,0 +1,1203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ title|default:"IT Consultation | LKProfessionals" }}</title>
+
+    <meta name="description"
+          content="{{ description|default:'IT consultation by LKProfessionals. Practical technology advisory for software, infrastructure, architecture, digital transformation, integrations and technology investment decisions.' }}">
+
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="LKProfessionals (Pvt) Ltd">
+    <meta name="theme-color" content="#33b6ff">
+
+    <link rel="canonical"
+          href="{{ request.scheme }}://{{ request.get_host }}{{ canonical_path }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LKProfessionals">
+    <meta property="og:title" content="{{ title|default:'IT Consultation | LKProfessionals' }}">
+    <meta property="og:description"
+          content="{{ description|default:'Practical technology consulting that helps businesses make better decisions about software, infrastructure, architecture and digital transformation.' }}">
+    <meta property="og:url"
+          content="{{ request.scheme }}://{{ request.get_host }}{{ canonical_path }}">
+    <meta property="og:image"
+          content="{{ request.scheme }}://{{ request.get_host }}/assets/image/logo.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title|default:'IT Consultation | LKProfessionals' }}">
+    <meta name="twitter:description"
+          content="{{ description|default:'Practical technology consulting that helps businesses make better decisions about software, infrastructure, architecture and digital transformation.' }}">
+    <meta name="twitter:image"
+          content="{{ request.scheme }}://{{ request.get_host }}/assets/image/logo.png">
+
+    <link href="/assets/image/favicon.ico" rel="shortcut icon">
+
+    <link rel="stylesheet" href="/assets/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/css/tailwind.css">
+    <link rel="stylesheet" href="/assets/css/animation.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+
+<style>
+/* =========================================================
+   IT CONSULTATION PAGE ONLY
+   Scoped intentionally to avoid affecting the rest of LKP.
+========================================================= */
+
+.lkp-it-consultation-service .lkp-service-hero {
+    background:
+        radial-gradient(circle at 78% 20%, rgba(51, 182, 255, .16), transparent 34%),
+        radial-gradient(circle at 14% 90%, rgba(59, 130, 246, .08), transparent 38%),
+        #071426;
+}
+
+.lkp-it-consultation-service .lkp-service-hero h1 {
+    color: #ffffff;
+}
+
+.lkp-it-consultation-service .lkp-service-hero-copy {
+    color: #cbd5e1;
+}
+
+.lkp-it-consultation-service .lkp-service-glass {
+    background: rgba(7, 20, 38, .84);
+    border: 1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.lkp-it-consultation-service .lkp-service-metric strong {
+    color: #ffffff !important;
+}
+
+.lkp-it-consultation-service .lkp-service-metric span {
+    color: #94a3b8;
+}
+
+.lkp-it-consultation-service .lkp-capabilities {
+    background: #071426;
+    color: #ffffff;
+}
+
+.lkp-it-consultation-service .lkp-capabilities h2,
+.lkp-it-consultation-service .lkp-capabilities h3 {
+    color: #ffffff;
+}
+
+.lkp-it-consultation-service .lkp-capabilities-copy {
+    color: #cbd5e1;
+}
+
+.lkp-it-consultation-service .lkp-capability-card {
+    border: 1px solid rgba(255,255,255,.11);
+    background: rgba(255,255,255,.035);
+    border-radius: 18px;
+}
+
+.lkp-it-consultation-service .lkp-capability-card p {
+    color: #94a3b8;
+}
+
+.lkp-it-consultation-service .lkp-dark-service-card {
+    background: #071426 !important;
+    color: #ffffff;
+}
+
+.lkp-it-consultation-service .lkp-dark-service-card h3 {
+    color: #ffffff !important;
+}
+
+.lkp-it-consultation-service .lkp-dark-service-card p {
+    color: #cbd5e1 !important;
+}
+
+.lkp-it-consultation-service .lkp-radius-xl {
+    border-radius: 32px;
+}
+
+.lkp-it-consultation-service .lkp-eyebrow {
+    letter-spacing: .16em;
+}
+
+@media (max-width: 1023px) {
+    .lkp-it-consultation-service .lkp-service-hero {
+        padding-top: 100px;
+    }
+}
+
+
+/* =========================================================
+   IT CONSULTATION — CAPABILITIES SECTION
+   Explicit layout because this project uses precompiled
+   Tailwind and some arbitrary/grid utilities are unavailable.
+   Scoped to this page only.
+========================================================= */
+
+.lkp-it-consultation-service .lkp-capabilities {
+    background: #071426;
+    color: #ffffff;
+}
+
+.lkp-it-consultation-service .lkp-capabilities > .container {
+    width: 100%;
+}
+
+.lkp-it-consultation-service .lkp-capabilities .grid.lg\:grid-cols-12 {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4rem;
+    align-items: start;
+}
+
+.lkp-it-consultation-service .lkp-capabilities .lg\:col-span-6 {
+    min-width: 0;
+    width: 100%;
+}
+
+.lkp-it-consultation-service .lkp-capabilities .lg\:col-span-6.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.lkp-it-consultation-service .lkp-capabilities h2 {
+    color: #ffffff;
+    max-width: 620px;
+}
+
+.lkp-it-consultation-service .lkp-capabilities-copy {
+    color: #94a3b8;
+    max-width: 620px;
+}
+
+.lkp-it-consultation-service .lkp-capability-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 190px;
+    padding: 1.5rem;
+    border: 1px solid rgba(148, 163, 184, .20);
+    border-radius: 1rem;
+    background: rgba(15, 35, 58, .58);
+    box-sizing: border-box;
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background-color .25s ease;
+}
+
+.lkp-it-consultation-service .lkp-capability-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(51, 182, 255, .45);
+    background: rgba(15, 35, 58, .85);
+}
+
+.lkp-it-consultation-service .lkp-capability-card i {
+    display: block;
+    font-size: 1.15rem;
+    color: #33b6ff;
+}
+
+.lkp-it-consultation-service .lkp-capability-card h3 {
+    color: #ffffff;
+    margin-top: 1rem;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.lkp-it-consultation-service .lkp-capability-card p {
+    color: #94a3b8;
+    margin-top: .5rem;
+    line-height: 1.65;
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+    .lkp-it-consultation-service .lkp-capabilities .grid.lg\:grid-cols-12 {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 639px) {
+    .lkp-it-consultation-service .lkp-capabilities .lg\:col-span-6.grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lkp-it-consultation-service .lkp-capability-card {
+        min-height: auto;
+    }
+}
+
+</style>
+
+</head>
+
+<body class="bg-white text-slate-900 lkp-it-consultation-service">
+
+{% include 'partials/preloader.html' %}
+{% include 'partials/header.html' %}
+
+
+<!-- =========================================================
+     HERO
+========================================================== -->
+<main>
+
+<section class="relative overflow-hidden pt-[132px] lkp-service-hero">
+
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute -right-40 -top-40 w-[600px] h-[600px] rounded-full bg-primary/10 blur-3xl"></div>
+        <div class="absolute left-[10%] bottom-[-240px] w-[500px] h-[500px] rounded-full bg-blue-400/5 blur-3xl"></div>
+    </div>
+
+    <div class="container relative z-10">
+
+        <div class="grid lg:grid-cols-12 gap-12 xl:gap-16 items-center py-20 lg:py-28 xl:py-32">
+
+            <div class="lg:col-span-7">
+
+                <div class="flex items-center gap-3 mb-7">
+                    <span class="w-8 h-px bg-primary"></span>
+                    <span class="text-primary uppercase tracking-[0.18em] text-xs sm:text-sm font-semibold">
+                        IT Consultation
+                    </span>
+                </div>
+
+                <h1 class="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-[72px] font-bold leading-[1.05] tracking-[-0.035em] max-w-5xl">
+                    Make better technology
+                    <span class="text-primary">decisions.</span>
+                </h1>
+
+                <p class="mt-7 text-base sm:text-lg lg:text-xl leading-8 max-w-2xl lkp-service-hero-copy">
+                    We help businesses evaluate technology, solve complex technical problems
+                    and make informed decisions about software, infrastructure,
+                    architecture and digital transformation.
+                </p>
+
+                <div class="mt-9 flex flex-col sm:flex-row gap-4">
+
+                    <a href="#quoteModal" data-quote-open
+                       class="btn btn-primary inline-flex items-center justify-center gap-3">Get a Quote
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                    <a href="/case-studies/"
+                       class="inline-flex items-center justify-center gap-3 px-6 py-3 border border-white/20 rounded-lg text-white font-semibold hover:bg-white hover:text-slate-950 transition-all duration-300">
+                        View Case Studies
+                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                    </a>
+
+                </div>
+
+                <div class="mt-12 pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-7">
+
+                    <div class="lkp-service-metric">
+                        <strong class="block text-white text-2xl lg:text-3xl font-bold">
+                            <span data-founded-year="2013">13</span>+
+                        </strong>
+                        <span class="text-slate-400 text-sm mt-1 block">
+                            Years in technology
+                        </span>
+                    </div>
+
+                    <div class="lkp-service-metric">
+                        <strong class="block text-white text-2xl lg:text-3xl font-bold">540+</strong>
+                        <span class="text-slate-400 text-sm mt-1 block">
+                            Projects delivered
+                        </span>
+                    </div>
+
+                    <div class="lkp-service-metric">
+                        <strong class="block text-white text-2xl lg:text-3xl font-bold">250+</strong>
+                        <span class="text-slate-400 text-sm mt-1 block">
+                            Clients served
+                        </span>
+                    </div>
+
+                    <div class="lkp-service-metric">
+                        <strong class="block text-white text-2xl lg:text-3xl font-bold">30+</strong>
+                        <span class="text-slate-400 text-sm mt-1 block">
+                            Industries served
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="lg:col-span-5">
+
+                <div class="relative">
+
+                    <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-3">
+
+                        <img
+                            src="/assets/image/it-consultation-hero.png"
+                            alt="IT consultation and technology advisory by LKProfessionals"
+                            class="w-full h-[420px] lg:h-[520px] object-cover rounded-[1.55rem]"
+                        >
+
+                        <div class="absolute left-7 right-7 bottom-7 rounded-2xl p-5 lkp-service-glass">
+
+                            <div class="flex items-start gap-4">
+
+                                <div class="w-11 h-11 shrink-0 rounded-xl bg-primary flex items-center justify-center text-white">
+                                    <i class="fa-solid fa-code"></i>
+                                </div>
+
+                                <div>
+                                    <p class="text-white font-semibold">
+                                        Advice grounded in the business
+                                    </p>
+
+                                    <p class="text-slate-300 text-sm leading-6 mt-1">
+                                        Technology strategy, architecture, systems assessment and implementation
+                                        planning handled with commercial and operational context in mind.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     POSITIONING
+========================================================== -->
+
+<section class="py-20 lg:py-28 bg-white">
+
+    <div class="container">
+
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-20">
+
+            <div class="lg:col-span-5">
+
+                <span class="text-primary font-semibold uppercase tracking-[0.16em] text-xs">
+                    Technology with a reason
+                </span>
+
+                <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary leading-tight tracking-tight">
+                    Technology decisions should start with the business problem.
+                </h2>
+
+            </div>
+
+            <div class="lg:col-span-7">
+
+                <p class="text-lg text-gray-600 leading-8">
+                    Businesses are constantly presented with new platforms, vendors, software,
+                    infrastructure options and technology trends. The difficult part is not
+                    finding technology. It is determining what is actually appropriate,
+                    commercially justified and sustainable for the organisation.
+                </p>
+
+                <p class="mt-6 text-base text-gray-600 leading-8">
+                    LKProfessionals approaches consultation from both the commercial and technical
+                    sides. We examine the requirement, existing environment, constraints, risks
+                    and future direction before recommending architecture, systems or an
+                    implementation path.
+                </p>
+
+                <div class="mt-10 grid sm:grid-cols-2 gap-x-10 gap-y-7">
+
+                    <div class="flex gap-4">
+                        <i class="fa-solid fa-circle-check text-primary mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-secondary">Business aligned</h3>
+                            <p class="text-gray-500 text-sm leading-6 mt-1">
+                                Recommendations begin with business objectives, operational realities and measurable requirements.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <i class="fa-solid fa-circle-check text-primary mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-secondary">Technology independent</h3>
+                            <p class="text-gray-500 text-sm leading-6 mt-1">
+                                We assess the requirement before recommending a platform, architecture, vendor or technical approach.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <i class="fa-solid fa-circle-check text-primary mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-secondary">Risk conscious</h3>
+                            <p class="text-gray-500 text-sm leading-6 mt-1">
+                                Security, continuity, maintainability, cost and implementation risk are considered alongside functionality.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <i class="fa-solid fa-circle-check text-primary mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-secondary">Future aware</h3>
+                            <p class="text-gray-500 text-sm leading-6 mt-1">
+                                Recommendations consider what the business may need to operate, integrate and scale over time.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     WHAT WE BUILD
+========================================================== -->
+
+<section class="py-20 lg:py-28 bg-gray-50">
+
+    <div class="container">
+
+        <div class="max-w-3xl">
+
+            <span class="text-primary font-semibold uppercase tracking-[0.16em] text-xs">
+                Where we advise
+            </span>
+
+            <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary tracking-tight">
+                Technology decisions made with greater clarity.
+            </h2>
+
+            <p class="mt-5 text-gray-600 leading-8 text-lg">
+                From choosing the right software to planning infrastructure and transformation,
+                we provide practical technical guidance where the decision has operational,
+                financial or long-term consequences.
+            </p>
+
+        </div>
+
+
+        <div class="mt-14 grid md:grid-cols-2 xl:grid-cols-3 gap-px bg-gray-200 border border-gray-200 rounded-3xl overflow-hidden">
+
+            <article class="bg-white p-8 lg:p-10 group">
+                <span class="text-xs text-gray-400 font-semibold">01</span>
+                <i class="fa-solid fa-chess-knight text-primary text-2xl block mt-8"></i>
+                <h3 class="text-xl font-bold text-secondary mt-5">
+                    Technology Strategy
+                </h3>
+                <p class="text-gray-600 leading-7 mt-3">
+                    Translate business objectives into a practical technology direction,
+                    priorities and roadmap rather than investing in disconnected tools.
+                </p>
+            </article>
+
+            <article class="bg-white p-8 lg:p-10 group">
+                <span class="text-xs text-gray-400 font-semibold">02</span>
+                <i class="fa-solid fa-briefcase text-primary text-2xl block mt-8"></i>
+                <h3 class="text-xl font-bold text-secondary mt-5">
+                    Software & Systems Advisory
+                </h3>
+                <p class="text-gray-600 leading-7 mt-3">
+                    Assess software requirements, existing systems, build-versus-buy decisions
+                    and the suitability of platforms before committing resources.
+                </p>
+            </article>
+
+            <article class="bg-white p-8 lg:p-10 group">
+                <span class="text-xs text-gray-400 font-semibold">03</span>
+                <i class="fa-solid fa-diagram-project text-primary text-2xl block mt-8"></i>
+                <h3 class="text-xl font-bold text-secondary mt-5">
+                    Architecture & Infrastructure
+                </h3>
+                <p class="text-gray-600 leading-7 mt-3">
+                    Plan application architecture, hosting, cloud infrastructure, databases,
+                    integrations and deployment approaches appropriate to the requirement.
+                </p>
+            </article>
+
+            <article class="bg-white p-8 lg:p-10 group">
+                <span class="text-xs text-gray-400 font-semibold">04</span>
+                <i class="fa-solid fa-arrows-rotate text-primary text-2xl block mt-8"></i>
+                <h3 class="text-xl font-bold text-secondary mt-5">
+                    Digital Transformation
+                </h3>
+                <p class="text-gray-600 leading-7 mt-3">
+                    Identify where technology can remove operational friction, connect information,
+                    automate repetitive work and improve how the organisation operates.
+                </p>
+            </article>
+
+            <article class="bg-white p-8 lg:p-10 group">
+                <span class="text-xs text-gray-400 font-semibold">05</span>
+                <i class="fa-solid fa-shield-halved text-primary text-2xl block mt-8"></i>
+                <h3 class="text-xl font-bold text-secondary mt-5">
+                    Technology Risk Review
+                </h3>
+                <p class="text-gray-600 leading-7 mt-3">
+                    Review technical dependencies, security considerations, maintainability,
+                    resilience and other risks before they become expensive problems.
+                </p>
+            </article>
+
+            <article class="p-8 lg:p-10 lkp-dark-service-card">
+                <span class="text-xs text-slate-500 font-semibold">06</span>
+                <i class="fa-solid fa-layer-group text-primary text-2xl block mt-8"></i>
+                <h3 class="text-xl font-bold text-white mt-5">
+                    Technical Due Diligence
+                </h3>
+                <p class="text-slate-300 leading-7 mt-3">
+                    Planning an important technology investment, vendor engagement or digital
+                    project? We can independently examine the technical position before commitment.
+                </p>
+
+                <a href="#quoteModal"
+                   data-quote-open
+                   class="inline-flex items-center gap-2 text-primary font-semibold mt-6">
+                    Discuss the Requirement
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROCESS
+========================================================== -->
+
+<section class="py-20 lg:py-28 bg-white">
+
+    <div class="container">
+
+        <div class="grid lg:grid-cols-12 gap-14">
+
+            <div class="lg:col-span-4">
+
+                <span class="text-primary font-semibold uppercase tracking-[0.16em] text-xs">
+                    How we work
+                </span>
+
+                <h2 class="mt-5 text-3xl sm:text-4xl font-bold text-secondary tracking-tight">
+                    From uncertainty to a practical technology direction.
+                </h2>
+
+                <p class="text-gray-600 leading-7 mt-6">
+                    Good technology advice requires context. We establish the business requirement
+                    first, investigate the technical reality and turn the findings into
+                    decisions that can actually be acted upon.
+                </p>
+
+            </div>
+
+
+            <div class="lg:col-span-8">
+
+                <div class="divide-y divide-gray-200 border-y border-gray-200">
+
+                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                        <span class="text-primary font-bold">01</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary">
+                                Business & requirement discovery
+                            </h3>
+                            <p class="mt-3 text-gray-600 leading-7">
+                                We establish the business objectives, operational challenges, stakeholders,
+                                constraints, existing technology and the outcome the engagement
+                                needs to support.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                        <span class="text-primary font-bold">02</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary">
+                                Current-state assessment
+                            </h3>
+                            <p class="mt-3 text-gray-600 leading-7">
+                                Where relevant, we review existing systems, infrastructure, workflows,
+                                integrations, vendors and technical dependencies to understand
+                                the current position before recommending change.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                        <span class="text-primary font-bold">03</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary">
+                                Options & architecture
+                            </h3>
+                            <p class="mt-3 text-gray-600 leading-7">
+                                We identify realistic options and assess the architecture, platforms,
+                                integrations, infrastructure and technical trade-offs associated
+                                with each direction.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                        <span class="text-primary font-bold">04</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary">
+                                Commercial & technical evaluation
+                            </h3>
+                            <p class="mt-3 text-gray-600 leading-7">
+                                Recommendations are evaluated against cost, complexity, operational impact,
+                                implementation effort, maintainability, security and expected
+                                business value — not technical novelty alone.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                        <span class="text-primary font-bold">05</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary">
+                                Recommendation & roadmap
+                            </h3>
+                            <p class="mt-3 text-gray-600 leading-7">
+                                We turn the findings into a clear recommendation, priorities and practical
+                                next steps so decision-makers understand what should happen,
+                                why and in what order.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                        <span class="text-primary font-bold">06</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary">
+                                Implementation support
+                            </h3>
+                            <p class="mt-3 text-gray-600 leading-7">
+                                Where required, LKProfessionals can remain involved through architecture,
+                                vendor coordination, engineering, deployment and technical review
+                                as the recommended direction moves into implementation.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CAPABILITIES
+========================================================== -->
+
+<section class="py-20 lg:py-28 lkp-capabilities">
+
+    <div class="container">
+
+        <div class="grid lg:grid-cols-12 gap-14 items-start">
+
+            <div class="lg:col-span-6">
+
+                <span class="text-primary uppercase tracking-[0.16em] text-xs font-semibold">
+                    Perspective across the technology stack
+                </span>
+
+                <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
+                    Good advice requires more than knowing one platform.
+                    <span class="text-slate-400">We look at the wider technology environment.</span>
+                </h2>
+
+                <p class="mt-7 text-lg leading-8 max-w-xl lkp-capabilities-copy">
+                    Our consulting perspective spans software, infrastructure, data, integrations,
+                    security and digital operations. That allows recommendations to account for
+                    how individual technology decisions affect the wider business system.
+                </p>
+
+            </div>
+
+
+            <div class="lg:col-span-6 grid sm:grid-cols-2 gap-4">
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-server text-primary"></i>
+                    <h3 class="font-bold mt-4">Software Architecture</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Application structure, technology choices and system boundaries designed for maintainability and growth.
+                    </p>
+                </div>
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-briefcase text-primary"></i>
+                    <h3 class="font-bold mt-4">Infrastructure & Cloud</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Hosting, deployment, servers, cloud services and operational infrastructure assessed against real requirements.
+                    </p>
+                </div>
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-code text-primary"></i>
+                    <h3 class="font-bold mt-4">Systems Integration</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        How applications, databases, APIs and external services should exchange information reliably.
+                    </p>
+                </div>
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-user-shield text-primary"></i>
+                    <h3 class="font-bold mt-4">Security & Access</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Identity, permissions, exposure, data protection and practical security considerations across the environment.
+                    </p>
+                </div>
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-arrows-rotate text-primary"></i>
+                    <h3 class="font-bold mt-4">Business Automation</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Opportunities to remove repetitive work, connect workflows and improve operational efficiency through automation.
+                    </p>
+                </div>
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-plug text-primary"></i>
+                    <h3 class="font-bold mt-4">Platforms & Vendors</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Independent evaluation of platforms, products, service providers and technical dependencies before commitment.
+                    </p>
+                </div>
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-chart-column text-primary"></i>
+                    <h3 class="font-bold mt-4">Data & Reporting</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Data structures, reporting requirements and operational visibility considered as part of the wider technology strategy.
+                    </p>
+                </div>
+
+                <div class="p-6 lkp-capability-card">
+                    <i class="fa-solid fa-cloud-arrow-up text-primary"></i>
+                    <h3 class="font-bold mt-4">Scalability & Continuity</h3>
+                    <p class="text-slate-400 text-sm leading-6 mt-2">
+                        Capacity, resilience, maintainability, recovery and future requirements considered before architecture becomes difficult to change.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CASE STUDIES - DYNAMIC
+========================================================== -->
+
+{% if case_studies %}
+
+<section class="py-20 lg:py-28 bg-white">
+
+    <div class="container">
+
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+
+            <div class="max-w-3xl">
+                <span class="text-primary uppercase tracking-[0.16em] text-xs font-semibold">
+                    Selected work
+                </span>
+
+                <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary tracking-tight">
+                    See the work behind the claims.
+                </h2>
+            </div>
+
+            <a href="/case-studies/"
+               class="font-semibold text-secondary hover:text-primary transition-colors inline-flex items-center gap-2">
+                Explore all case studies
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+
+        <div class="mt-12 grid md:grid-cols-2 xl:grid-cols-3 gap-7">
+
+            {% for case_study in case_studies %}
+
+            <article class="group">
+
+                <a href="/case-studies/{{ case_study.slug }}/"
+                   class="block overflow-hidden rounded-2xl bg-gray-100">
+
+                    {% if case_study.featured_image %}
+                    <img
+                        src="{{ case_study.featured_image.url }}"
+                        alt="{{ case_study.title }}"
+                        class="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    >
+                    {% else %}
+                    <div class="w-full aspect-[4/3] bg-[#071426] flex items-center justify-center">
+                        <i class="fa-solid fa-code text-primary text-4xl"></i>
+                    </div>
+                    {% endif %}
+
+                </a>
+
+                <div class="pt-6">
+
+                    {% if case_study.industry %}
+                    <span class="text-xs uppercase tracking-wider text-gray-500">
+                        {{ case_study.industry }}
+                    </span>
+                    {% endif %}
+
+                    <h3 class="mt-2 text-xl font-bold text-secondary">
+                        <a href="/case-studies/{{ case_study.slug }}/"
+                           class="hover:text-primary transition-colors">
+                            {{ case_study.title }}
+                        </a>
+                    </h3>
+
+                    {% if case_study.summary %}
+                    <p class="mt-3 text-gray-600 leading-7">
+                        {{ case_study.summary|truncatewords:24 }}
+                    </p>
+                    {% endif %}
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- =========================================================
+     PACKAGES - DYNAMIC
+========================================================== -->
+
+{% if packages %}
+
+<section class="py-20 lg:py-28 bg-gray-50">
+
+    <div class="container">
+
+        <div class="max-w-3xl mx-auto text-center">
+
+            <span class="text-primary uppercase tracking-[0.16em] text-xs font-semibold">
+                Packages
+            </span>
+
+            <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary tracking-tight">
+                A practical starting point.
+            </h2>
+
+            <p class="mt-5 text-gray-600 leading-8">
+                Choose an existing package or speak with us about a requirement
+                that needs a more tailored scope.
+            </p>
+
+        </div>
+
+
+        <div class="mt-12 grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+
+            {% for package in packages %}
+
+            <article class="bg-white border border-gray-200 rounded-2xl p-8">
+
+                <h3 class="text-xl font-bold text-secondary">
+                    {{ package.title }}
+                </h3>
+
+                <div class="mt-6">
+                    <span class="text-sm text-gray-500">From</span>
+
+                    <div class="mt-1 text-3xl font-bold text-secondary">
+                        LKR {{ package.price|floatformat:0 }}
+                    </div>
+                </div>
+
+                {% if package.features %}
+                <div class="mt-6 text-gray-600 leading-7 whitespace-pre-line">
+                    {{ package.features }}
+                </div>
+                {% endif %}
+
+                <a href="/contact-us.html"
+                   class="mt-8 btn btn-primary w-full text-center">
+                    {{ package.cta_label }}
+                </a>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- =========================================================
+     FAQ
+========================================================== -->
+
+<section class="py-20 lg:py-28 bg-white">
+
+    <div class="container">
+
+        <div class="grid lg:grid-cols-12 gap-14">
+
+            <div class="lg:col-span-4">
+
+                <span class="text-primary uppercase tracking-[0.16em] text-xs font-semibold">
+                    Frequently asked
+                </span>
+
+                <h2 class="mt-5 text-3xl sm:text-4xl font-bold text-secondary tracking-tight">
+                    Before we start.
+                </h2>
+
+                <p class="mt-5 text-gray-600 leading-7">
+                    Straightforward answers to the questions businesses usually ask
+                    before engaging an external technology consultant.
+                </p>
+
+            </div>
+
+
+            <div class="lg:col-span-8 divide-y divide-gray-200 border-y border-gray-200">
+
+                <details class="group py-6">
+                    <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
+                        How much does IT consultation cost?
+                        <i class="fa-solid fa-plus text-primary mt-1"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7 pr-10">
+                        The cost depends on the scope of the engagement, the systems that need to be
+                        reviewed, the complexity of the decision and the level of analysis required.
+                        We first establish the consulting requirement and then define an appropriate
+                        scope rather than selling unnecessary consulting hours.
+                    </p>
+                </details>
+
+                <details class="group py-6">
+                    <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
+                        How long does an IT consultation take?
+                        <i class="fa-solid fa-plus text-primary mt-1"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7 pr-10">
+                        A focused advisory session or technical review may be completed quickly,
+                        while architecture assessments, transformation planning or complex
+                        system reviews require more investigation. The expected engagement
+                        period is defined once we understand the requirement.
+                    </p>
+                </details>
+
+                <details class="group py-6">
+                    <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
+                        Can you review our existing systems before recommending changes?
+                        <i class="fa-solid fa-plus text-primary mt-1"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7 pr-10">
+                        Yes. Understanding the current environment is often essential. We can review
+                        existing software, infrastructure, integrations, workflows and technical
+                        constraints before recommending what should be retained, improved,
+                        replaced or integrated.
+                    </p>
+                </details>
+
+                <details class="group py-6">
+                    <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
+                        Do you only recommend technologies that LKProfessionals develops?
+                        <i class="fa-solid fa-plus text-primary mt-1"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7 pr-10">
+                        No. Consultation should begin with the requirement rather than a predetermined
+                        product. Where an existing platform, third-party service or another
+                        implementation approach makes more sense, that should be considered
+                        as part of the decision.
+                    </p>
+                </details>
+
+                <details class="group py-6">
+                    <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
+                        Can you help us choose between building and buying software?
+                        <i class="fa-solid fa-plus text-primary mt-1"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7 pr-10">
+                        Yes. Build-versus-buy decisions should consider more than the initial price.
+                        We can assess functional fit, customisation, integrations, ownership,
+                        recurring costs, vendor dependency, maintainability and long-term
+                        operational requirements.
+                    </p>
+                </details>
+
+                <details class="group py-6">
+                    <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
+                        Can LKProfessionals implement the recommendations afterwards?
+                        <i class="fa-solid fa-plus text-primary mt-1"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7 pr-10">
+                        Yes, where the recommended work falls within our engineering and digital
+                        capabilities. Consultation and implementation can remain separate,
+                        however, so the advisory stage does not depend on automatically
+                        awarding LKProfessionals the implementation work.
+                    </p>
+                </details>
+
+                <details class="group py-6">
+                    <summary class="cursor-pointer list-none flex justify-between gap-6 font-bold text-secondary">
+                        Do you work with businesses outside Sri Lanka?
+                        <i class="fa-solid fa-plus text-primary mt-1"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7 pr-10">
+                        Yes. IT consultation can be delivered remotely through structured discovery,
+                        documentation, technical reviews and stakeholder meetings for businesses
+                        in Sri Lanka and international markets.
+                    </p>
+                </details>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FINAL CTA
+========================================================== -->
+
+<section class="pb-20 lg:pb-28 bg-white">
+
+    <div class="container">
+
+        <div class="relative overflow-hidden bg-primary rounded-[2rem] px-6 sm:px-10 lg:px-16 py-14 lg:py-16">
+
+            <div class="absolute -right-20 -top-40 w-96 h-96 border-[70px] border-white/10 rounded-full"></div>
+
+            <div class="relative z-10 grid lg:grid-cols-12 gap-10 items-center">
+
+                <div class="lg:col-span-8">
+
+                    <span class="text-white/70 uppercase tracking-[0.16em] text-xs font-semibold">
+                        Facing a technology decision?
+                    </span>
+
+                    <h2 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight max-w-3xl">
+                        Get clarity before committing time, money and operations.
+                    </h2>
+
+                    <p class="mt-5 text-white/80 text-lg leading-8 max-w-2xl">
+                        Tell us what decision, system or technical challenge you are dealing with.
+                        We will start with the business requirement and determine the right
+                        technical questions before recommending a direction.
+                    </p>
+
+                </div>
+
+                <div class="lg:col-span-4 lg:text-right">
+
+                    <a href="#quoteModal"
+                       data-quote-open
+                       class="inline-flex items-center justify-center gap-3 bg-white text-secondary font-bold px-7 py-4 rounded-lg hover:bg-[#071426] hover:text-white transition-all duration-300">
+                        Get a Quote
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+{% include 'partials/footer.html' %}
+
+
+<script>
+(function () {
+    const founded = new Date(2013, 9, 12);
+    const now = new Date();
+
+    let years = now.getFullYear() - founded.getFullYear();
+
+    const anniversaryPassed =
+        now.getMonth() > founded.getMonth() ||
+        (now.getMonth() === founded.getMonth() &&
+         now.getDate() >= founded.getDate());
+
+    if (!anniversaryPassed) {
+        years--;
+    }
+
+    document.querySelectorAll("[data-founded-year]").forEach(function (element) {
+        element.textContent = years;
+    });
+})();
+</script>
+
+<script src="/assets/js/swiper-bundle.min.js"></script>
+<script src="/assets/js/animate.js"></script>
+<script src="/assets/js/back-to-top.js"></script>
+<script src="/assets/js/accordion.js"></script>
+<script src="/assets/js/responsive-menu.js"></script>
+<script src="/assets/js/pre-loader.js"></script>
+<script src="/assets/js/coming-soon.js"></script>
+<script src="/assets/js/slider-config.js"></script>
+<script src="/assets/js/email.min.js"></script>
+<script src="/assets/js/contact-form.js"></script>
+<script src="/assets/js/script.js"></script>
+
+</body>
+</html>
