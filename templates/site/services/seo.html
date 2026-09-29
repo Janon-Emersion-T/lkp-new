@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ title|default:"Digital Marketing | LKProfessionals" }}</title>
+    <title>{{ title|default:"SEO Services | LKProfessionals" }}</title>
 
     <meta name="description"
-          content="{{ description|default:'Digital marketing services by LKProfessionals. Strategy, content, social media, paid advertising, lead generation and campaign optimisation built around measurable business objectives.' }}">
+          content="{{ description|default:'Professional SEO services by LKProfessionals. Technical SEO, on-page optimisation, content strategy, local SEO and search performance built around sustainable organic visibility.' }}">
 
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="author" content="LKProfessionals (Pvt) Ltd">
@@ -20,18 +20,18 @@
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="LKProfessionals">
-    <meta property="og:title" content="{{ title|default:'Digital Marketing | LKProfessionals' }}">
+    <meta property="og:title" content="{{ title|default:'SEO Services | LKProfessionals' }}">
     <meta property="og:description"
-          content="{{ description|default:'Commercially focused digital marketing connecting strategy, creative, distribution and measurement to help businesses reach the right audience and generate demand.' }}">
+          content="{{ description|default:'Commercially focused SEO connecting technical foundations, search strategy, content and authority to improve qualified organic visibility and long-term search performance.' }}">
     <meta property="og:url"
           content="{{ request.scheme }}://{{ request.get_host }}{{ canonical_path }}">
     <meta property="og:image"
           content="{{ request.scheme }}://{{ request.get_host }}/assets/image/logo.png">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ title|default:'Digital Marketing | LKProfessionals' }}">
+    <meta name="twitter:title" content="{{ title|default:'SEO Services | LKProfessionals' }}">
     <meta name="twitter:description"
-          content="{{ description|default:'Commercially focused digital marketing connecting strategy, creative, distribution and measurement to help businesses reach the right audience and generate demand.' }}">
+          content="{{ description|default:'Commercially focused SEO connecting technical foundations, search strategy, content and authority to improve qualified organic visibility and long-term search performance.' }}">
     <meta name="twitter:image"
           content="{{ request.scheme }}://{{ request.get_host }}/assets/image/logo.png">
 
@@ -45,137 +45,137 @@
 
 <style>
 /* =========================================================
-   DIGITAL MARKETING PAGE ONLY
+   SEO PAGE ONLY
    Scoped intentionally to avoid affecting the rest of LKP.
 ========================================================= */
 
-.lkp-digital-marketing-service .lkp-service-hero {
+.lkp-seo-service .lkp-service-hero {
     background:
         radial-gradient(circle at 78% 20%, rgba(51, 182, 255, .16), transparent 34%),
         radial-gradient(circle at 14% 90%, rgba(59, 130, 246, .08), transparent 38%),
         #071426;
 }
 
-.lkp-digital-marketing-service .lkp-service-hero h1 {
+.lkp-seo-service .lkp-service-hero h1 {
     color: #ffffff;
 }
 
-.lkp-digital-marketing-service .lkp-service-hero-copy {
+.lkp-seo-service .lkp-service-hero-copy {
     color: #cbd5e1;
 }
 
-.lkp-digital-marketing-service .lkp-service-glass {
+.lkp-seo-service .lkp-service-glass {
     background: rgba(7, 20, 38, .84);
     border: 1px solid rgba(255,255,255,.12);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 }
 
-.lkp-digital-marketing-service .lkp-service-metric strong {
+.lkp-seo-service .lkp-service-metric strong {
     color: #ffffff !important;
 }
 
-.lkp-digital-marketing-service .lkp-service-metric span {
+.lkp-seo-service .lkp-service-metric span {
     color: #94a3b8;
 }
 
-.lkp-digital-marketing-service .lkp-capabilities {
+.lkp-seo-service .lkp-capabilities {
     background: #071426;
     color: #ffffff;
 }
 
-.lkp-digital-marketing-service .lkp-capabilities h2,
-.lkp-digital-marketing-service .lkp-capabilities h3 {
+.lkp-seo-service .lkp-capabilities h2,
+.lkp-seo-service .lkp-capabilities h3 {
     color: #ffffff;
 }
 
-.lkp-digital-marketing-service .lkp-capabilities-copy {
+.lkp-seo-service .lkp-capabilities-copy {
     color: #cbd5e1;
 }
 
-.lkp-digital-marketing-service .lkp-capability-card {
+.lkp-seo-service .lkp-capability-card {
     border: 1px solid rgba(255,255,255,.11);
     background: rgba(255,255,255,.035);
     border-radius: 18px;
 }
 
-.lkp-digital-marketing-service .lkp-capability-card p {
+.lkp-seo-service .lkp-capability-card p {
     color: #94a3b8;
 }
 
-.lkp-digital-marketing-service .lkp-dark-service-card {
+.lkp-seo-service .lkp-dark-service-card {
     background: #071426 !important;
     color: #ffffff;
 }
 
-.lkp-digital-marketing-service .lkp-dark-service-card h3 {
+.lkp-seo-service .lkp-dark-service-card h3 {
     color: #ffffff !important;
 }
 
-.lkp-digital-marketing-service .lkp-dark-service-card p {
+.lkp-seo-service .lkp-dark-service-card p {
     color: #cbd5e1 !important;
 }
 
-.lkp-digital-marketing-service .lkp-radius-xl {
+.lkp-seo-service .lkp-radius-xl {
     border-radius: 32px;
 }
 
-.lkp-digital-marketing-service .lkp-eyebrow {
+.lkp-seo-service .lkp-eyebrow {
     letter-spacing: .16em;
 }
 
 @media (max-width: 1023px) {
-    .lkp-digital-marketing-service .lkp-service-hero {
+    .lkp-seo-service .lkp-service-hero {
         padding-top: 100px;
     }
 }
 
 
 /* =========================================================
-   DIGITAL MARKETING — CAPABILITIES SECTION
+   SEO — CAPABILITIES SECTION
    Explicit layout because this project uses precompiled
    Tailwind and some arbitrary/grid utilities are unavailable.
    Scoped to this page only.
 ========================================================= */
 
-.lkp-digital-marketing-service .lkp-capabilities {
+.lkp-seo-service .lkp-capabilities {
     background: #071426;
     color: #ffffff;
 }
 
-.lkp-digital-marketing-service .lkp-capabilities > .container {
+.lkp-seo-service .lkp-capabilities > .container {
     width: 100%;
 }
 
-.lkp-digital-marketing-service .lkp-capabilities .grid.lg\:grid-cols-12 {
+.lkp-seo-service .lkp-capabilities .grid.lg\:grid-cols-12 {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 4rem;
     align-items: start;
 }
 
-.lkp-digital-marketing-service .lkp-capabilities .lg\:col-span-6 {
+.lkp-seo-service .lkp-capabilities .lg\:col-span-6 {
     min-width: 0;
     width: 100%;
 }
 
-.lkp-digital-marketing-service .lkp-capabilities .lg\:col-span-6.grid {
+.lkp-seo-service .lkp-capabilities .lg\:col-span-6.grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
 }
 
-.lkp-digital-marketing-service .lkp-capabilities h2 {
+.lkp-seo-service .lkp-capabilities h2 {
     color: #ffffff;
     max-width: 620px;
 }
 
-.lkp-digital-marketing-service .lkp-capabilities-copy {
+.lkp-seo-service .lkp-capabilities-copy {
     color: #94a3b8;
     max-width: 620px;
 }
 
-.lkp-digital-marketing-service .lkp-capability-card {
+.lkp-seo-service .lkp-capability-card {
     width: 100%;
     min-width: 0;
     min-height: 190px;
@@ -190,26 +190,26 @@
         background-color .25s ease;
 }
 
-.lkp-digital-marketing-service .lkp-capability-card:hover {
+.lkp-seo-service .lkp-capability-card:hover {
     transform: translateY(-3px);
     border-color: rgba(51, 182, 255, .45);
     background: rgba(15, 35, 58, .85);
 }
 
-.lkp-digital-marketing-service .lkp-capability-card i {
+.lkp-seo-service .lkp-capability-card i {
     display: block;
     font-size: 1.15rem;
     color: #33b6ff;
 }
 
-.lkp-digital-marketing-service .lkp-capability-card h3 {
+.lkp-seo-service .lkp-capability-card h3 {
     color: #ffffff;
     margin-top: 1rem;
     font-size: 1rem;
     line-height: 1.4;
 }
 
-.lkp-digital-marketing-service .lkp-capability-card p {
+.lkp-seo-service .lkp-capability-card p {
     color: #94a3b8;
     margin-top: .5rem;
     line-height: 1.65;
@@ -217,7 +217,7 @@
 
 /* Tablet */
 @media (max-width: 1023px) {
-    .lkp-digital-marketing-service .lkp-capabilities .grid.lg\:grid-cols-12 {
+    .lkp-seo-service .lkp-capabilities .grid.lg\:grid-cols-12 {
         grid-template-columns: 1fr;
         gap: 2.5rem;
     }
@@ -225,11 +225,11 @@
 
 /* Mobile */
 @media (max-width: 639px) {
-    .lkp-digital-marketing-service .lkp-capabilities .lg\:col-span-6.grid {
+    .lkp-seo-service .lkp-capabilities .lg\:col-span-6.grid {
         grid-template-columns: 1fr;
     }
 
-    .lkp-digital-marketing-service .lkp-capability-card {
+    .lkp-seo-service .lkp-capability-card {
         min-height: auto;
     }
 }
@@ -238,7 +238,7 @@
 
 </head>
 
-<body class="bg-white text-slate-900 lkp-digital-marketing-service">
+<body class="bg-white text-slate-900 lkp-seo-service">
 
 {% include 'partials/preloader.html' %}
 {% include 'partials/header.html' %}
@@ -265,19 +265,19 @@
                 <div class="flex items-center gap-3 mb-7">
                     <span class="w-8 h-px bg-primary"></span>
                     <span class="text-primary uppercase tracking-[0.18em] text-xs sm:text-sm font-semibold">
-                        Digital Marketing
+                        SEO
                     </span>
                 </div>
 
                 <h1 class="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-[72px] font-bold leading-[1.05] tracking-[-0.035em] max-w-5xl">
-                    Digital marketing built to
-                    <span class="text-primary">create demand.</span>
+                    Search visibility built on
+                    <span class="text-primary">stronger foundations.</span>
                 </h1>
 
                 <p class="mt-7 text-base sm:text-lg lg:text-xl leading-8 max-w-2xl lkp-service-hero-copy">
-                    We manage the technical foundations behind your digital operations —
-                    from strategy and creative to distribution, measurement and optimisation
-                    and ongoing maintenance.
+                    We improve how search engines discover, understand and evaluate your website —
+                    combining technical SEO, search strategy, content and authority
+                    around the queries that matter to your business.
                 </p>
 
                 <div class="mt-9 flex flex-col sm:flex-row gap-4">
@@ -339,8 +339,8 @@
                     <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-3">
 
                         <img
-                            src="/assets/image/digital-marketing-hero.png"
-                            alt="Digital marketing strategy, campaigns and growth services by LKProfessionals"
+                            src="/assets/image/seo-hero.png"
+                            alt="SEO strategy, technical optimisation and organic search growth by LKProfessionals"
                             class="w-full h-[420px] lg:h-[520px] object-cover rounded-[1.55rem]"
                         >
 
@@ -358,7 +358,7 @@
                                     </p>
 
                                     <p class="text-slate-300 text-sm leading-6 mt-1">
-                                        Strategy, content, distribution, paid media and campaign optimisation
+                                        Technical SEO, search strategy, content optimisation and organic performance
                                         planning handled with commercial and operational context in mind.
                                     </p>
                                 </div>
@@ -385,7 +385,6 @@
 ========================================================== -->
 
 <section class="py-20 lg:py-28 bg-white">
-
     <div class="container">
 
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-20">
@@ -393,11 +392,11 @@
             <div class="lg:col-span-5">
 
                 <span class="text-primary font-semibold uppercase tracking-[0.16em] text-xs">
-                    Marketing with a commercial purpose
+                    Search visibility with commercial purpose
                 </span>
 
-                <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary leading-tight tracking-tight">
-                    Marketing should create movement, not just activity.
+                <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary tracking-tight">
+                    SEO should make your business easier to find — for the searches that matter.
                 </h2>
 
             </div>
@@ -405,59 +404,53 @@
             <div class="lg:col-span-7">
 
                 <p class="text-lg text-gray-600 leading-8">
-                    Publishing content, running advertisements and maintaining social
-                    channels are activities. The real question is whether those activities
-                    are helping the business become more visible, generate enquiries,
-                    strengthen demand or improve customer acquisition.
+                    LKProfessionals combines technical SEO, search research, on-page
+                    optimisation, content strategy and authority development to improve
+                    how search engines discover, understand and evaluate your website.
                 </p>
 
-                <p class="mt-6 text-base text-gray-600 leading-8">
-                    LKProfessionals connects strategy, creative, distribution and
-                    measurement so campaigns begin with a defined business purpose.
-                    We focus on reaching the right audience with the right message,
-                    then use performance data to improve what happens next.
+                <p class="mt-5 text-gray-600 leading-7">
+                    The objective is not simply to increase rankings or generate more
+                    impressions. We focus on relevant organic visibility that can support
+                    enquiries, sales, brand discovery and sustainable business growth.
                 </p>
 
-                <div class="mt-10 grid sm:grid-cols-2 gap-x-10 gap-y-7">
+                <div class="mt-10 grid sm:grid-cols-2 gap-5">
 
-                    <div class="flex gap-4">
-                        <i class="fa-solid fa-circle-check text-primary mt-1"></i>
-                        <div>
-                            <h3 class="font-bold text-secondary">Objective-led</h3>
-                            <p class="text-gray-500 text-sm leading-6 mt-1">
-                                Campaigns are tied to defined business and marketing objectives.
-                            </p>
-                        </div>
+                    <div class="border-t border-gray-200 pt-5">
+                        <i class="fa-solid fa-magnifying-glass-chart text-primary text-xl"></i>
+                        <h3 class="font-bold text-secondary mt-3">Search-intent focused</h3>
+                        <p class="text-sm text-gray-600 mt-2 leading-6">
+                            Search opportunities are evaluated around what users actually
+                            need and where that intent fits the buying journey.
+                        </p>
                     </div>
 
-                    <div class="flex gap-4">
-                        <i class="fa-solid fa-circle-check text-primary mt-1"></i>
-                        <div>
-                            <h3 class="font-bold text-secondary">Audience-focused</h3>
-                            <p class="text-gray-500 text-sm leading-6 mt-1">
-                                Messaging and distribution are shaped around the people the business needs to reach.
-                            </p>
-                        </div>
+                    <div class="border-t border-gray-200 pt-5">
+                        <i class="fa-solid fa-sitemap text-primary text-xl"></i>
+                        <h3 class="font-bold text-secondary mt-3">Technically grounded</h3>
+                        <p class="text-sm text-gray-600 mt-2 leading-6">
+                            Crawlability, indexation, architecture, performance and
+                            implementation quality form part of the SEO strategy.
+                        </p>
                     </div>
 
-                    <div class="flex gap-4">
-                        <i class="fa-solid fa-circle-check text-primary mt-1"></i>
-                        <div>
-                            <h3 class="font-bold text-secondary">Channel-aware</h3>
-                            <p class="text-gray-500 text-sm leading-6 mt-1">
-                                Channels are selected for their role in the campaign rather than used by default.
-                            </p>
-                        </div>
+                    <div class="border-t border-gray-200 pt-5">
+                        <i class="fa-solid fa-file-lines text-primary text-xl"></i>
+                        <h3 class="font-bold text-secondary mt-3">Content with a role</h3>
+                        <p class="text-sm text-gray-600 mt-2 leading-6">
+                            Pages and content are developed around search demand,
+                            relevance, expertise and commercial purpose.
+                        </p>
                     </div>
 
-                    <div class="flex gap-4">
-                        <i class="fa-solid fa-circle-check text-primary mt-1"></i>
-                        <div>
-                            <h3 class="font-bold text-secondary">Measured & improved</h3>
-                            <p class="text-gray-500 text-sm leading-6 mt-1">
-                                Performance data informs the next creative, targeting and campaign decision.
-                            </p>
-                        </div>
+                    <div class="border-t border-gray-200 pt-5">
+                        <i class="fa-solid fa-chart-line text-primary text-xl"></i>
+                        <h3 class="font-bold text-secondary mt-3">Measured over time</h3>
+                        <p class="text-sm text-gray-600 mt-2 leading-6">
+                            Search visibility, rankings, traffic and meaningful business
+                            outcomes are monitored to guide further optimisation.
+                        </p>
                     </div>
 
                 </div>
@@ -467,120 +460,110 @@
         </div>
 
     </div>
-
 </section>
 
 
 <!-- =========================================================
-     DIGITAL MARKETING SERVICES
+     SEO SERVICES
 ========================================================== -->
 
 <section class="py-20 lg:py-28 bg-gray-50">
-
     <div class="container">
 
         <div class="max-w-3xl">
 
             <span class="text-primary font-semibold uppercase tracking-[0.16em] text-xs">
-                What we do
+                SEO services
             </span>
 
             <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary tracking-tight">
-                Marketing capabilities connected around the customer journey.
+                The disciplines behind stronger organic visibility.
             </h2>
 
-            <p class="mt-5 text-gray-600 leading-8 text-lg">
-                We combine planning, creative execution, distribution and measurement
-                rather than treating each marketing channel as an isolated task.
+            <p class="mt-6 text-gray-600 leading-7">
+                Search performance is rarely the result of one isolated change.
+                We work across the technical, structural, content and authority
+                factors that influence how a website performs in organic search.
             </p>
 
         </div>
 
         <div class="mt-14 grid md:grid-cols-2 xl:grid-cols-3 gap-px bg-gray-200 border border-gray-200 rounded-3xl overflow-hidden">
 
-            <article class="bg-white p-8 lg:p-10 group">
-                <span class="text-xs text-gray-400 font-semibold">01</span>
-                <i class="fa-solid fa-chess-knight text-primary text-2xl block mt-8"></i>
-                <h3 class="text-xl font-bold text-secondary mt-5">
-                    Campaign Strategy
-                </h3>
-                <p class="text-gray-600 leading-7 mt-3">
-                    Objectives, audiences, messaging, channels and campaign structure
-                    defined before execution begins.
+            <article class="bg-white p-8 lg:p-10">
+                <i class="fa-solid fa-screwdriver-wrench text-primary text-2xl"></i>
+                <h3 class="mt-6 text-xl font-bold text-secondary">Technical SEO</h3>
+                <p class="mt-3 text-gray-600 leading-7">
+                    Crawlability, indexation, site architecture, canonicals,
+                    redirects, structured data and technical issues that can
+                    restrict organic performance.
                 </p>
             </article>
 
-            <article class="bg-white p-8 lg:p-10 group">
-                <span class="text-xs text-gray-400 font-semibold">02</span>
-                <i class="fa-solid fa-share-nodes text-primary text-2xl block mt-8"></i>
-                <h3 class="text-xl font-bold text-secondary mt-5">
-                    Social Media Marketing
-                </h3>
-                <p class="text-gray-600 leading-7 mt-3">
-                    Structured social presence, campaign publishing and channel management
-                    aligned with brand and commercial priorities.
+            <article class="bg-white p-8 lg:p-10">
+                <i class="fa-solid fa-file-circle-check text-primary text-2xl"></i>
+                <h3 class="mt-6 text-xl font-bold text-secondary">On-Page SEO</h3>
+                <p class="mt-3 text-gray-600 leading-7">
+                    Page structure, titles, metadata, headings, internal linking,
+                    topical relevance and content optimisation aligned with
+                    search intent.
                 </p>
             </article>
 
-            <article class="bg-white p-8 lg:p-10 group">
-                <span class="text-xs text-gray-400 font-semibold">03</span>
-                <i class="fa-solid fa-pen-ruler text-primary text-2xl block mt-8"></i>
-                <h3 class="text-xl font-bold text-secondary mt-5">
-                    Content & Creative
-                </h3>
-                <p class="text-gray-600 leading-7 mt-3">
-                    Campaign concepts, copy, visual direction and content designed
-                    around the audience and the role each asset needs to perform.
+            <article class="bg-white p-8 lg:p-10">
+                <i class="fa-solid fa-magnifying-glass text-primary text-2xl"></i>
+                <h3 class="mt-6 text-xl font-bold text-secondary">Search Strategy</h3>
+                <p class="mt-3 text-gray-600 leading-7">
+                    Keyword research, search-intent analysis, competitor review
+                    and opportunity mapping used to determine where organic
+                    growth is commercially worthwhile.
                 </p>
             </article>
 
-            <article class="bg-white p-8 lg:p-10 group">
-                <span class="text-xs text-gray-400 font-semibold">04</span>
-                <i class="fa-solid fa-bullhorn text-primary text-2xl block mt-8"></i>
-                <h3 class="text-xl font-bold text-secondary mt-5">
-                    Paid Advertising
-                </h3>
-                <p class="text-gray-600 leading-7 mt-3">
-                    Paid campaigns structured around targeting, creative, budget control,
-                    landing experience and measurable acquisition objectives.
+            <article class="bg-white p-8 lg:p-10">
+                <i class="fa-solid fa-pen-ruler text-primary text-2xl"></i>
+                <h3 class="mt-6 text-xl font-bold text-secondary">Content SEO</h3>
+                <p class="mt-3 text-gray-600 leading-7">
+                    Search-led content planning and optimisation for service pages,
+                    commercial pages, articles and supporting resources that
+                    strengthen topical relevance.
                 </p>
             </article>
 
-            <article class="bg-white p-8 lg:p-10 group">
-                <span class="text-xs text-gray-400 font-semibold">05</span>
-                <i class="fa-solid fa-filter-circle-dollar text-primary text-2xl block mt-8"></i>
-                <h3 class="text-xl font-bold text-secondary mt-5">
-                    Lead Generation
-                </h3>
-                <p class="text-gray-600 leading-7 mt-3">
-                    Campaigns and conversion paths designed to move relevant prospects
-                    from attention toward enquiry or another defined action.
+            <article class="bg-white p-8 lg:p-10">
+                <i class="fa-solid fa-location-dot text-primary text-2xl"></i>
+                <h3 class="mt-6 text-xl font-bold text-secondary">Local SEO</h3>
+                <p class="mt-3 text-gray-600 leading-7">
+                    Local search optimisation for businesses serving defined
+                    geographic markets, including location signals, business
+                    information and local landing-page strategy.
                 </p>
             </article>
 
-            <article class="p-8 lg:p-10 lkp-dark-service-card">
-                <span class="text-xs text-slate-500 font-semibold">06</span>
-                <i class="fa-solid fa-arrows-rotate text-primary text-2xl block mt-8"></i>
-                <h3 class="text-xl font-bold text-white mt-5">
-                    Retargeting & Lifecycle
-                </h3>
-                <p class="text-slate-300 leading-7 mt-3">
-                    Retargeting, follow-up and lifecycle campaigns that continue the
-                    conversation after the first interaction.
+            <article class="bg-white p-8 lg:p-10">
+                <i class="fa-solid fa-link text-primary text-2xl"></i>
+                <h3 class="mt-6 text-xl font-bold text-secondary">Authority & Links</h3>
+                <p class="mt-3 text-gray-600 leading-7">
+                    Authority assessment, link-profile review and responsible
+                    off-page strategy focused on strengthening trust and
+                    relevance without shortcut tactics.
                 </p>
-
-                <a href="#quoteModal"
-                   data-quote-open
-                   class="inline-flex items-center gap-2 text-primary font-semibold mt-6">
-                    Discuss Your Marketing
-                    <i class="fa-solid fa-arrow-right text-xs"></i>
-                </a>
             </article>
 
         </div>
 
-    </div>
+        <div class="mt-10">
 
+            <a href="#quoteModal"
+               data-quote-open
+               class="inline-flex items-center gap-2 text-primary font-semibold">
+                Discuss Your SEO
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+
+        </div>
+
+    </div>
 </section>
 
 
@@ -589,94 +572,100 @@
 ========================================================== -->
 
 <section class="py-20 lg:py-28 bg-white">
-
     <div class="container">
 
-        <div class="grid lg:grid-cols-12 gap-14">
+        <div class="grid lg:grid-cols-12 gap-14 lg:gap-20">
 
             <div class="lg:col-span-4">
 
                 <span class="text-primary font-semibold uppercase tracking-[0.16em] text-xs">
-                    How campaigns move
+                    Our SEO process
                 </span>
 
-                <h2 class="mt-5 text-3xl sm:text-4xl font-bold text-secondary tracking-tight">
-                    From market understanding to measurable optimisation.
+                <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary tracking-tight">
+                    From evidence to continuous improvement.
                 </h2>
 
-                <p class="text-gray-600 leading-7 mt-6">
-                    We establish the commercial objective first, then build the audience,
-                    message, creative and distribution around it.
+                <p class="mt-6 text-gray-600 leading-7">
+                    SEO is treated as an engineering and growth discipline:
+                    understand the current position, prioritise the right work,
+                    implement carefully and measure what changes.
                 </p>
 
             </div>
 
             <div class="lg:col-span-8">
 
-                <div class="divide-y divide-gray-200 border-y border-gray-200">
+                <div class="space-y-0">
 
-                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                    <div class="grid sm:grid-cols-[90px_1fr] gap-5 border-t border-gray-200 py-7">
                         <span class="text-primary font-bold">01</span>
                         <div>
-                            <h3 class="text-xl font-bold text-secondary">Understand the Market</h3>
-                            <p class="mt-3 text-gray-600 leading-7">
-                                We review the business, offer, competitive environment,
-                                existing marketing and the commercial outcome the campaign needs to support.
+                            <h3 class="text-xl font-bold text-secondary">Audit</h3>
+                            <p class="mt-2 text-gray-600 leading-7">
+                                We assess the website, technical implementation,
+                                current search visibility, content, competitors and
+                                available performance data.
                             </p>
                         </div>
                     </div>
 
-                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                    <div class="grid sm:grid-cols-[90px_1fr] gap-5 border-t border-gray-200 py-7">
                         <span class="text-primary font-bold">02</span>
                         <div>
-                            <h3 class="text-xl font-bold text-secondary">Define the Audience</h3>
-                            <p class="mt-3 text-gray-600 leading-7">
-                                We identify who the campaign needs to reach, what matters
-                                to them and where relevant attention can realistically be captured.
+                            <h3 class="text-xl font-bold text-secondary">Search Research</h3>
+                            <p class="mt-2 text-gray-600 leading-7">
+                                We map relevant queries, search intent, competitors
+                                and opportunities against your services, markets and
+                                commercial priorities.
                             </p>
                         </div>
                     </div>
 
-                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                    <div class="grid sm:grid-cols-[90px_1fr] gap-5 border-t border-gray-200 py-7">
                         <span class="text-primary font-bold">03</span>
                         <div>
-                            <h3 class="text-xl font-bold text-secondary">Build the Campaign</h3>
-                            <p class="mt-3 text-gray-600 leading-7">
-                                Messaging, creative, offers, channels, conversion paths
-                                and measurement are assembled into a coherent campaign.
+                            <h3 class="text-xl font-bold text-secondary">Technical Foundations</h3>
+                            <p class="mt-2 text-gray-600 leading-7">
+                                Priority crawl, indexation, architecture, performance
+                                and implementation issues are addressed or translated
+                                into clear development actions.
                             </p>
                         </div>
                     </div>
 
-                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                    <div class="grid sm:grid-cols-[90px_1fr] gap-5 border-t border-gray-200 py-7">
                         <span class="text-primary font-bold">04</span>
                         <div>
-                            <h3 class="text-xl font-bold text-secondary">Launch</h3>
-                            <p class="mt-3 text-gray-600 leading-7">
-                                Campaigns are published or activated with targeting,
-                                tracking and destination experiences checked before scale.
+                            <h3 class="text-xl font-bold text-secondary">On-Page Optimisation</h3>
+                            <p class="mt-2 text-gray-600 leading-7">
+                                Commercial pages are aligned with relevant search
+                                intent through structure, copy, metadata, internal
+                                linking and semantic optimisation.
                             </p>
                         </div>
                     </div>
 
-                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                    <div class="grid sm:grid-cols-[90px_1fr] gap-5 border-t border-gray-200 py-7">
                         <span class="text-primary font-bold">05</span>
                         <div>
-                            <h3 class="text-xl font-bold text-secondary">Measure</h3>
-                            <p class="mt-3 text-gray-600 leading-7">
-                                We evaluate meaningful performance signals rather than
-                                relying on surface-level activity metrics alone.
+                            <h3 class="text-xl font-bold text-secondary">Content & Authority</h3>
+                            <p class="mt-2 text-gray-600 leading-7">
+                                We strengthen topical coverage and authority through
+                                useful content, supporting pages, internal relationships
+                                and appropriate off-page work.
                             </p>
                         </div>
                     </div>
 
-                    <div class="grid sm:grid-cols-[80px_1fr] gap-4 py-8">
+                    <div class="grid sm:grid-cols-[90px_1fr] gap-5 border-y border-gray-200 py-7">
                         <span class="text-primary font-bold">06</span>
                         <div>
-                            <h3 class="text-xl font-bold text-secondary">Optimise</h3>
-                            <p class="mt-3 text-gray-600 leading-7">
-                                Targeting, creative, messaging, spend and conversion paths
-                                are refined using what the campaign actually teaches us.
+                            <h3 class="text-xl font-bold text-secondary">Measure & Improve</h3>
+                            <p class="mt-2 text-gray-600 leading-7">
+                                Search visibility, rankings, organic traffic and
+                                meaningful conversions are reviewed to determine
+                                the next optimisation priorities.
                             </p>
                         </div>
                     </div>
@@ -688,7 +677,6 @@
         </div>
 
     </div>
-
 </section>
 
 
@@ -696,96 +684,101 @@
      CAPABILITIES
 ========================================================== -->
 
-<section class="py-20 lg:py-28 lkp-capabilities">
-
+<section class="lkp-capabilities py-20 lg:py-28">
     <div class="container">
 
-        <div class="grid lg:grid-cols-12 gap-14 items-start">
+        <div class="grid lg:grid-cols-12 gap-14 lg:gap-20">
 
             <div class="lg:col-span-6">
 
-                <span class="text-primary uppercase tracking-[0.16em] text-xs font-semibold">
-                    Connected marketing capability
+                <span class="text-primary font-semibold uppercase tracking-[0.16em] text-xs">
+                    SEO capabilities
                 </span>
 
-                <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
-                    Attention alone is not the objective.
-                    <span class="text-slate-400">
-                        What happens after attention matters.
-                    </span>
+                <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
+                    Search performance is a system.
                 </h2>
 
-                <p class="mt-7 text-lg leading-8 max-w-xl lkp-capabilities-copy">
-                    Strong digital marketing connects the audience, message, creative,
-                    channel, destination and measurement. We work across those layers so
-                    the campaign functions as a system rather than a collection of posts.
+                <p class="mt-6 text-slate-300 leading-7 max-w-xl">
+                    Strong organic visibility depends on more than keywords.
+                    Technical accessibility, information architecture, relevance,
+                    authority, user experience and measurement all influence how
+                    effectively a website competes in search.
                 </p>
 
             </div>
 
-            <div class="lg:col-span-6 grid sm:grid-cols-2 gap-4">
+            <div class="lg:col-span-6 grid">
 
-                <div class="p-6 lkp-capability-card">
-                    <i class="fa-solid fa-chess text-primary"></i>
-                    <h3 class="font-bold mt-4">Campaign Strategy</h3>
-                    <p class="text-slate-400 text-sm leading-6 mt-2">
-                        Objectives, audiences, offers, messaging and channel roles defined before execution.
+                <div class="lkp-service-glass rounded-2xl p-6">
+                    <i class="fa-solid fa-spider text-primary text-xl"></i>
+                    <h3 class="font-bold mt-4">Crawling & Indexation</h3>
+                    <p class="mt-2 text-sm text-slate-300 leading-6">
+                        Helping search engines efficiently discover and index the
+                        pages that should appear in search.
                     </p>
                 </div>
 
-                <div class="p-6 lkp-capability-card">
-                    <i class="fa-solid fa-hashtag text-primary"></i>
-                    <h3 class="font-bold mt-4">Social Media</h3>
-                    <p class="text-slate-400 text-sm leading-6 mt-2">
-                        Channel planning and publishing designed around brand consistency and campaign purpose.
+                <div class="lkp-service-glass rounded-2xl p-6">
+                    <i class="fa-solid fa-sitemap text-primary text-xl"></i>
+                    <h3 class="font-bold mt-4">Site Architecture</h3>
+                    <p class="mt-2 text-sm text-slate-300 leading-6">
+                        Logical structures and internal relationships that support
+                        users, crawlers and topical understanding.
                     </p>
                 </div>
 
-                <div class="p-6 lkp-capability-card">
-                    <i class="fa-solid fa-rectangle-ad text-primary"></i>
-                    <h3 class="font-bold mt-4">Paid Media</h3>
-                    <p class="text-slate-400 text-sm leading-6 mt-2">
-                        Targeted paid distribution with budget, creative and acquisition performance considered together.
+                <div class="lkp-service-glass rounded-2xl p-6">
+                    <i class="fa-solid fa-file-pen text-primary text-xl"></i>
+                    <h3 class="font-bold mt-4">On-Page SEO</h3>
+                    <p class="mt-2 text-sm text-slate-300 leading-6">
+                        Titles, headings, content, entities and internal links
+                        aligned with page purpose and search intent.
                     </p>
                 </div>
 
-                <div class="p-6 lkp-capability-card">
-                    <i class="fa-solid fa-pen-nib text-primary"></i>
-                    <h3 class="font-bold mt-4">Content</h3>
-                    <p class="text-slate-400 text-sm leading-6 mt-2">
-                        Messaging and content shaped around audience needs, campaign intent and channel context.
+                <div class="lkp-service-glass rounded-2xl p-6">
+                    <i class="fa-solid fa-code text-primary text-xl"></i>
+                    <h3 class="font-bold mt-4">Structured Data</h3>
+                    <p class="mt-2 text-sm text-slate-300 leading-6">
+                        Appropriate schema and structured information that helps
+                        machines understand important page entities and context.
                     </p>
                 </div>
 
-                <div class="p-6 lkp-capability-card">
-                    <i class="fa-solid fa-wand-magic-sparkles text-primary"></i>
-                    <h3 class="font-bold mt-4">Creative</h3>
-                    <p class="text-slate-400 text-sm leading-6 mt-2">
-                        Visual and campaign creative designed to communicate quickly and support the intended action.
+                <div class="lkp-service-glass rounded-2xl p-6">
+                    <i class="fa-solid fa-gauge-high text-primary text-xl"></i>
+                    <h3 class="font-bold mt-4">Performance</h3>
+                    <p class="mt-2 text-sm text-slate-300 leading-6">
+                        Technical performance, mobile experience and Core Web
+                        Vitals considered as part of overall search quality.
                     </p>
                 </div>
 
-                <div class="p-6 lkp-capability-card">
-                    <i class="fa-solid fa-filter text-primary"></i>
-                    <h3 class="font-bold mt-4">Funnels</h3>
-                    <p class="text-slate-400 text-sm leading-6 mt-2">
-                        Conversion journeys connecting campaign traffic with enquiries, leads and customer actions.
+                <div class="lkp-service-glass rounded-2xl p-6">
+                    <i class="fa-solid fa-location-crosshairs text-primary text-xl"></i>
+                    <h3 class="font-bold mt-4">Local SEO</h3>
+                    <p class="mt-2 text-sm text-slate-300 leading-6">
+                        Geographic relevance and local search signals for businesses
+                        competing within defined service areas.
                     </p>
                 </div>
 
-                <div class="p-6 lkp-capability-card">
-                    <i class="fa-solid fa-chart-column text-primary"></i>
-                    <h3 class="font-bold mt-4">Analytics</h3>
-                    <p class="text-slate-400 text-sm leading-6 mt-2">
-                        Measurement foundations that help distinguish meaningful commercial signals from vanity metrics.
+                <div class="lkp-service-glass rounded-2xl p-6">
+                    <i class="fa-solid fa-layer-group text-primary text-xl"></i>
+                    <h3 class="font-bold mt-4">Content Strategy</h3>
+                    <p class="mt-2 text-sm text-slate-300 leading-6">
+                        Search-led content architecture covering commercial intent,
+                        supporting questions and relevant subject areas.
                     </p>
                 </div>
 
-                <div class="p-6 lkp-capability-card">
-                    <i class="fa-solid fa-rotate text-primary"></i>
-                    <h3 class="font-bold mt-4">Retargeting</h3>
-                    <p class="text-slate-400 text-sm leading-6 mt-2">
-                        Follow-up campaigns designed for audiences who have already interacted with the business.
+                <div class="lkp-service-glass rounded-2xl p-6">
+                    <i class="fa-solid fa-chart-column text-primary text-xl"></i>
+                    <h3 class="font-bold mt-4">Search Analytics</h3>
+                    <p class="mt-2 text-sm text-slate-300 leading-6">
+                        Search Console, analytics and ranking data used to understand
+                        visibility, behaviour and optimisation opportunities.
                     </p>
                 </div>
 
@@ -794,7 +787,6 @@
         </div>
 
     </div>
-
 </section>
 
 
@@ -964,7 +956,6 @@
 ========================================================== -->
 
 <section class="py-20 lg:py-28 bg-white">
-
     <div class="container">
 
         <div class="grid lg:grid-cols-12 gap-14">
@@ -976,169 +967,139 @@
                 </span>
 
                 <h2 class="mt-5 text-3xl sm:text-4xl font-bold text-secondary tracking-tight">
-                    Before we start marketing your business.
+                    Before investing in SEO.
                 </h2>
 
                 <p class="mt-5 text-gray-600 leading-7">
-                    Straightforward answers about strategy, content, social media,
-                    paid campaigns, budgets, measurement and ongoing marketing.
+                    Clear answers about SEO costs, timelines, rankings,
+                    technical work, content and ongoing optimisation.
                 </p>
 
             </div>
 
-            <div class="lg:col-span-8">
+            <div class="lg:col-span-8 space-y-4">
 
-                <div class="divide-y divide-gray-200 border-y border-gray-200">
+                <details class="group border border-gray-200 rounded-2xl p-6">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-5 font-bold text-secondary">
+                        How much does SEO cost?
+                        <i class="fa-solid fa-plus text-primary text-sm"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7">
+                        SEO pricing depends on the website, market, competition,
+                        technical condition, content requirements and scope of ongoing
+                        work. We assess the requirement before defining an appropriate
+                        engagement rather than applying one package to every business.
+                    </p>
+                </details>
 
-                    <details class="group py-6">
-                        <summary class="flex cursor-pointer items-center justify-between gap-6 font-bold text-secondary">
-                            How much does digital marketing cost?
-                            <i class="fa-solid fa-plus text-primary text-sm group-open:rotate-45 transition-transform"></i>
-                        </summary>
+                <details class="group border border-gray-200 rounded-2xl p-6">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-5 font-bold text-secondary">
+                        How long does SEO take to produce results?
+                        <i class="fa-solid fa-plus text-primary text-sm"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7">
+                        There is no responsible universal timeframe. Technical fixes
+                        can affect performance relatively quickly, while competitive
+                        rankings, content authority and sustained organic growth usually
+                        require continued work over time.
+                    </p>
+                </details>
 
-                        <p class="mt-4 text-gray-600 leading-7 pr-10">
-                            Cost depends on the channels, campaign scope, content requirements,
-                            advertising activity and level of ongoing management. We establish
-                            what the business actually needs before defining the appropriate
-                            marketing scope.
-                        </p>
-                    </details>
+                <details class="group border border-gray-200 rounded-2xl p-6">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-5 font-bold text-secondary">
+                        Can you guarantee first position on Google?
+                        <i class="fa-solid fa-plus text-primary text-sm"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7">
+                        No responsible SEO provider can guarantee a specific organic
+                        ranking. Search results are controlled by search engines and
+                        influenced by competition, algorithms, relevance, authority
+                        and many external factors. We focus on defensible improvements
+                        rather than ranking guarantees.
+                    </p>
+                </details>
 
-                    <details class="group py-6">
-                        <summary class="flex cursor-pointer items-center justify-between gap-6 font-bold text-secondary">
-                            Which digital marketing channels should my business use?
-                            <i class="fa-solid fa-plus text-primary text-sm group-open:rotate-45 transition-transform"></i>
-                        </summary>
+                <details class="group border border-gray-200 rounded-2xl p-6">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-5 font-bold text-secondary">
+                        Do you provide technical SEO?
+                        <i class="fa-solid fa-plus text-primary text-sm"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7">
+                        Yes. Technical SEO can include crawling and indexation analysis,
+                        redirects, canonicals, architecture, structured data, performance,
+                        mobile considerations and other implementation issues affecting
+                        organic search.
+                    </p>
+                </details>
 
-                        <p class="mt-4 text-gray-600 leading-7 pr-10">
-                            That depends on your audience, offer, buying journey and objective.
-                            We do not recommend a channel simply because it is popular. The
-                            channel needs a defined role in reaching or converting the people
-                            your business needs.
-                        </p>
-                    </details>
+                <details class="group border border-gray-200 rounded-2xl p-6">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-5 font-bold text-secondary">
+                        Do you create SEO content?
+                        <i class="fa-solid fa-plus text-primary text-sm"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7">
+                        SEO engagements can include content strategy, commercial-page
+                        optimisation, supporting content planning and content development
+                        where required. Content should serve users first while clearly
+                        communicating relevance and expertise to search engines.
+                    </p>
+                </details>
 
-                    <details class="group py-6">
-                        <summary class="flex cursor-pointer items-center justify-between gap-6 font-bold text-secondary">
-                            Do you manage social media accounts?
-                            <i class="fa-solid fa-plus text-primary text-sm group-open:rotate-45 transition-transform"></i>
-                        </summary>
+                <details class="group border border-gray-200 rounded-2xl p-6">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-5 font-bold text-secondary">
+                        Can you work on an existing website?
+                        <i class="fa-solid fa-plus text-primary text-sm"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7">
+                        Yes. We can audit an existing website and work within its current
+                        platform where practical. When technical limitations restrict
+                        meaningful improvement, we explain those constraints before
+                        recommending larger development changes.
+                    </p>
+                </details>
 
-                        <p class="mt-4 text-gray-600 leading-7 pr-10">
-                            Yes. Social media management can include planning, content,
-                            publishing and campaign coordination across the channels relevant
-                            to the agreed marketing strategy.
-                        </p>
-                    </details>
+                <details class="group border border-gray-200 rounded-2xl p-6">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-5 font-bold text-secondary">
+                        Do you provide local SEO?
+                        <i class="fa-solid fa-plus text-primary text-sm"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7">
+                        Yes. Local SEO can form part of the strategy for businesses
+                        targeting customers within specific cities, regions or service
+                        areas, depending on the business model and competitive landscape.
+                    </p>
+                </details>
 
-                    <details class="group py-6">
-                        <summary class="flex cursor-pointer items-center justify-between gap-6 font-bold text-secondary">
-                            Do you run paid advertising campaigns?
-                            <i class="fa-solid fa-plus text-primary text-sm group-open:rotate-45 transition-transform"></i>
-                        </summary>
+                <details class="group border border-gray-200 rounded-2xl p-6">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-5 font-bold text-secondary">
+                        How do you measure SEO performance?
+                        <i class="fa-solid fa-plus text-primary text-sm"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7">
+                        Measurement can include search visibility, impressions, clicks,
+                        rankings, organic traffic, landing-page performance and relevant
+                        conversions. The useful metrics depend on the commercial objective
+                        rather than rankings alone.
+                    </p>
+                </details>
 
-                        <p class="mt-4 text-gray-600 leading-7 pr-10">
-                            Yes. Paid campaigns can form part of the engagement where appropriate.
-                            We consider targeting, creative, budget, campaign structure,
-                            conversion paths and measurement together rather than treating
-                            advertising as an isolated activity.
-                        </p>
-                    </details>
-
-                    <details class="group py-6">
-                        <summary class="flex cursor-pointer items-center justify-between gap-6 font-bold text-secondary">
-                            Is advertising spend included in your management fee?
-                            <i class="fa-solid fa-plus text-primary text-sm group-open:rotate-45 transition-transform"></i>
-                        </summary>
-
-                        <p class="mt-4 text-gray-600 leading-7 pr-10">
-                            Advertising spend and service fees should be treated separately
-                            unless a proposal explicitly states otherwise. This keeps media
-                            expenditure transparent and makes it easier to understand what is
-                            being paid to the advertising platform and what is being paid for
-                            strategy and management.
-                        </p>
-                    </details>
-
-                    <details class="group py-6">
-                        <summary class="flex cursor-pointer items-center justify-between gap-6 font-bold text-secondary">
-                            How quickly will digital marketing produce results?
-                            <i class="fa-solid fa-plus text-primary text-sm group-open:rotate-45 transition-transform"></i>
-                        </summary>
-
-                        <p class="mt-4 text-gray-600 leading-7 pr-10">
-                            There is no responsible universal timeframe. Paid campaigns can
-                            generate performance data relatively quickly, while brand growth,
-                            audience development and organic channels generally require more
-                            time. Results also depend on the offer, market, competition,
-                            budget and conversion experience.
-                        </p>
-                    </details>
-
-                    <details class="group py-6">
-                        <summary class="flex cursor-pointer items-center justify-between gap-6 font-bold text-secondary">
-                            How do you measure campaign performance?
-                            <i class="fa-solid fa-plus text-primary text-sm group-open:rotate-45 transition-transform"></i>
-                        </summary>
-
-                        <p class="mt-4 text-gray-600 leading-7 pr-10">
-                            Measurement depends on the campaign objective. Relevant indicators
-                            may include qualified traffic, enquiries, leads, conversions,
-                            acquisition efficiency and other meaningful actions. We avoid
-                            treating impressions, followers or engagement as business results
-                            when they do not reflect the actual objective.
-                        </p>
-                    </details>
-
-                    <details class="group py-6">
-                        <summary class="flex cursor-pointer items-center justify-between gap-6 font-bold text-secondary">
-                            Can you work with our existing website and marketing assets?
-                            <i class="fa-solid fa-plus text-primary text-sm group-open:rotate-45 transition-transform"></i>
-                        </summary>
-
-                        <p class="mt-4 text-gray-600 leading-7 pr-10">
-                            Yes. We can assess existing websites, landing pages, social
-                            accounts, creative assets and campaign history, then determine
-                            what can be retained, improved or replaced for the new strategy.
-                        </p>
-                    </details>
-
-                    <details class="group py-6">
-                        <summary class="flex cursor-pointer items-center justify-between gap-6 font-bold text-secondary">
-                            Can LKProfessionals handle the website or landing pages too?
-                            <i class="fa-solid fa-plus text-primary text-sm group-open:rotate-45 transition-transform"></i>
-                        </summary>
-
-                        <p class="mt-4 text-gray-600 leading-7 pr-10">
-                            Yes. Because LKProfessionals also provides web development,
-                            we can connect campaign requirements with landing pages,
-                            tracking and conversion improvements where the engagement
-                            requires them.
-                        </p>
-                    </details>
-
-                    <details class="group py-6">
-                        <summary class="flex cursor-pointer items-center justify-between gap-6 font-bold text-secondary">
-                            Can you manage digital marketing for international markets?
-                            <i class="fa-solid fa-plus text-primary text-sm group-open:rotate-45 transition-transform"></i>
-                        </summary>
-
-                        <p class="mt-4 text-gray-600 leading-7 pr-10">
-                            Yes. Digital marketing engagements can be planned and managed
-                            remotely for businesses targeting Sri Lankan or international
-                            audiences, subject to the channels, market requirements and
-                            agreed campaign scope.
-                        </p>
-                    </details>
-
-                </div>
+                <details class="group border border-gray-200 rounded-2xl p-6">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-5 font-bold text-secondary">
+                        Can you provide SEO for international markets?
+                        <i class="fa-solid fa-plus text-primary text-sm"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-7">
+                        Yes. SEO strategy can be developed for international markets,
+                        including market-specific search research, site structure and
+                        content requirements appropriate to the agreed target markets.
+                    </p>
+                </details>
 
             </div>
 
         </div>
 
     </div>
-
 </section>
 
 
@@ -1146,52 +1107,42 @@
      FINAL CTA
 ========================================================== -->
 
-<section class="pb-20 lg:pb-28 bg-white">
-
+<section class="py-20 lg:py-24 bg-primary">
     <div class="container">
 
-        <div class="relative overflow-hidden rounded-3xl bg-primary px-7 py-12 sm:px-10 lg:px-14 lg:py-16">
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
 
-            <div class="absolute -right-20 -top-24 w-72 h-72 rounded-full bg-white/10"></div>
-            <div class="absolute right-32 -bottom-32 w-64 h-64 rounded-full bg-white/10"></div>
+            <div class="lg:col-span-8">
 
-            <div class="relative grid lg:grid-cols-12 gap-10 items-center">
+                <span class="text-secondary/70 uppercase tracking-[0.16em] text-xs font-semibold">
+                    Search should create opportunity
+                </span>
 
-                <div class="lg:col-span-8">
+                <h2 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary tracking-tight">
+                    Build organic visibility your business can keep developing.
+                </h2>
 
-                    <span class="text-white/70 uppercase tracking-[0.16em] text-xs font-semibold">
-                        Build the next campaign around a real objective
-                    </span>
+                <p class="mt-5 text-secondary/80 leading-7 max-w-2xl">
+                    Talk to LKProfessionals about the technical, content and
+                    search opportunities that can strengthen your organic presence.
+                </p>
 
-                    <h2 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
-                        Turn marketing activity into commercial momentum.
-                    </h2>
+            </div>
 
-                    <p class="mt-5 text-white/80 text-lg leading-8 max-w-2xl">
-                        Tell us what you are trying to achieve, who you need to reach
-                        and what marketing you already have in place. We can define
-                        the right scope from there.
-                    </p>
+            <div class="lg:col-span-4 lg:text-right">
 
-                </div>
-
-                <div class="lg:col-span-4 lg:text-right">
-
-                    <a href="#quoteModal"
-                       data-quote-open
-                       class="inline-flex items-center justify-center gap-3 bg-white text-secondary font-bold px-7 py-4 rounded-lg hover:bg-[#071426] hover:text-white transition-all duration-300">
-                        Get a Quote
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-
-                </div>
+                <a href="#quoteModal"
+                   data-quote-open
+                   class="inline-flex items-center justify-center gap-3 bg-white text-secondary font-bold px-7 py-4 rounded-lg hover:bg-[#071426] hover:text-white transition-all duration-300">
+                    Get a Quote
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
 
             </div>
 
         </div>
 
     </div>
-
 </section>
 
 {% include 'partials/footer.html' %}
