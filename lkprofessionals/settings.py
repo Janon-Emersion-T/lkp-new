@@ -30,6 +30,7 @@ CSRF_TRUSTED_ORIGINS = env_list("CSRF_TRUSTED_ORIGINS")
 
 INSTALLED_APPS = [
     "case_studies",
+    "finance",
     "pages",
     "hr",
     "django.contrib.admin",

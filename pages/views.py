@@ -21,6 +21,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 from case_studies.forms import CaseStudyForm, CaseStudyGalleryImageForm, CaseStudyMetricForm, CaseStudyTechnologyForm
 from case_studies.models import CaseStudy, CaseStudyGalleryImage, CaseStudyMetric, CaseStudyTechnology
+from finance.forms import ExpenseForm, InvoiceForm, PaymentForm
+from finance.models import Expense, Invoice, Payment
 from .forms import CategoryForm, DashboardModelForm, InsightForm, LeadForm, NewsletterForm, PortfolioForm, ServiceAreaForm, SubscriberForm, TagForm, AccessRoleForm, UserForm
 from hr.resources import HR_NAV, HR_RESOURCES
 
@@ -38,7 +40,6 @@ from .models import (
     Company,
     Contact,
     Enquiry,
-    Expense,
     FAQItem,
     FollowUp,
     GlobalSetting,
@@ -46,13 +47,11 @@ from .models import (
     Industry,
     Insight,
     IntegrationSetting,
-    Invoice,
     Lead,
     LeadSource,
     Market,
     Newsletter,
     NotificationRule,
-    Payment,
     PipelineStage,
     Portfolio,
     Project,
@@ -273,9 +272,9 @@ CRUD_RESOURCES = {
     'project-milestones': resource(ProjectMilestone, 'Milestones', 'Milestone', 'Project milestones and delivery checkpoints.', [('project', 'Project'), ('title', 'Title'), ('due_date', 'Due'), ('is_complete', 'Complete')], ['title', 'notes']),
     'project-tasks': resource(ProjectTask, 'Tasks / Kanban', 'Task', 'Kanban-ready project tasks with assignment and deadlines.', [('project', 'Project'), ('title', 'Task'), ('status', 'Status'), ('assigned_to', 'Assigned'), ('due_date', 'Due')], ['title', 'assigned_to', 'notes']),
     'project-files': resource(ProjectFile, 'Project Files', 'Project File', 'Project assets, requirements, deliverables, and deployment files.', [('project', 'Project'), ('title', 'Title'), ('category', 'Category'), ('updated_at', 'Updated')], ['title', 'file_url', 'category', 'notes']),
-    'invoices': resource(Invoice, 'Invoices', 'Invoice', 'Invoices, outstanding balances, due dates, and client billing records.', [('invoice_number', 'Invoice #'), ('client', 'Client'), ('status', 'Status'), ('due_date', 'Due'), ('total', 'Total')], ['invoice_number', 'notes']),
-    'payments': resource(Payment, 'Payments & Receipts', 'Payment', 'Receipts and payment records linked to invoices and clients.', [('client', 'Client'), ('invoice', 'Invoice'), ('amount', 'Amount'), ('paid_at', 'Paid'), ('method', 'Method')], ['method', 'reference']),
-    'expenses': resource(Expense, 'Expenses', 'Expense', 'Operational and project expenses for profitability tracking.', [('title', 'Title'), ('project', 'Project'), ('category', 'Category'), ('amount', 'Amount'), ('spent_at', 'Date')], ['title', 'category', 'notes']),
+    'invoices': resource(Invoice, 'Invoices', 'Invoice', 'Invoices, outstanding balances, due dates, and client billing records.', [('invoice_number', 'Invoice #'), ('client', 'Client'), ('status', 'Status'), ('due_date', 'Due'), ('total', 'Total')], ['invoice_number', 'notes'], form=InvoiceForm),
+    'payments': resource(Payment, 'Payments & Receipts', 'Payment', 'Receipts and payment records linked to invoices and clients.', [('client', 'Client'), ('invoice', 'Invoice'), ('amount', 'Amount'), ('paid_at', 'Paid'), ('method', 'Method')], ['method', 'reference'], form=PaymentForm),
+    'expenses': resource(Expense, 'Expenses', 'Expense', 'Operational and project expenses for profitability tracking.', [('title', 'Title'), ('project', 'Project'), ('category', 'Category'), ('amount', 'Amount'), ('spent_at', 'Date')], ['title', 'category', 'notes'], form=ExpenseForm),
     'service-packages': resource(ServicePackage, 'Service Packages', 'Package', 'Manage Website Development, SEO, Digital Marketing, Software, Hosting, retainers, features, FAQs, and CTAs.', [('title', 'Package'), ('service_area', 'Service'), ('price', 'Price'), ('billing_cycle', 'Billing'), ('is_active', 'Active')], ['title', 'features', 'faqs']),
     'industries': resource(Industry, 'Industries', 'Industry', 'Industry landing-page and targeting content.', [('name', 'Name'), ('slug', 'Slug'), ('is_active', 'Active'), ('updated_at', 'Updated')], ['name', 'slug', 'summary']),
     'markets': resource(Market, 'Markets', 'Market', 'Market, region, or segment landing-page content.', [('name', 'Name'), ('slug', 'Slug'), ('is_active', 'Active'), ('updated_at', 'Updated')], ['name', 'slug', 'summary']),

@@ -16,6 +16,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.http import require_POST
 
+from finance.models import Expense, Invoice, Payment
 from .access import allowed, audit, require_permission, staff_required
 from . import models as m
 
@@ -51,7 +52,7 @@ def action_options(user, resource, obj):
         if obj.status == 'approved' and obj.client_id:
             if allowed(user, m.Project, 'add'):
                 result.append(('project', 'Create project'))
-            if allowed(user, m.Invoice, 'add'):
+            if allowed(user, Invoice, 'add'):
                 result.append(('invoice', 'Create invoice'))
     if resource == 'invoices' and obj.status == 'draft':
         result.append(('issue', 'Issue invoice'))
@@ -59,7 +60,7 @@ def action_options(user, resource, obj):
         result.append(('complete', 'Complete follow-up'))
     if resource == 'leads' and allowed(user, m.Client, 'add'):
         result.append(('client', 'Convert to client'))
-    if resource == 'hosting-subscriptions' and obj.client_id and obj.expiry_date and obj.status != 'cancelled' and allowed(user, m.Invoice, 'add'):
+    if resource == 'hosting-subscriptions' and obj.client_id and obj.expiry_date and obj.status != 'cancelled' and allowed(user, Invoice, 'add'):
         result.append(('renewal-invoice', 'Create renewal invoice'))
     return result
 
@@ -104,17 +105,17 @@ def detail(request, resource, pk):
     financials = []
     if resource == 'invoices':
         financials = [('Invoice total', obj.total), ('Paid', obj.amount_paid), ('Balance', obj.balance)]
-    elif resource == 'clients' and allowed(request.user, m.Invoice):
+    elif resource == 'clients' and allowed(request.user, Invoice):
         invoices = obj.invoices.exclude(status__in=['draft', 'cancelled']).prefetch_related('payments')
         financials = [('Invoiced', sum(i.total for i in invoices)), ('Paid', sum(i.amount_paid for i in invoices)), ('Outstanding', sum(i.balance for i in invoices))]
-    elif resource == 'projects' and allowed(request.user, m.Expense):
+    elif resource == 'projects' and allowed(request.user, Expense):
         cost = obj.expenses.aggregate(total=Sum('amount'))['total'] or 0
         financials = [('Budget', obj.budget), ('Expenses', cost), ('Estimated margin', obj.budget - cost)]
     data = context(request, resource, str(obj))
     data.update(config=config, resource=resource, object=obj, fields=fields, related=related, duplicates=duplicates, financials=financials,
                 actions=action_options(request.user, resource, obj), can_change=allowed(request.user, type(obj), 'change') and not config.get('readonly'),
                 can_convert=resource == 'enquiries' and allowed(request.user, m.Lead, 'add') and allowed(request.user, m.Enquiry, 'change'),
-                can_pdf=resource in ['quotations', 'invoices', 'payments'] or resource == 'clients' and allowed(request.user, m.Invoice),
+                can_pdf=resource in ['quotations', 'invoices', 'payments'] or resource == 'clients' and allowed(request.user, Invoice),
                 can_add_item=resource == 'quotations' and allowed(request.user, m.QuotationLineItem, 'add'),
                 packages=m.ServicePackage.objects.filter(is_active=True) if resource == 'quotations' else [])
     if resource in ['insights', 'portfolios', 'case-studies', 'service-packages', 'industries', 'markets']:
@@ -173,7 +174,7 @@ def action(request, resource, pk, operation):
                 elif operation == 'invoice':
                     invoice = obj.invoices.first()
                     if not invoice:
-                        invoice = m.Invoice.objects.create(quotation=obj, client=obj.client, project=obj.projects.first(), invoice_number=f'INV-{timezone.localdate():%Y%m%d}-{uuid4().hex[:8].upper()}', subtotal=obj.subtotal - obj.discount, tax=obj.tax, total=obj.total, issue_date=timezone.localdate(), due_date=timezone.localdate() + timedelta(days=30), notes=obj.notes)
+                        invoice = Invoice.objects.create(quotation=obj, client=obj.client, project=obj.projects.first(), invoice_number=f'INV-{timezone.localdate():%Y%m%d}-{uuid4().hex[:8].upper()}', subtotal=obj.subtotal - obj.discount, tax=obj.tax, total=obj.total, issue_date=timezone.localdate(), due_date=timezone.localdate() + timedelta(days=30), notes=obj.notes)
                     target_resource, target_pk = 'invoices', invoice.pk
             elif resource == 'leads':
                 client = m.Client.objects.filter(company=obj.company).first() if obj.company_id else None
@@ -195,7 +196,7 @@ def action(request, resource, pk, operation):
             elif resource == 'hosting-subscriptions':
                 if obj.renewal_amount <= 0:
                     raise ValidationError('Enter a positive renewal amount.')
-                invoice, _ = m.Invoice.objects.get_or_create(subscription=obj, billing_period=obj.expiry_date, defaults={'client': obj.client, 'invoice_number': f'REN-{uuid4().hex[:10].upper()}', 'subtotal': obj.renewal_amount, 'total': obj.renewal_amount, 'issue_date': timezone.localdate(), 'due_date': obj.expiry_date, 'notes': f'Renewal: {obj.service_type} {obj.domain}'})
+                invoice, _ = Invoice.objects.get_or_create(subscription=obj, billing_period=obj.expiry_date, defaults={'client': obj.client, 'invoice_number': f'REN-{uuid4().hex[:10].upper()}', 'subtotal': obj.renewal_amount, 'total': obj.renewal_amount, 'issue_date': timezone.localdate(), 'due_date': obj.expiry_date, 'notes': f'Renewal: {obj.service_type} {obj.domain}'})
                 target_resource, target_pk = 'invoices', invoice.pk
             audit(request.user, operation.replace('-', ' ').title(), obj)
         messages.success(request, 'Action completed.')
@@ -249,15 +250,15 @@ def move_card(request, resource, pk):
 
 
 def report_data(start, end):
-    payments = m.Payment.objects.filter(paid_at__range=(start, end))
-    expenses = m.Expense.objects.filter(spent_at__range=(start, end))
+    payments = Payment.objects.filter(paid_at__range=(start, end))
+    expenses = Expense.objects.filter(spent_at__range=(start, end))
     leads = m.Lead.objects.filter(created_at__date__range=(start, end))
     enquiries = m.Enquiry.objects.filter(created_at__date__range=(start, end))
     revenue = payments.aggregate(total=Sum('amount'))['total'] or Decimal('0')
     costs = expenses.aggregate(total=Sum('amount'))['total'] or Decimal('0')
     won = leads.filter(status='won').count()
     count = leads.count()
-    outstanding = sum(i.balance for i in m.Invoice.objects.exclude(status__in=['cancelled', 'draft']).prefetch_related('payments'))
+    outstanding = sum(i.balance for i in Invoice.objects.exclude(status__in=['cancelled', 'draft']).prefetch_related('payments'))
     metrics = [('Collected revenue', revenue), ('Expenses', costs), ('Net cash flow', revenue - costs), ('Outstanding now', outstanding), ('New leads', count), ('Won leads', won), ('Lead conversion %', round(won / count * 100, 1) if count else 0), ('New clients', m.Client.objects.filter(created_at__date__range=(start, end)).count()), ('Website enquiries', enquiries.count()), ('Enquiries converted', enquiries.filter(converted_lead__isnull=False).count())]
     sections = []
     sections.append({'title': 'Lead sources', 'headers': ['Source', 'Leads', 'Value'], 'rows': [(row['lead_source__name'] or row['source'], row['count'], row['value']) for row in leads.values('lead_source__name', 'source').annotate(count=Count('pk'), value=Sum('estimated_value')).order_by('-count')]})
@@ -272,7 +273,7 @@ def report_data(start, end):
 
 @staff_required
 def reports(request):
-    for model in [m.ReportSnapshot, m.Payment, m.Expense, m.Lead, m.Enquiry, m.Client, m.Invoice, m.Project]:
+    for model in [m.ReportSnapshot, Payment, Expense, m.Lead, m.Enquiry, m.Client, Invoice, m.Project]:
         require_permission(request.user, model)
     today = timezone.localdate()
     try:
@@ -309,7 +310,7 @@ def document(request, resource, pk):
     require_permission(request.user, model)
     obj = get_object_or_404(model, pk=pk)
     if resource == 'clients':
-        require_permission(request.user, m.Invoice)
+        require_permission(request.user, Invoice)
     from reportlab.lib import colors
     from reportlab.lib.styles import getSampleStyleSheet
     from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle

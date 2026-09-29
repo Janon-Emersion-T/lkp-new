@@ -12,6 +12,7 @@ from django.core.management import call_command, CommandError
 from django.test import TestCase, Client as TestClient, override_settings
 from django.utils import timezone
 from case_studies import models as case_models
+from finance import models as finance_models
 from . import models as m
 from .forms import AccessRoleForm
 from .views import CRUD_RESOURCES, _get_form_class
@@ -43,7 +44,7 @@ class DashboardTests(TestCase):
         return quote
 
     def invoice(self):
-        return m.Invoice.objects.create(invoice_number='INV-TEST', client=self.customer, subtotal=100, total=100, status='sent', due_date=timezone.localdate() - timedelta(days=1))
+        return finance_models.Invoice.objects.create(invoice_number='INV-TEST', client=self.customer, subtotal=100, total=100, status='sent', due_date=timezone.localdate() - timedelta(days=1))
 
     def test_all_resource_pages(self):
         for resource, config in CRUD_RESOURCES.items():
@@ -206,11 +207,11 @@ class DashboardTests(TestCase):
     def test_invoice_total_is_calculated(self):
         payload = {'invoice_number': 'INV-NEW', 'client': self.customer.pk, 'status': 'draft', 'subtotal': 80, 'tax': 20, 'total': 999}
         self.assertEqual(self.client.post('/dashboard/invoices/new/', payload).status_code, 302)
-        self.assertEqual(m.Invoice.objects.get(invoice_number='INV-NEW').total, Decimal('100'))
+        self.assertEqual(finance_models.Invoice.objects.get(invoice_number='INV-NEW').total, Decimal('100'))
 
     def test_pdf_documents_and_details(self):
         quote, invoice = self.quote(), self.invoice()
-        payment = m.Payment.objects.create(invoice=invoice, client=self.customer, amount=25)
+        payment = finance_models.Payment.objects.create(invoice=invoice, client=self.customer, amount=25)
         for resource, obj in [('quotations', quote), ('invoices', invoice), ('payments', payment), ('clients', self.customer)]:
             with self.subTest(resource=resource):
                 response = self.client.get(self.url(resource, obj, 'document/'))
@@ -233,8 +234,8 @@ class DashboardTests(TestCase):
         self.assertEqual(subscription.invoices.count(), 1)
 
     def test_reports_use_receipts_and_balances(self):
-        m.Payment.objects.create(invoice=self.invoice(), client=self.customer, amount=40)
-        m.Expense.objects.create(title='Expense', amount=10)
+        finance_models.Payment.objects.create(invoice=self.invoice(), client=self.customer, amount=40)
+        finance_models.Expense.objects.create(title='Expense', amount=10)
         response = self.client.get('/dashboard/reports/')
         metrics = dict(response.context['metrics'])
         self.assertEqual(metrics['Collected revenue'], Decimal('40'))

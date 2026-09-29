@@ -3,6 +3,7 @@ from xml.etree.ElementTree import Element, SubElement, tostring
 from django import forms
 from django.core import signing
 from django.db import transaction
+from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponsePermanentRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
@@ -42,7 +43,7 @@ def unsubscribe(request, token):
     return render(request, 'site/submission.html', {'title': 'Unsubscribe', 'message': 'Confirm that you want to stop receiving newsletters.', 'confirm': True})
 
 
-PUBLISHED_MODELS = {'insights': m.Insight, 'services': m.ServicePackage, 'industries': m.Industry, 'markets': m.Market}
+PUBLISHED_MODELS = {'insights': m.Insight, 'industries': m.Industry, 'markets': m.Market}
 
 
 def portfolio_redirect(request, slug=None):
@@ -116,3 +117,122 @@ class RedirectMiddleware:
                     break
                 path, status = rule.to_path, rule.status_code
         return self.get_response(request)
+
+
+STATIC_SERVICES = {
+    "web-design-development": {
+        "template": "site/services/web-design-development.html",
+        "title": "Web Design & Development",
+    },
+    "custom-software-development": {
+        "template": "site/services/custom-software-development.html",
+        "title": "Custom Software Development",
+    },
+    "mobile-application-development": {
+        "template": "site/services/mobile-application-development.html",
+        "title": "Mobile Application Development",
+    },
+    "it-consultation": {
+        "template": "site/services/it-consultation.html",
+        "title": "IT Consultation",
+    },
+    "domain-hosting-maintenance": {
+        "template": "site/services/domain-hosting-maintenance.html",
+        "title": "Domain, Hosting & Maintenance",
+    },
+    "digital-marketing": {
+        "template": "site/services/digital-marketing.html",
+        "title": "Digital Marketing",
+    },
+    "seo": {
+        "template": "site/services/seo.html",
+        "title": "SEO",
+    },
+}
+
+
+def service_page(request, slug):
+    service = STATIC_SERVICES.get(slug)
+
+    if not service:
+        raise Http404
+
+    service_area = m.ServiceArea.objects.filter(
+        slug=slug,
+        is_active=True,
+    ).first()
+
+    packages = (
+        m.ServicePackage.objects
+        .filter(service_area=service_area, is_active=True)
+        .order_by("price", "title")
+        if service_area
+        else m.ServicePackage.objects.none()
+    )
+
+    case_studies = CaseStudy.objects.none()
+
+    if service_area:
+        case_studies = (
+            CaseStudy.objects
+            .filter(status=CaseStudy.Status.PUBLISHED)
+            .filter(
+                Q(published_at__isnull=True) |
+                Q(published_at__lte=timezone.now())
+            )
+            .filter(
+                Q(primary_service=service_area) |
+                Q(related_services=service_area)
+            )
+            .select_related(
+                "primary_service",
+                "industry",
+                "company",
+            )
+            .prefetch_related(
+                "technologies",
+                "metrics",
+            )
+            .distinct()
+            .order_by(
+                "display_order",
+                "-completion_date",
+                "-created_at",
+            )[:3]
+        )
+
+    seo = m.SEOSetting.objects.filter(
+        path=request.path
+    ).first()
+
+    title = (
+        seo.title
+        if seo and seo.title
+        else f'{service["title"]} | LKProfessionals'
+    )
+
+    description = (
+        seo.description
+        if seo and seo.description
+        else (
+            service_area.summary
+            if service_area
+            else ""
+        )
+    )
+
+    return render(
+        request,
+        service["template"],
+        {
+            "service": service,
+            "service_area": service_area,
+            "packages": packages,
+            "case_studies": case_studies,
+            "title": title,
+            "description": description,
+            "canonical_path": request.path,
+            "seo": seo,
+        },
+    )
+
