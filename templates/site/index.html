@@ -560,101 +560,72 @@
         <!-- TITLE END -->
 
         <!-- MAIN CONTENT START -->
-        <!-- Grid: 1 col mobile, 2 cols tablet, 3 cols desktop -->
+
         <ul class="grid lg:grid-cols-4 md:grid-cols-2 gap-6">
-          <!-- MEMBER 1 -->
-          <li data-animation="slideInUp" data-animation-delay="100ms">
-            <div class="p-5 border border-[#222222] group team-member bg-[#060B16]/30 backdrop-blur-[3px] rounded-xl overflow-hidden hover:border-primary/50 transition-colors duration-300">
-              <div class="relative border-b-2 border-primary team-img-after aspect-[4.5/4] w-full overflow-hidden">
-                <img src="assets/image/member-2.jpg" alt="Sarah Jenkins" class="w-full h-full object-cover object-top group-hover:opacity-50 transition-all duration-500">
-              </div>
 
-              <div class="text-white text-center space-y-1 pt-8 relative">
-                <!-- Social Icons -->
-                <div class="absolute z-10 -top-5 left-1/2 -translate-x-1/2 flex gap-2">
-                  <a href="https://www.instagram.com/lkprofessionalspvtltd/" aria-label="Instagram" class="w-10 h-10 bg-primary hover:bg-white text-white hover:text-primary transition-all duration-300 grid place-items-center rounded-md skew-x-[-15deg] shadow-lg">
-                    <i class="skew-x-[15deg] text-lg fa-brands fa-instagram"></i>
-                  </a>
-                  <a href="https://www.linkedin.com/company/lkprofessionals" aria-label="LinkedIn" class="w-10 h-10 bg-primary hover:bg-white text-white hover:text-primary transition-all duration-300 grid place-items-center rounded-md skew-x-[-15deg] shadow-lg">
-                    <i class="skew-x-[15deg] text-lg fa-brands fa-linkedin-in"></i>
-                  </a>
-                  <a href="https://x.com/lkprofess" aria-label="Twitter" class="w-10 h-10 bg-primary hover:bg-white text-white hover:text-primary transition-all duration-300 grid place-items-center rounded-md skew-x-[-15deg] shadow-lg">
-                    <i class="skew-x-[15deg] text-lg fa-brands fa-x-twitter"></i>
-                  </a>
-                  <a href="https://web.facebook.com/lkprofessionals" aria-label="Facebook" class="w-10 h-10 bg-primary hover:bg-white text-white hover:text-primary transition-all duration-300 grid place-items-center rounded-md skew-x-[-15deg] shadow-lg">
-                    <i class="skew-x-[15deg] text-lg fa-brands fa-facebook-f"></i>
-                  </a>
+          {% for member in featured_team_members %}
+
+          <li
+            data-animation="slideInUp"
+            data-animation-delay="{{ forloop.counter }}00ms">
+
+            <div class="p-5 border border-[#222222] group team-member bg-[#060B16]/30 backdrop-blur-[3px] rounded-xl overflow-hidden hover:border-primary/50 transition-colors duration-300">
+
+              <a
+                href="team-single.html?member={{ member.pk }}"
+                aria-label="View {{ member.full_name }} profile">
+
+                <div class="relative border-b-2 border-primary team-img-after aspect-[4.5/4] w-full overflow-hidden">
+
+                  {% if member.profile_photo %}
+                  <img
+                    src="{{ member.profile_photo.url }}"
+                    alt="{{ member.full_name }}"
+                    class="w-full h-full object-cover object-top group-hover:opacity-50 transition-all duration-500"
+                    loading="lazy">
+                  {% else %}
+                  <div class="w-full h-full min-h-[280px] bg-[#111827] flex items-center justify-center">
+                    <i class="fa-solid fa-user text-6xl text-gray-500"></i>
+                  </div>
+                  {% endif %}
+
                 </div>
 
-                <h4 class="text-2xl font-semibold text-white group-hover:text-primary transition-colors">Sarah Jenkins</h4>
-                <p class="text-gray-400 font-medium">CEO &amp; Founder</p>
+              </a>
+
+              <div class="text-white text-center space-y-1 pt-8 relative">
+
+                <h4 class="text-2xl font-semibold text-white group-hover:text-primary transition-colors">
+                  <a href="team-single.html?member={{ member.pk }}">
+                    {{ member.full_name }}
+                  </a>
+                </h4>
+
+                <p class="text-gray-400 font-medium">
+                  {{ member.designation }}
+                </p>
+
               </div>
+
+            </div>
+
+          </li>
+
+          {% empty %}
+
+          <li class="lg:col-span-4 md:col-span-2 text-center py-12">
+            <div class="text-gray-300">
+              <i class="fa-solid fa-users text-5xl mb-4"></i>
+              <p class="text-lg">
+                Our team information will be available here soon.
+              </p>
             </div>
           </li>
 
-          <!-- MEMBER 2 -->
-          <li data-animation="slideInUp" data-animation-delay="200ms">
-            <div class="p-5 border border-[#222222] group team-member bg-[#060B16]/30 backdrop-blur-[3px] rounded-xl overflow-hidden hover:border-primary/50 transition-colors duration-300">
-              <div class="relative border-b-2 border-primary team-img-after aspect-[4.5/4] w-full overflow-hidden">
-                <img src="assets/image/member-3.jpg" alt="Michael Ross" class="w-full h-full object-cover object-top group-hover:opacity-50 transition-all duration-500">
-              </div>
+          {% endfor %}
 
-              <div class="text-white text-center space-y-1 pt-8 relative">
-                <div class="absolute z-10 -top-5 left-1/2 -translate-x-1/2 flex gap-2">
-                  <a href="https://www.instagram.com/lkprofessionalspvtltd/" aria-label="Instagram" class="w-10 h-10 bg-primary hover:bg-white text-white hover:text-primary transition-all duration-300 grid place-items-center rounded-md skew-x-[-15deg] shadow-lg"><i class="skew-x-[15deg] text-lg fa-brands fa-instagram"></i></a>
-                  <a href="https://www.linkedin.com/company/lkprofessionals" aria-label="LinkedIn" class="w-10 h-10 bg-primary hover:bg-white text-white hover:text-primary transition-all duration-300 grid place-items-center rounded-md skew-x-[-15deg] shadow-lg"><i class="skew-x-[15deg] text-lg fa-brands fa-linkedin-in"></i></a>
-                  <a href="https://x.com/lkprofess" aria-label="Twitter" class="w-10 h-10 bg-primary hover:bg-white text-white hover:text-primary transition-all duration-300 grid place-items-center rounded-md skew-x-[-15deg] shadow-lg"><i class="skew-x-[15deg] text-lg fa-brands fa-x-twitter"></i></a>
-                  <a href="https://web.facebook.com/lkprofessionals" aria-label="Facebook" class="w-10 h-10 bg-primary hover:bg-white text-white hover:text-primary transition-all duration-300 grid place-items-center rounded-md skew-x-[-15deg] shadow-lg"><i class="skew-x-[15deg] text-lg fa-brands fa-facebook-f"></i></a>
-                </div>
-
-                <h4 class="text-2xl font-semibold text-white group-hover:text-primary transition-colors">Michael Ross</h4>
-                <p class="text-gray-400 font-medium">Senior Consultant</p>
-              </div>
-            </div>
-          </li>
-
-          <!-- MEMBER 3 -->
-          <li data-animation="slideInUp" data-animation-delay="300ms">
-            <div class="p-5 border border-[#222222] group team-member bg-[#060B16]/30 backdrop-blur-[3px] rounded-xl overflow-hidden hover:border-primary/50 transition-colors duration-300">
-              <div class="relative border-b-2 border-primary team-img-after aspect-[4.5/4] w-full overflow-hidden">
-                <img src="assets/image/member-4.jpg" alt="David Chen" class="w-full h-full object-cover object-top group-hover:opacity-50 transition-all duration-500">
-              </div>
-
-              <div class="text-white text-center space-y-1 pt-8 relative">
-                <div class="absolute z-10 -top-5 left-1/2 -translate-x-1/2 flex gap-2">
-                  <a href="https://www.instagram.com/lkprofessionalspvtltd/" aria-label="Instagram" class="w-10 h-10 bg-primary hover:bg-white text-white hover:text-primary transition-all duration-300 grid place-items-center rounded-md skew-x-[-15deg] shadow-lg"><i class="skew-x-[15deg] text-lg fa-brands fa-instagram"></i></a>
-                  <a href="https://www.linkedin.com/company/lkprofessionals" aria-label="LinkedIn" class="w-10 h-10 bg-primary hover:bg-white text-white hover:text-primary transition-all duration-300 grid place-items-center rounded-md skew-x-[-15deg] shadow-lg"><i class="skew-x-[15deg] text-lg fa-brands fa-linkedin-in"></i></a>
-                  <a href="https://x.com/lkprofess" aria-label="Twitter" class="w-10 h-10 bg-primary hover:bg-white text-white hover:text-primary transition-all duration-300 grid place-items-center rounded-md skew-x-[-15deg] shadow-lg"><i class="skew-x-[15deg] text-lg fa-brands fa-x-twitter"></i></a>
-                  <a href="https://web.facebook.com/lkprofessionals" aria-label="Facebook" class="w-10 h-10 bg-primary hover:bg-white text-white hover:text-primary transition-all duration-300 grid place-items-center rounded-md skew-x-[-15deg] shadow-lg"><i class="skew-x-[15deg] text-lg fa-brands fa-facebook-f"></i></a>
-                </div>
-
-                <h4 class="text-2xl font-semibold text-white group-hover:text-primary transition-colors">David Chen</h4>
-                <p class="text-gray-400 font-medium">Lead Developer</p>
-              </div>
-            </div>
-          </li>
-
-          <!-- MEMBER 4 (Spans 2 cols on Tablet, 1 on Desktop) -->
-          <li data-animation="slideInUp" data-animation-delay="400ms">
-            <div class="p-5 border border-[#222222] group team-member bg-[#060B16]/30 backdrop-blur-[3px] rounded-xl overflow-hidden hover:border-primary/50 transition-colors duration-300">
-              <div class="relative border-b-2 border-primary team-img-after aspect-[4.5/4] w-full overflow-hidden">
-                <img src="assets/image/member-6.jpg" alt="Emily Watson" class="w-full h-full object-cover object-top group-hover:opacity-50 transition-all duration-500">
-              </div>
-
-              <div class="text-white text-center space-y-1 pt-8 relative">
-                <div class="absolute z-10 -top-5 left-1/2 -translate-x-1/2 flex gap-2">
-                  <a href="https://www.instagram.com/lkprofessionalspvtltd/" aria-label="Instagram" class="w-10 h-10 bg-primary hover:bg-white text-white hover:text-primary transition-all duration-300 grid place-items-center rounded-md skew-x-[-15deg] shadow-lg"><i class="skew-x-[15deg] text-lg fa-brands fa-instagram"></i></a>
-                  <a href="https://www.linkedin.com/company/lkprofessionals" aria-label="LinkedIn" class="w-10 h-10 bg-primary hover:bg-white text-white hover:text-primary transition-all duration-300 grid place-items-center rounded-md skew-x-[-15deg] shadow-lg"><i class="skew-x-[15deg] text-lg fa-brands fa-linkedin-in"></i></a>
-                  <a href="https://x.com/lkprofess" aria-label="Twitter" class="w-10 h-10 bg-primary hover:bg-white text-white hover:text-primary transition-all duration-300 grid place-items-center rounded-md skew-x-[-15deg] shadow-lg"><i class="skew-x-[15deg] text-lg fa-brands fa-x-twitter"></i></a>
-                  <a href="https://web.facebook.com/lkprofessionals" aria-label="Facebook" class="w-10 h-10 bg-primary hover:bg-white text-white hover:text-primary transition-all duration-300 grid place-items-center rounded-md skew-x-[-15deg] shadow-lg"><i class="skew-x-[15deg] text-lg fa-brands fa-facebook-f"></i></a>
-                </div>
-
-                <h4 class="text-2xl font-semibold text-white group-hover:text-primary transition-colors">Emily Watson</h4>
-                <p class="text-gray-400 font-medium">Marketing Director</p>
-              </div>
-            </div>
-          </li>
         </ul>
+
         <!-- MAIN CONTENT END -->
       </div>
     </section>

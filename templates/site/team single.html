@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0054)https://palaiche-template.vercel.app/team-details.html -->
+
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Set the character encoding to UTF-8 -->
     
@@ -82,7 +82,7 @@
 
             
               <span class="opacity-70 text-[11px]"><i class="fa-solid fa-chevron-right"></i></span>
-              <a href="https://palaiche-template.vercel.app/team-one.html" class="opacity-90">Team</a>
+              <a href="team.html" class="opacity-90">Team</a>
             
 
             <span class="opacity-70 text-[11px]"><i class="fa-solid fa-chevron-right"></i></span>
@@ -103,179 +103,126 @@
     <!-- ======================================= TEAM DETAILS SECTION START ======================================= -->
     <section class="section-padding-primary bg-white">
       <div class="container">
+
         <div class="grid lg:grid-cols-12 gap-10 xl:gap-16">
-          <!-- LEFT COLUMN: Image & Contact Info (4 Columns) -->
-          <div class="lg:col-span-4 slideInRight" data-animation="slideInRight" data-animated="true">
-            <!-- Profile Image -->
-            <div class="relative mb-8 group">
+
+          <!-- LEFT COLUMN: PROFILE IMAGE -->
+          <div class="lg:col-span-4 slideInRight"
+               data-animation="slideInRight"
+               data-animated="true">
+
+            <div class="relative group">
+
               <div class="image rounded-2xl overflow-hidden shadow-lg">
-                <img src="assets/image/member-1.jpg" alt="Matthew Hong" class="w-full h-auto object-cover object-top hover:scale-105 transition-transform duration-700">
+
+                {% if team_member.profile_photo %}
+                <img
+                  src="{{ team_member.profile_photo.url }}"
+                  alt="{{ team_member.full_name }}"
+                  class="w-full h-auto object-cover object-top hover:scale-105 transition-transform duration-700">
+                {% else %}
+                <div class="w-full aspect-[4/5] bg-gray-100 flex items-center justify-center">
+                  <i class="fa-solid fa-user text-7xl text-gray-300"></i>
+                </div>
+                {% endif %}
+
               </div>
-              <!-- Social Share Overlay -->
-              <div class="absolute bottom-4 left-4 right-4 flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <a href="https://web.facebook.com/lkprofessionals" class="w-10 h-10 bg-white/90 backdrop-blur rounded-full grid place-items-center text-primary hover:bg-primary hover:text-white transition-colors shadow-lg"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://x.com/lkprofess" class="w-10 h-10 bg-white/90 backdrop-blur rounded-full grid place-items-center text-primary hover:bg-primary hover:text-white transition-colors shadow-lg"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://www.linkedin.com/company/lkprofessionals" class="w-10 h-10 bg-white/90 backdrop-blur rounded-full grid place-items-center text-primary hover:bg-primary hover:text-white transition-colors shadow-lg"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="https://www.instagram.com/lkprofessionalspvtltd/" class="w-10 h-10 bg-white/90 backdrop-blur rounded-full grid place-items-center text-primary hover:bg-primary hover:text-white transition-colors shadow-lg"><i class="fa-brands fa-instagram"></i></a>
-              </div>
+
             </div>
 
-            <!-- Quick Contact Card -->
-            <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 shadow-sm">
-              <h4 class="text-lg font-bold text-secondary mb-4">Contact Information</h4>
-              <ul class="space-y-4">
-                <li class="flex items-start gap-3">
-                  <div class="w-10 h-10 bg-white rounded-full grid place-items-center text-primary shadow-sm shrink-0">
-                    <i class="fa-solid fa-envelope"></i>
-                  </div>
-                  <div>
-                    <p class="text-xs text-small-text uppercase font-semibold">Email</p>
-                    <a href="mailto:matthew@agency.com" class="text-sm font-medium text-secondary hover:text-primary transition-colors">matthew@agency.com</a>
-                  </div>
-                </li>
-                <li class="flex items-start gap-3">
-                  <div class="w-10 h-10 bg-white rounded-full grid place-items-center text-primary shadow-sm shrink-0">
-                    <i class="fa-solid fa-phone"></i>
-                  </div>
-                  <div>
-                    <p class="text-xs text-small-text uppercase font-semibold">Phone</p>
-                    <a href="tel:+1234567890" class="text-sm font-medium text-secondary hover:text-primary transition-colors">+123 456 7890</a>
-                  </div>
-                </li>
-                <li class="flex items-start gap-3">
-                  <div class="w-10 h-10 bg-white rounded-full grid place-items-center text-primary shadow-sm shrink-0">
-                    <i class="fa-solid fa-location-dot"></i>
-                  </div>
-                  <div>
-                    <p class="text-xs text-small-text uppercase font-semibold">Location</p>
-                    <p class="text-sm font-medium text-secondary">New York, USA</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </div>
 
-          <!-- RIGHT COLUMN: Bio, Skills, Experience (8 Columns) -->
-          <div class="lg:col-span-8 slideInLeft" data-animation="slideInLeft" data-animated="true">
-            <!-- Name & Title -->
+          <!-- RIGHT COLUMN: MEMBER INFORMATION -->
+          <div class="lg:col-span-8 slideInLeft"
+               data-animation="slideInLeft"
+               data-animated="true">
+
+            <!-- Name & Designation -->
             <div class="mb-8">
-              <h1 class="text-3xl md:text-4xl font-bold text-secondary mb-2">Matthew Hong</h1>
-              <p class="text-primary font-medium text-lg">CEO &amp; Founder</p>
+
+              <span class="inline-flex items-center gap-2 text-primary font-semibold text-sm uppercase tracking-wider mb-3">
+                <i class="fa-solid fa-users"></i>
+                {{ team_member.department }}
+              </span>
+
+              <h1 class="text-3xl md:text-4xl font-bold text-secondary mb-2">
+                {{ team_member.full_name }}
+              </h1>
+
+              <p class="text-primary font-medium text-lg">
+                {{ team_member.designation }}
+              </p>
+
             </div>
 
             <!-- Biography -->
             <div class="prose prose-sm max-w-none text-small-text mb-10 leading-relaxed">
-              <p class="mb-4">With over 15 years of experience in the business industry, Matthew Hong has established himself as a visionary leader dedicated to driving innovation and sustainable growth. As the CEO &amp; Founder of our agency, he spearheads strategic initiatives that empower businesses to reach their full potential.</p>
-              <p class="mb-4">Matthew believes in a client-first approach, ensuring that every solution delivered is tailored to meet specific needs while exceeding expectations. His expertise spans across corporate strategy, digital transformation, and team leadership.</p>
-              <p>When not leading the company, Matthew is an avid mentor for startups and a speaker at global tech conferences, sharing insights on the future of business technology.</p>
+
+              <h3 class="text-xl font-bold text-secondary mb-4">
+                About {{ team_member.full_name }}
+              </h3>
+
+              <div>
+                {{ team_member.bio|linebreaks }}
+              </div>
+
             </div>
 
-            <!-- Personal Info Grid -->
-            <div class="grid sm:grid-cols-2 gap-6 mb-10 bg-gray-50 p-6 rounded-2xl border border-gray-100">
+            <!-- Professional Information -->
+            <div class="grid sm:grid-cols-2 gap-6 bg-gray-50 p-6 rounded-2xl border border-gray-100">
+
               <div>
-                <h5 class="text-sm font-bold text-secondary uppercase mb-1">Experience</h5>
-                <p class="text-small-text">15+ Years</p>
+                <div class="flex items-center gap-3 mb-2">
+                  <div class="w-10 h-10 bg-white rounded-full grid place-items-center text-primary shadow-sm">
+                    <i class="fa-solid fa-briefcase"></i>
+                  </div>
+
+                  <h5 class="text-sm font-bold text-secondary uppercase">
+                    Designation
+                  </h5>
+                </div>
+
+                <p class="text-small-text pl-[52px]">
+                  {{ team_member.designation }}
+                </p>
               </div>
+
               <div>
-                <h5 class="text-sm font-bold text-secondary uppercase mb-1">Projects Done</h5>
-                <p class="text-small-text">250+ Successful</p>
+                <div class="flex items-center gap-3 mb-2">
+                  <div class="w-10 h-10 bg-white rounded-full grid place-items-center text-primary shadow-sm">
+                    <i class="fa-solid fa-building"></i>
+                  </div>
+
+                  <h5 class="text-sm font-bold text-secondary uppercase">
+                    Department
+                  </h5>
+                </div>
+
+                <p class="text-small-text pl-[52px]">
+                  {{ team_member.department }}
+                </p>
               </div>
-              <div>
-                <h5 class="text-sm font-bold text-secondary uppercase mb-1">Education</h5>
-                <p class="text-small-text">MBA, Harvard University</p>
-              </div>
-              <div>
-                <h5 class="text-sm font-bold text-secondary uppercase mb-1">Specialization</h5>
-                <p class="text-small-text">Strategy &amp; Leadership</p>
-              </div>
+
             </div>
 
-            <!-- NEW MODERN SKILLS SECTION (Tag Cloud Style) -->
-            <div class="mb-10">
-              <h3 class="text-xl font-bold text-secondary mb-6">Core Competencies</h3>
-              <div class="flex flex-wrap gap-3">
-                <!-- Skill Tag 1 -->
-                <div class="flex items-center gap-2 px-4 py-2.5 bg-primary/5 text-primary rounded-full border border-primary/10 hover:bg-primary hover:text-white transition-all duration-300 cursor-default">
-                  <i class="fa-solid fa-chart-line text-sm"></i>
-                  <span class="text-sm font-semibold">Business Strategy</span>
-                </div>
+            <!-- Back to Team -->
+            <div class="mt-10">
 
-                <!-- Skill Tag 2 -->
-                <div class="flex items-center gap-2 px-4 py-2.5 bg-primary/5 text-primary rounded-full border border-primary/10 hover:bg-primary hover:text-white transition-all duration-300 cursor-default">
-                  <i class="fa-solid fa-users-gear text-sm"></i>
-                  <span class="text-sm font-semibold">Team Leadership</span>
-                </div>
+              <a
+                href="team.html"
+                class="inline-flex items-center gap-3 px-6 py-3 bg-primary text-white rounded-full font-semibold hover:bg-secondary transition-all duration-300">
 
-                <!-- Skill Tag 3 -->
-                <div class="flex items-center gap-2 px-4 py-2.5 bg-primary/5 text-primary rounded-full border border-primary/10 hover:bg-primary hover:text-white transition-all duration-300 cursor-default">
-                  <i class="fa-solid fa-bullhorn text-sm"></i>
-                  <span class="text-sm font-semibold">Digital Marketing</span>
-                </div>
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back to Our Team</span>
 
-                <!-- Skill Tag 4 -->
-                <div class="flex items-center gap-2 px-4 py-2.5 bg-primary/5 text-primary rounded-full border border-primary/10 hover:bg-primary hover:text-white transition-all duration-300 cursor-default">
-                  <i class="fa-solid fa-list-check text-sm"></i>
-                  <span class="text-sm font-semibold">Project Management</span>
-                </div>
+              </a>
 
-                <!-- Skill Tag 5 -->
-                <div class="flex items-center gap-2 px-4 py-2.5 bg-primary/5 text-primary rounded-full border border-primary/10 hover:bg-primary hover:text-white transition-all duration-300 cursor-default">
-                  <i class="fa-solid fa-handshake text-sm"></i>
-                  <span class="text-sm font-semibold">Negotiation</span>
-                </div>
-
-                <!-- Skill Tag 6 -->
-                <div class="flex items-center gap-2 px-4 py-2.5 bg-primary/5 text-primary rounded-full border border-primary/10 hover:bg-primary hover:text-white transition-all duration-300 cursor-default">
-                  <i class="fa-solid fa-lightbulb text-sm"></i>
-                  <span class="text-sm font-semibold">Innovation</span>
-                </div>
-
-                <!-- Skill Tag 7 -->
-                <div class="flex items-center gap-2 px-4 py-2.5 bg-primary/5 text-primary rounded-full border border-primary/10 hover:bg-primary hover:text-white transition-all duration-300 cursor-default">
-                  <i class="fa-solid fa-globe text-sm"></i>
-                  <span class="text-sm font-semibold">Global Operations</span>
-                </div>
-
-                <!-- Skill Tag 8 -->
-                <div class="flex items-center gap-2 px-4 py-2.5 bg-primary/5 text-primary rounded-full border border-primary/10 hover:bg-primary hover:text-white transition-all duration-300 cursor-default">
-                  <i class="fa-solid fa-pen-nib text-sm"></i>
-                  <span class="text-sm font-semibold">Public Speaking</span>
-                </div>
-              </div>
             </div>
-            <!-- END SKILLS SECTION -->
 
-            <!-- Experience Timeline -->
-            <div>
-              <h3 class="text-xl font-bold text-secondary mb-6">Experience</h3>
-              <div class="border-l-2 border-primary pl-6 space-y-8">
-                <!-- Item 1 -->
-                <div class="relative">
-                  <div class="absolute -left-[33px] top-1 w-4 h-4 bg-white rounded-full border-4 border-primary shadow-sm"></div>
-                  <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1 block">2018 - Present</span>
-                  <h4 class="text-lg font-bold text-secondary">CEO &amp; Founder</h4>
-                  <p class="text-sm text-small-text mt-2">Leading the company vision, overseeing operations, and driving strategic growth initiatives globally.</p>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="relative">
-                  <div class="absolute -left-[33px] top-1 w-4 h-4 bg-white border-4 border-primary rounded-full shadow-sm"></div>
-                  <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1 block">2014 - 2018</span>
-                  <h4 class="text-lg font-bold text-secondary">Senior Project Manager</h4>
-                  <p class="text-sm text-small-text mt-2">Managed large-scale enterprise projects, ensuring timely delivery and client satisfaction.</p>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="relative">
-                  <div class="absolute -left-[33px] top-1 w-4 h-4 bg-white border-4 border-primary rounded-full shadow-sm"></div>
-                  <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1 block">2010 - 2014</span>
-                  <h4 class="text-lg font-bold text-secondary">Business Analyst</h4>
-                  <p class="text-sm text-small-text mt-2">Analyzed market trends and provided data-driven recommendations to improve business performance.</p>
-                </div>
-              </div>
-            </div>
           </div>
+
         </div>
+
       </div>
     </section>
     <!-- ======================================= TEAM DETAILS SECTION END ======================================= -->

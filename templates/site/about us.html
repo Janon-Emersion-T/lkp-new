@@ -190,13 +190,44 @@
 
             <!-- Bottom Contact Info: Stack on mobile, row on lg -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {% if about_team_lead %}
               <div class="flex items-center gap-3 sm:gap-4">
-                <img src="assets/image/user-7.jpg" alt="CEO" class="rounded-full border-2 border-white w-14 h-14 sm:w-16 sm:h-16 object-cover object-top shadow-sm">
+
+                <a
+                  href="team-single.html?member={{ about_team_lead.pk }}"
+                  aria-label="View {{ about_team_lead.full_name }} profile">
+
+                  {% if about_team_lead.profile_photo %}
+                  <img
+                    src="{{ about_team_lead.profile_photo.url }}"
+                    alt="{{ about_team_lead.full_name }}"
+                    class="rounded-full border-2 border-white w-14 h-14 sm:w-16 sm:h-16 object-cover object-top shadow-sm">
+                  {% else %}
+                  <div class="rounded-full border-2 border-white w-14 h-14 sm:w-16 sm:h-16 bg-gray-100 grid place-items-center shadow-sm">
+                    <i class="fa-solid fa-user text-gray-400"></i>
+                  </div>
+                  {% endif %}
+
+                </a>
+
                 <div class="capitalize">
-                  <a href="https://palaiche-template.vercel.app/team-one.html" class="text-lg sm:text-xl text-secondary hover:text-primary font-semibold transition-colors duration-500 block">Adrew David</a>
-                  <p class="text-primary text-xs sm:text-sm">CEO &amp; Founder</p>
+
+                  <a
+                    href="team-single.html?member={{ about_team_lead.pk }}"
+                    class="text-lg sm:text-xl text-secondary hover:text-primary font-semibold transition-colors duration-500 block">
+
+                    {{ about_team_lead.full_name }}
+
+                  </a>
+
+                  <p class="text-primary text-xs sm:text-sm">
+                    {{ about_team_lead.designation }}
+                  </p>
+
                 </div>
+
               </div>
+              {% endif %}
 
               <div class="flex items-center gap-3 sm:gap-4">
                 <span class="w-12 h-12 sm:w-14 sm:h-14 bg-primary rounded-full text-white text-lg sm:text-xl grid place-items-center shadow-md shrink-0">
@@ -513,145 +544,105 @@
     <!--==================================== OUR TEAM SECTION START ====================================-->
     <section id="team" class="section-padding-primary">
       <div class="container">
+
         <!-- TITLE START -->
         <div data-animation="slideInUp" class="title__box @@boxClass">
-          <!-- Subtitle -->
+
           <div class="title__box-subtitle-box">
-            <i class="fa-solid fa-star text-sm"></i> 
+            <i class="fa-solid fa-star text-sm"></i>
             <span class="title__box-subtitle">
               Our Leadership
             </span>
           </div>
 
-          <!-- Title -->
           <h2 class="title__box-title Meet Our Expert TeamClass">
             Meet Our Expert Team
           </h2>
+
         </div>
         <!-- TITLE END -->
 
         <div>
+
           <ul class="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
-            <!-- TEAM MEMBER 1 -->
-            <li class="overflow-hidden w-full" data-animation="slideInRight">
+
+            {% for member in about_team_members %}
+
+            <li
+              class="overflow-hidden w-full"
+              data-animation="slideInUp"
+              data-animation-delay="{{ forloop.counter0 }}00ms">
+
               <div class="relative">
-                <div class="image rounded-2xl">
-                  <img src="assets/image/user-7.jpg" alt="Matthew Hong - CEO" class="rounded-2xl max-h-[300px] min-h-[300px] h-full w-full object-cover object-top">
-                </div>
 
-                <div class="relative group">
-                  <!-- Toggle Button -->
-                  <div class="absolute bottom-0 -right-[3px] w-[60px] h-[60px] bg-white p-2 rounded-tl-[50%] before:absolute before:-left-5 before:bottom-0 before:w-5 before:h-5 before:rounded-br-[20px] before:bg-[0,0] before:shadow-[5px_5px_0_5px_#ffffff] after:absolute after:right-[3px] after:-top-[20px] after:w-5 after:h-5 after:rounded-br-[20px] after:bg-[0,0] after:shadow-[5px_5px_0_5px_#ffffff]">
-                    <button aria-label="View Social Profiles" class="w-10 h-10 text-center bg-primary text-white text-xl rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                      <i class="group-hover:rotate-180 transition-transform duration-500 fa-solid fa-plus"></i>
-                    </button>
+                <a
+                  href="team-single.html?member={{ member.pk }}"
+                  aria-label="View {{ member.full_name }} profile">
+
+                  <div class="image rounded-2xl overflow-hidden">
+
+                    {% if member.profile_photo %}
+
+                    <img
+                      src="{{ member.profile_photo.url }}"
+                      alt="{{ member.full_name }} - {{ member.designation }}"
+                      class="rounded-2xl max-h-[300px] min-h-[300px] h-full w-full object-cover object-top hover:scale-105 transition-transform duration-700"
+                      loading="lazy">
+
+                    {% else %}
+
+                    <div class="rounded-2xl max-h-[300px] min-h-[300px] h-full w-full bg-gray-100 flex items-center justify-center">
+                      <i class="fa-solid fa-user text-6xl text-gray-300"></i>
+                    </div>
+
+                    {% endif %}
+
                   </div>
 
-                  <!-- Social Icons -->
-                  <div class="absolute bottom-10 right-2.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:bottom-16 transition-all duration-500 flex flex-col gap-2">
-                    <a href="https://web.facebook.com/lkprofessionals" aria-label="Facebook" class="w-10 h-10 bg-white rounded-full text-center grid place-items-center text-primary text-lg hover:bg-primary hover:text-white transition-colors duration-500 shadow"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://x.com/lkprofess" aria-label="Twitter" class="w-10 h-10 bg-white rounded-full text-center grid place-items-center text-primary text-lg hover:bg-primary hover:text-white transition-colors duration-500 shadow"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="https://www.linkedin.com/company/lkprofessionals" aria-label="LinkedIn" class="w-10 h-10 bg-white rounded-full text-center grid place-items-center text-primary text-lg hover:bg-primary hover:text-white transition-colors duration-500 shadow"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="https://youtube.com/" aria-label="YouTube" class="w-10 h-10 bg-white rounded-full text-center grid place-items-center text-primary text-lg hover:bg-primary hover:text-white transition-colors duration-500 shadow"><i class="fa-brands fa-youtube"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="mt-3">
-                <a href="https://palaiche-template.vercel.app/team-one.html">
-                  <h3 class="inline-block text-2xl font-semibold text-secondary hover:text-primary transition-colors duration-500">Matthew Hong</h3>
                 </a>
-                <p class="text-primary font-medium">CEO &amp; Founder</p>
+
               </div>
+
+              <div class="mt-3 text-center lg:text-left">
+
+                <a
+                  href="team-single.html?member={{ member.pk }}"
+                  class="inline-block text-2xl font-semibold text-secondary hover:text-primary transition-colors duration-500">
+
+                  {{ member.full_name }}
+
+                </a>
+
+                <p class="text-primary font-medium">
+                  {{ member.designation }}
+                </p>
+
+              </div>
+
             </li>
 
-            <!-- TEAM MEMBER 2 -->
-            <li class="overflow-hidden w-full" data-animation="slideInUp" data-animation-delay="300ms">
-              <div class="relative">
-                <div class="image rounded-2xl">
-                  <img src="assets/image/user-10.jpg" alt="Christy Rodrigues - Project Manager" class="rounded-2xl max-h-[300px] min-h-[300px] h-full w-full object-cover object-top">
-                </div>
+            {% empty %}
 
-                <div class="relative group">
-                  <div class="absolute bottom-0 -right-[3px] w-[60px] h-[60px] bg-white p-2 rounded-tl-[50%] before:absolute before:-left-5 before:bottom-0 before:w-5 before:h-5 before:rounded-br-[20px] before:bg-[0,0] before:shadow-[5px_5px_0_5px_#ffffff] after:absolute after:right-[3px] after:-top-[20px] after:w-5 after:h-5 after:rounded-br-[20px] after:bg-[0,0] after:shadow-[5px_5px_0_5px_#ffffff]">
-                    <button aria-label="View Social Profiles" class="w-10 h-10 text-center bg-primary text-white text-xl rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                      <i class="group-hover:rotate-180 transition-transform duration-500 fa-solid fa-plus"></i>
-                    </button>
-                  </div>
-                  <div class="absolute bottom-10 right-2.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:bottom-16 transition-all duration-500 flex flex-col gap-2">
-                    <a href="https://web.facebook.com/lkprofessionals" aria-label="Facebook" class="w-10 h-10 bg-white rounded-full text-center grid place-items-center text-primary text-lg hover:bg-primary hover:text-white transition-colors duration-500 shadow"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://x.com/lkprofess" aria-label="Twitter" class="w-10 h-10 bg-white rounded-full text-center grid place-items-center text-primary text-lg hover:bg-primary hover:text-white transition-colors duration-500 shadow"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="https://www.linkedin.com/company/lkprofessionals" aria-label="LinkedIn" class="w-10 h-10 bg-white rounded-full text-center grid place-items-center text-primary text-lg hover:bg-primary hover:text-white transition-colors duration-500 shadow"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="https://youtube.com/" aria-label="YouTube" class="w-10 h-10 bg-white rounded-full text-center grid place-items-center text-primary text-lg hover:bg-primary hover:text-white transition-colors duration-500 shadow"><i class="fa-brands fa-youtube"></i></a>
-                  </div>
-                </div>
+            <li class="lg:col-span-4 md:col-span-2 text-center py-16">
+
+              <div class="text-small-text">
+
+                <i class="fa-solid fa-users text-5xl text-gray-300 mb-4"></i>
+
+                <p class="text-lg">
+                  Our team information will be available here soon.
+                </p>
+
               </div>
-              <div class="mt-3">
-                <a href="https://palaiche-template.vercel.app/team-one.html">
-                  <h3 class="inline-block text-2xl font-semibold text-secondary hover:text-primary transition-colors duration-500">Christy Rodrigues</h3>
-                </a>
-                <p class="text-primary font-medium">Senior Project Manager</p>
-              </div>
+
             </li>
 
-            <!-- TEAM MEMBER 3 -->
-            <li class="overflow-hidden w-full" data-animation="slideInUp" data-animation-delay="600ms">
-              <div class="relative">
-                <div class="image rounded-2xl">
-                  <img src="assets/image/user-3.jpg" alt="Ben Stocks - Account Manager" class="rounded-2xl max-h-[300px] min-h-[300px] h-full w-full object-cover object-top">
-                </div>
+            {% endfor %}
 
-                <div class="relative group">
-                  <div class="absolute bottom-0 -right-[3px] w-[60px] h-[60px] bg-white p-2 rounded-tl-[50%] before:absolute before:-left-5 before:bottom-0 before:w-5 before:h-5 before:rounded-br-[20px] before:bg-[0,0] before:shadow-[5px_5px_0_5px_#ffffff] after:absolute after:right-[3px] after:-top-[20px] after:w-5 after:h-5 after:rounded-br-[20px] after:bg-[0,0] after:shadow-[5px_5px_0_5px_#ffffff]">
-                    <button aria-label="View Social Profiles" class="w-10 h-10 text-center bg-primary text-white text-xl rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                      <i class="group-hover:rotate-180 transition-transform duration-500 fa-solid fa-plus"></i>
-                    </button>
-                  </div>
-                  <div class="absolute bottom-10 right-2.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:bottom-16 transition-all duration-500 flex flex-col gap-2">
-                    <a href="https://web.facebook.com/lkprofessionals" aria-label="Facebook" class="w-10 h-10 bg-white rounded-full text-center grid place-items-center text-primary text-lg hover:bg-primary hover:text-white transition-colors duration-500 shadow"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://x.com/lkprofess" aria-label="Twitter" class="w-10 h-10 bg-white rounded-full text-center grid place-items-center text-primary text-lg hover:bg-primary hover:text-white transition-colors duration-500 shadow"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="https://www.linkedin.com/company/lkprofessionals" aria-label="LinkedIn" class="w-10 h-10 bg-white rounded-full text-center grid place-items-center text-primary text-lg hover:bg-primary hover:text-white transition-colors duration-500 shadow"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="https://youtube.com/" aria-label="YouTube" class="w-10 h-10 bg-white rounded-full text-center grid place-items-center text-primary text-lg hover:bg-primary hover:text-white transition-colors duration-500 shadow"><i class="fa-brands fa-youtube"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="mt-3">
-                <a href="https://palaiche-template.vercel.app/team-one.html">
-                  <h3 class="inline-block text-2xl font-semibold text-secondary hover:text-primary transition-colors duration-500">Ben Stocks</h3>
-                </a>
-                <p class="text-primary font-medium">Senior Account Manager</p>
-              </div>
-            </li>
-
-            <!-- TEAM MEMBER 4 -->
-            <li class="overflow-hidden w-full" data-animation="slideInLeft" data-animation-delay="900ms">
-              <div class="relative">
-                <div class="image rounded-2xl">
-                  <img src="assets/image/user-8.jpg" alt="Henry Cavel - Senior Developer" class="rounded-2xl max-h-[300px] min-h-[300px] h-full w-full object-cover object-top">
-                </div>
-
-                <div class="relative group">
-                  <div class="absolute bottom-0 -right-[3px] w-[60px] h-[60px] bg-white p-2 rounded-tl-[50%] before:absolute before:-left-5 before:bottom-0 before:w-5 before:h-5 before:rounded-br-[20px] before:bg-[0,0] before:shadow-[5px_5px_0_5px_#ffffff] after:absolute after:right-[3px] after:-top-[20px] after:w-5 after:h-5 after:rounded-br-[20px] after:bg-[0,0] after:shadow-[5px_5px_0_5px_#ffffff]">
-                    <button aria-label="View Social Profiles" class="w-10 h-10 text-center bg-primary text-white text-xl rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                      <i class="group-hover:rotate-180 transition-transform duration-500 fa-solid fa-plus"></i>
-                    </button>
-                  </div>
-                  <div class="absolute bottom-10 right-2.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:bottom-16 transition-all duration-500 flex flex-col gap-2">
-                    <a href="https://web.facebook.com/lkprofessionals" aria-label="Facebook" class="w-10 h-10 bg-white rounded-full text-center grid place-items-center text-primary text-lg hover:bg-primary hover:text-white transition-colors duration-500 shadow"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://x.com/lkprofess" aria-label="Twitter" class="w-10 h-10 bg-white rounded-full text-center grid place-items-center text-primary text-lg hover:bg-primary hover:text-white transition-colors duration-500 shadow"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="https://www.linkedin.com/company/lkprofessionals" aria-label="LinkedIn" class="w-10 h-10 bg-white rounded-full text-center grid place-items-center text-primary text-lg hover:bg-primary hover:text-white transition-colors duration-500 shadow"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="https://youtube.com/" aria-label="YouTube" class="w-10 h-10 bg-white rounded-full text-center grid place-items-center text-primary text-lg hover:bg-primary hover:text-white transition-colors duration-500 shadow"><i class="fa-brands fa-youtube"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="mt-3">
-                <a href="https://palaiche-template.vercel.app/team-one.html">
-                  <h3 class="inline-block text-2xl font-semibold text-secondary hover:text-primary transition-colors duration-500">Henry Cavel</h3>
-                </a>
-                <p class="text-primary font-medium">Lead Developer</p>
-              </div>
-            </li>
           </ul>
+
         </div>
+
       </div>
     </section>
 

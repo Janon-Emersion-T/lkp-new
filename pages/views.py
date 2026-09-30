@@ -762,7 +762,45 @@ def page(request, page_path):
     if template_name not in PAGES:
         return render(request, 'site/404.html', status=404)
 
-    return render(request, f'site/{template_name}')
+    context = {}
+
+    if template_name == 'index.html':
+        context['featured_team_members'] = TeamMember.objects.filter(
+            is_active=True,
+            is_featured=True
+        ).order_by('department', 'full_name')[:4]
+
+    elif template_name == 'team.html':
+        context['team_members'] = TeamMember.objects.filter(
+            is_active=True
+        ).order_by('department', '-is_featured', 'full_name')
+
+    elif template_name == 'about us.html':
+        context['about_team_members'] = TeamMember.objects.filter(
+            is_active=True,
+            is_featured=True
+        ).order_by('department', 'full_name')[:4]
+
+        context['about_team_lead'] = TeamMember.objects.filter(
+            is_active=True,
+            is_featured=True
+        ).order_by('full_name').first()
+
+    elif template_name == 'team single.html':
+        member_id = request.GET.get('member')
+        team_member = TeamMember.objects.filter(
+            is_active=True,
+            pk=member_id
+        ).first() if member_id else TeamMember.objects.filter(
+            is_active=True
+        ).order_by('-is_featured', 'full_name').first()
+
+        if not team_member:
+            return render(request, 'site/404.html', status=404)
+
+        context['team_member'] = team_member
+
+    return render(request, f'site/{template_name}', context)
 
 
 def partial(request, partial_path):
