@@ -174,7 +174,7 @@
                   <div class="absolute bottom-0 -right-[3px] w-[60px] h-[60px] bg-white p-2 rounded-tl-[50%] before:absolute before:-left-5 before:bottom-0 before:w-5 before:h-5 before:rounded-br-[20px] before:bg-[0,0] before:shadow-[5px_5px_0_5px_#ffffff] after:absolute after:right-[3px] after:-top-[20px] after:w-5 after:h-5 after:rounded-br-[20px] after:bg-[0,0] after:shadow-[5px_5px_0_5px_#ffffff]">
 
                     <a
-                      href="team-single.html?member={{ member.pk }}"
+                      href="{% url 'team_member' member.pk %}"
                       aria-label="View {{ member.full_name }} profile"
                       class="w-10 h-10 text-center bg-primary text-white text-xl rounded-full grid place-items-center">
 
@@ -192,7 +192,7 @@
               <div class="mt-4 text-center">
 
                 <a
-                  href="team-single.html?member={{ member.pk }}"
+                  href="{% url 'team_member' member.pk %}"
                   class="inline-block text-xl font-semibold text-secondary hover:text-primary transition-colors duration-500">
 
                   {{ member.full_name }}

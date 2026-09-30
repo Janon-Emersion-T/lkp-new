@@ -922,7 +922,7 @@
                 </div>
                 {% endif %}
 
-                <a href="/contact-us.html"
+                <a href="{% url 'contact' %}"
                    class="mt-8 btn btn-primary w-full text-center">
                     {{ package.cta_label }}
                 </a>
@@ -1084,7 +1084,7 @@
 
                 <div class="lg:col-span-4 lg:text-right">
 
-                    <a href="/contact-us.html"
+                    <a href="{% url 'contact' %}"
                        class="inline-flex items-center justify-center gap-3 bg-white text-secondary font-bold px-7 py-4 rounded-lg hover:bg-[#071426] hover:text-white transition-all duration-300">
                         Discuss Your Project
                         <i class="fa-solid fa-arrow-right"></i>

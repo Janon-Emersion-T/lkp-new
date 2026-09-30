@@ -25,6 +25,20 @@ urlpatterns = [
     path('dashboard/<slug:resource>/<int:pk>/edit/', views.dashboard_edit, name='dashboard_edit'),
     path('dashboard/<slug:resource>/<int:pk>/delete/', views.dashboard_delete, name='dashboard_delete'),
     path('', views.home, name='home'),
+
+    # Clean public website URLs
+    path('about/', views.page, {'page_path': 'about us.html'}, name='about'),
+    path('careers/', views.page, {'page_path': 'careers.html'}, name='careers'),
+    path('contact/', views.page, {'page_path': 'contact us.html'}, name='contact'),
+    path('faq/', views.page, {'page_path': 'faq.html'}, name='faq'),
+    path('pricing/', views.page, {'page_path': 'pricing.html'}, name='pricing'),
+    path('services/', views.page, {'page_path': 'services.html'}, name='services'),
+    path('team/<int:member_id>/', views.team_member_detail, name='team_member'),
+    path('team/', views.page, {'page_path': 'team.html'}, name='team'),
+    path('privacy-policy/', views.page, {'page_path': 'privacy policy.html'}, name='privacy_policy'),
+    path('terms-and-conditions/', views.page, {'page_path': 'terms and conditions.html'}, name='terms'),
+    path('coming-soon/', views.page, {'page_path': 'coming soon.html'}, name='coming_soon'),
+
     path('case-studies/', include('case_studies.urls')),
     path('portfolio/', public.portfolio_redirect, name='portfolio_redirect'),
     path('portfolio/<slug:slug>/', public.portfolio_redirect, name='portfolio_detail_redirect'),

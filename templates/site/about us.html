@@ -194,7 +194,7 @@
               <div class="flex items-center gap-3 sm:gap-4">
 
                 <a
-                  href="team-single.html?member={{ about_team_lead.pk }}"
+                  href="{% url 'team_member' about_team_lead.pk %}"
                   aria-label="View {{ about_team_lead.full_name }} profile">
 
                   {% if about_team_lead.profile_photo %}
@@ -213,7 +213,7 @@
                 <div class="capitalize">
 
                   <a
-                    href="team-single.html?member={{ about_team_lead.pk }}"
+                    href="{% url 'team_member' about_team_lead.pk %}"
                     class="text-lg sm:text-xl text-secondary hover:text-primary font-semibold transition-colors duration-500 block">
 
                     {{ about_team_lead.full_name }}
@@ -576,7 +576,7 @@
               <div class="relative">
 
                 <a
-                  href="team-single.html?member={{ member.pk }}"
+                  href="{% url 'team_member' member.pk %}"
                   aria-label="View {{ member.full_name }} profile">
 
                   <div class="image rounded-2xl overflow-hidden">
@@ -606,7 +606,7 @@
               <div class="mt-3 text-center lg:text-left">
 
                 <a
-                  href="team-single.html?member={{ member.pk }}"
+                  href="{% url 'team_member' member.pk %}"
                   class="inline-block text-2xl font-semibold text-secondary hover:text-primary transition-colors duration-500">
 
                   {{ member.full_name }}

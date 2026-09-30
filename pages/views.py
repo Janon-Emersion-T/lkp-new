@@ -704,6 +704,31 @@ def logout_view(request):
     return redirect('login')
 
 
+LEGACY_URL_REDIRECTS = {
+    'about.html': '/about/',
+    'about-us.html': '/about/',
+    'about us.html': '/about/',
+    'careers-single.html': '/careers/',
+    'career-details.html': '/careers/',
+    'careers.html': '/careers/',
+    'careers single.html': '/careers/',
+    'contact.html': '/contact/',
+    'contact-us.html': '/contact/',
+    'contact us.html': '/contact/',
+    'faq.html': '/faq/',
+    'insight-single.html': '/insights/',
+    'pricing.html': '/pricing/',
+    'privacy-policy.html': '/privacy-policy/',
+    'privacy policy.html': '/privacy-policy/',
+    'services.html': '/services/',
+    'team.html': '/team/',
+    'team-single.html': '/team/',
+    'team single.html': '/team/',
+    'terms-and-conditions.html': '/terms-and-conditions/',
+    'terms and conditions.html': '/terms-and-conditions/',
+}
+
+
 PAGE_ALIASES = {
     '': 'index.html',
     'index.html': 'index.html',
@@ -749,7 +774,26 @@ def home(request):
     return page(request, '')
 
 
+def team_member_detail(request, member_id):
+    team_member = TeamMember.objects.filter(
+        is_active=True,
+        pk=member_id
+    ).first()
+
+    if not team_member:
+        return render(request, 'site/404.html', status=404)
+
+    return render(
+        request,
+        'site/team single.html',
+        {'team_member': team_member}
+    )
+
+
 def page(request, page_path):
+    if page_path in LEGACY_URL_REDIRECTS:
+        return redirect(LEGACY_URL_REDIRECTS[page_path], permanent=True)
+
     template_name = PAGE_ALIASES.get(page_path, page_path)
     if template_name == 'portfolio.html':
         from .public import portfolio_redirect
