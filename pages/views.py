@@ -25,6 +25,8 @@ from finance.forms import ExpenseForm, InvoiceForm, PaymentForm
 from finance.models import Expense, Invoice, Payment
 from .forms import CategoryForm, DashboardModelForm, InsightForm, LeadForm, NewsletterForm, PortfolioForm, ServiceAreaForm, SubscriberForm, TagForm, AccessRoleForm, UserForm
 from hr.resources import HR_NAV, HR_RESOURCES
+from team.forms import TeamMemberForm
+from team.models import TeamMember
 
 from .models import (
     AuditLog,
@@ -67,7 +69,6 @@ from .models import (
     ServicePackage,
     Subscriber,
     Tag,
-    TeamMember,
     Testimonial,
     SupportTicket,
     NewsletterDelivery,
@@ -279,7 +280,22 @@ CRUD_RESOURCES = {
     'industries': resource(Industry, 'Industries', 'Industry', 'Industry landing-page and targeting content.', [('name', 'Name'), ('slug', 'Slug'), ('is_active', 'Active'), ('updated_at', 'Updated')], ['name', 'slug', 'summary']),
     'markets': resource(Market, 'Markets', 'Market', 'Market, region, or segment landing-page content.', [('name', 'Name'), ('slug', 'Slug'), ('is_active', 'Active'), ('updated_at', 'Updated')], ['name', 'slug', 'summary']),
     'testimonials': resource(Testimonial, 'Testimonials', 'Testimonial', 'Client testimonials and review snippets.', [('name', 'Name'), ('company', 'Company'), ('rating', 'Rating'), ('is_active', 'Active')], ['name', 'company', 'role', 'content']),
-    'team-members': resource(TeamMember, 'Team Members', 'Team Member', 'Public team profiles and staff content.', [('name', 'Name'), ('role', 'Role'), ('email', 'Email'), ('display_order', 'Order'), ('is_active', 'Active')], ['name', 'role', 'email', 'bio']),
+    'team-members': resource(
+        TeamMember,
+        'Team Members',
+        'Team Member',
+        'Manage LK Professionals team members and their public profiles.',
+        [
+            ('full_name', 'Full Name'),
+            ('designation', 'Designation'),
+            ('department', 'Department'),
+            ('is_active', 'Active'),
+            ('is_featured', 'Featured'),
+            ('joining_date', 'Joining Date'),
+        ],
+        ['full_name', 'designation', 'department', 'bio'],
+        form=TeamMemberForm,
+    ),
     'faqs': resource(FAQItem, 'FAQs', 'FAQ', 'Frequently asked questions for service pages, packages, and website content.', [('question', 'Question'), ('category', 'Category'), ('display_order', 'Order'), ('is_active', 'Active')], ['question', 'answer', 'category']),
     'global-settings': resource(GlobalSetting, 'Global Website Settings', 'Setting', 'Global website and system key-value settings.', [('key', 'Key'), ('group', 'Group'), ('updated_at', 'Updated')], ['key', 'value', 'group']),
     'campaigns': resource(Campaign, 'Campaigns', 'Campaign', 'Marketing campaigns, channels, budgets, and attribution notes.', [('name', 'Campaign'), ('channel', 'Channel'), ('status', 'Status'), ('budget', 'Budget'), ('end_date', 'Ends')], ['name', 'channel', 'notes']),

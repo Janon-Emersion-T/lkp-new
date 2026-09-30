@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "finance",
     "pages",
     "hr",
+    "team",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

@@ -216,7 +216,7 @@ class LeadForm(DashboardModelForm):
 
 
 class AccessRoleForm(DashboardModelForm):
-    permissions = forms.ModelMultipleChoiceField(queryset=Permission.objects.filter(content_type__app_label__in=['pages', 'case_studies', 'finance']), required=False)
+    permissions = forms.ModelMultipleChoiceField(queryset=Permission.objects.filter(content_type__app_label__in=['pages', 'case_studies', 'finance', 'team']), required=False)
 
     class Meta:
         model = AccessRole
@@ -226,7 +226,7 @@ class AccessRoleForm(DashboardModelForm):
         super().__init__(*args, **kwargs)
         if self.instance.pk:
             codes = [code.split('.')[-1] for code in self.instance.permissions.split()]
-            self.initial['permissions'] = Permission.objects.filter(content_type__app_label__in=['pages', 'case_studies', 'finance'], codename__in=codes)
+            self.initial['permissions'] = Permission.objects.filter(content_type__app_label__in=['pages', 'case_studies', 'finance', 'team'], codename__in=codes)
         self.fields['users'].queryset = get_user_model().objects.filter(is_staff=True, is_active=True)
 
     def clean_permissions(self):
