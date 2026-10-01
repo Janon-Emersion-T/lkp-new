@@ -791,7 +791,13 @@ def team_member_detail(request, member_id):
 
 
 def page(request, page_path):
-    if page_path in LEGACY_URL_REDIRECTS:
+    canonical_page_paths = {
+        'about us.html',
+        'contact us.html',
+        'services.html',
+    }
+
+    if page_path in LEGACY_URL_REDIRECTS and page_path not in canonical_page_paths:
         return redirect(LEGACY_URL_REDIRECTS[page_path], permanent=True)
 
     template_name = PAGE_ALIASES.get(page_path, page_path)
