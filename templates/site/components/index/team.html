@@ -1,0 +1,89 @@
+<section id="team" class="section-padding-primary bg-[url('../images/backgrounds/team-bg.jpg')] bg-center bg-cover bg-no-repeat relative before:absolute before:w-full before:h-full before:inset-0 before:bg-[#080E1C] before:bg-opacity-80">
+      <div class="container relative z-10">
+        <!-- TITLE START -->
+        <div data-animation="slideInUp" class="title__box @@boxClass">
+          <!-- Subtitle -->
+          <div class="title__box-subtitle-box">
+            <i class="fa-solid fa-star text-sm"></i> 
+            <span class="title__box-subtitle">
+              Our Expert Team
+            </span>
+          </div>
+
+          <!-- Title -->
+          <h2 class="title__box-title text-white">
+            Meet Our Professional Team Members
+          </h2>
+        </div>
+        <!-- TITLE END -->
+
+        <!-- MAIN CONTENT START -->
+
+        <ul class="grid lg:grid-cols-4 md:grid-cols-2 gap-6">
+
+          {% for member in featured_team_members %}
+
+          <li
+            data-animation="slideInUp"
+            data-animation-delay="{{ forloop.counter }}00ms">
+
+            <div class="p-5 border border-[#222222] group team-member bg-[#060B16]/30 backdrop-blur-[3px] rounded-xl overflow-hidden hover:border-primary/50 transition-colors duration-300">
+
+              <a
+                href="{% url 'team_member' member.pk %}"
+                aria-label="View {{ member.full_name }} profile">
+
+                <div class="relative border-b-2 border-primary team-img-after aspect-[4.5/4] w-full overflow-hidden">
+
+                  {% if member.profile_photo %}
+                  <img
+                    src="{{ member.profile_photo.url }}"
+                    alt="{{ member.full_name }}"
+                    class="w-full h-full object-cover object-top group-hover:opacity-50 transition-all duration-500"
+                    loading="lazy">
+                  {% else %}
+                  <div class="w-full h-full min-h-[280px] bg-[#111827] flex items-center justify-center">
+                    <i class="fa-solid fa-user text-6xl text-gray-500"></i>
+                  </div>
+                  {% endif %}
+
+                </div>
+
+              </a>
+
+              <div class="text-white text-center space-y-1 pt-8 relative">
+
+                <h4 class="text-2xl font-semibold text-white group-hover:text-primary transition-colors">
+                  <a href="{% url 'team_member' member.pk %}">
+                    {{ member.full_name }}
+                  </a>
+                </h4>
+
+                <p class="text-gray-400 font-medium">
+                  {{ member.designation }}
+                </p>
+
+              </div>
+
+            </div>
+
+          </li>
+
+          {% empty %}
+
+          <li class="lg:col-span-4 md:col-span-2 text-center py-12">
+            <div class="text-gray-300">
+              <i class="fa-solid fa-users text-5xl mb-4"></i>
+              <p class="text-lg">
+                Our team information will be available here soon.
+              </p>
+            </div>
+          </li>
+
+          {% endfor %}
+
+        </ul>
+
+        <!-- MAIN CONTENT END -->
+      </div>
+    </section>
