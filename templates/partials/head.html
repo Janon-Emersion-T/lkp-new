@@ -20,29 +20,16 @@
 <link rel="canonical" href="{{ request.build_absolute_uri }}">
 {% endif %}
 
-<!-- Favicon -->
-<link rel="icon"
-      type="image/x-icon"
-      href="{% static 'assets/image/favicon.ico' %}">
+{% load static %}
 
-<link rel="shortcut icon"
-      href="{% static 'assets/image/favicon.ico' %}">
+<link rel="icon" type="image/x-icon" href="{% static 'image/favicon.ico' %}">
+<link rel="shortcut icon" href="{% static 'image/favicon.ico' %}">
 
-<!-- Stylesheets -->
-<link rel="stylesheet"
-      href="{% static 'assets/css/all.min.css' %}">
-
-<link rel="stylesheet"
-      href="{% static 'assets/css/swiper-bundle.min.css' %}">
-
-<link rel="stylesheet"
-      href="{% static 'assets/css/tailwind.css' %}">
-
-<link rel="stylesheet"
-      href="{% static 'assets/css/animation.css' %}">
-
-<link rel="stylesheet"
-      href="{% static 'assets/css/custom.css' %}">
+<link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+<link rel="stylesheet" href="{% static 'css/animation.css' %}">
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
 
 <!-- Microsoft Clarity -->
 <script type="text/javascript">
