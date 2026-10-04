@@ -1,142 +1,240 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
 
-    <!-- Browser compatibility -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- ==========================================
+         HOMEPAGE SEO
+         ========================================== -->
 
-    <!-- Responsive viewport -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Primary SEO -->
     <title>LKProfessionals | Web Development, Software, SEO & Digital Marketing</title>
 
     <meta name="description"
           content="LKProfessionals is a technology and digital growth company providing web development, custom software, SEO, digital marketing, automation and IT solutions for businesses.">
 
-    <meta name="robots"
-          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <!-- ==========================================
+         OPEN GRAPH — FACEBOOK / LINKEDIN
+         ========================================== -->
 
-    <meta name="author" content="LKProfessionals (Pvt) Ltd">
-
-    <!-- Canonical -->
-    <link rel="canonical" href="https://lkprofessionals.com/">
-
-    <!-- Search Engine / Brand Information -->
-    <meta name="application-name" content="LKProfessionals">
-    <meta name="apple-mobile-web-app-title" content="LKProfessionals">
-    <meta name="theme-color" content="#33b6ff">
-
-    <!-- Open Graph / Facebook / LinkedIn -->
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="LKProfessionals">
+
+    <meta property="og:site_name"
+          content="LKProfessionals">
+
     <meta property="og:title"
           content="LKProfessionals | Web Development, Software, SEO & Digital Marketing">
+
     <meta property="og:description"
           content="Technology and digital growth solutions covering web development, custom software, SEO, digital marketing, automation and IT services.">
-    <meta property="og:url" content="https://lkprofessionals.com/">
+
+    <meta property="og:url"
+          content="https://lkprofessionals.com/">
+
     <meta property="og:image"
           content="https://lkprofessionals.com/assets/image/logo.png">
-    <meta property="og:image:alt" content="LKProfessionals">
-    <meta property="og:locale" content="en_US">
 
-    <!-- X / Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image:alt"
+          content="LKProfessionals (Pvt) Ltd">
+
+    <meta property="og:image:type"
+          content="image/png">
+
+    <meta property="og:locale"
+          content="en_US">
+
+    <!-- ==========================================
+         X / TWITTER
+         ========================================== -->
+
+    <meta name="twitter:card"
+          content="summary_large_image">
+
     <meta name="twitter:title"
           content="LKProfessionals | Web Development, Software, SEO & Digital Marketing">
+
     <meta name="twitter:description"
           content="Technology and digital growth solutions covering web development, custom software, SEO, digital marketing, automation and IT services.">
+
     <meta name="twitter:image"
           content="https://lkprofessionals.com/assets/image/logo.png">
-    <meta name="twitter:image:alt" content="LKProfessionals">
 
-    <!-- Favicon -->
-    <link href="assets/image/favicon.ico" rel="shortcut icon">
+    <meta name="twitter:image:alt"
+          content="LKProfessionals (Pvt) Ltd">
 
-    <!-- Structured Data -->
+    <!-- ==========================================
+         COMMON HEAD
+         ========================================== -->
+
+    {% with canonical_url="https://lkprofessionals.com/" %}
+        {% include 'partials/head.html' %}
+    {% endwith %}
+
+    <!-- ==========================================
+         STRUCTURED DATA
+         ========================================== -->
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "@id": "https://lkprofessionals.com/#organization",
-        "name": "LKProfessionals (Pvt) Ltd",
-        "alternateName": "LKProfessionals",
-        "url": "https://lkprofessionals.com/",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "https://lkprofessionals.com/assets/image/logo.png"
-        },
-        "description": "LKProfessionals is a technology and digital growth company providing web development, custom software, SEO, digital marketing, automation and IT solutions for businesses.",
-        "email": "info@lkprofessionals.com"
+        "@graph": [
+
+            {
+                "@type": "Organization",
+                "@id": "https://lkprofessionals.com/#organization",
+                "name": "LKProfessionals (Pvt) Ltd",
+                "alternateName": "LKProfessionals",
+                "url": "https://lkprofessionals.com/",
+                "logo": {
+                    "@type": "ImageObject",
+                    "@id": "https://lkprofessionals.com/#logo",
+                    "url": "https://lkprofessionals.com/assets/image/logo.png",
+                    "contentUrl": "https://lkprofessionals.com/assets/image/logo.png"
+                },
+                "description": "LKProfessionals is a technology and digital growth company providing web development, custom software, SEO, digital marketing, automation and IT solutions for businesses.",
+                "email": "info@lkprofessionals.com"
+            },
+
+            {
+                "@type": "WebSite",
+                "@id": "https://lkprofessionals.com/#website",
+                "url": "https://lkprofessionals.com/",
+                "name": "LKProfessionals",
+                "description": "Technology, software development, web development, SEO and digital growth solutions.",
+                "publisher": {
+                    "@id": "https://lkprofessionals.com/#organization"
+                },
+                "inLanguage": "en"
+            }
+
+        ]
     }
     </script>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/css/all.min.css">
-
-    <!-- Vendor CSS -->
-    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
-
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="assets/css/tailwind.css">
-    <link rel="stylesheet" href="assets/css/animation.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/custom.css">
-    {% include 'partials/head.html' %}
 </head>
-<body cz-shortcut-listen="true">
-  <div data-include="partials/preloader.html"></div>
-  <div data-include="partials/header.html"></div>
-  
-  <!--Body of the page-->
-  {% include "site/components/index/hero.html" %}
-  {% include "site/components/index/about.html" %}
-  {% include "site/components/index/stats.html" %}
-  {% include "site/components/index/services.html" %}
-  {% include "site/components/index/why-choose-us.html" %}
-  {% include "site/components/index/team.html" %}
-  {% include "site/components/index/projects.html" %}
-  {% include "site/components/index/how-it-works.html" %}
-  {% include "site/components/index/testimonials.html" %}
-  {% include "site/components/index/brands.html" %}
-  {% include "site/components/index/insights.html" %}
-    <!-- End of body of the page-->
-{% include "partials/cta.html" %}
-{% include "partials/footer.html" %}
-{% include "partials/site-widgets.html" %}
 
-    
-    <div data-include="partials/footer.html"></div>
-    <div data-include="partials/site-widgets.html"></div>
 
-    <script src="assets/js/include-partials.js" data-site-scripts="assets/js/swiper-bundle.min.js,assets/js/animate.js,assets/js/back-to-top.js,assets/js/accordion.js,assets/js/responsive-menu.js,assets/js/pre-loader.js,assets/js/coming-soon.js,assets/js/slider-config.js,assets/js/email.min.js,assets/js/contact-form.js,assets/js/script.js"></script>
+<body>
 
-    <script>
-      (() => {
-        const foundedDate = new Date(2013, 9, 12); // 12 October 2013
-        const today = new Date();
+    <!-- ==========================================
+         PRELOADER
+         ========================================== -->
 
-        let years = today.getFullYear() - foundedDate.getFullYear();
+    {% include "partials/preloader.html" %}
 
-        const anniversaryPassed =
-          today.getMonth() > foundedDate.getMonth() ||
-          (
-            today.getMonth() === foundedDate.getMonth() &&
-            today.getDate() >= foundedDate.getDate()
-          );
 
-        if (!anniversaryPassed) {
-          years--;
-        }
+    <!-- ==========================================
+         HEADER / NAVIGATION
+         ========================================== -->
 
-        const element = document.getElementById("yearsInTechnology");
+    {% include "partials/header.html" %}
 
-        if (element) {
-          element.textContent = `${years}+`;
-        }
-      })();
+
+    <!-- ==========================================
+         HOMEPAGE CONTENT
+         ========================================== -->
+
+    {% include "site/components/index/hero.html" %}
+
+    {% include "site/components/index/about.html" %}
+
+    {% include "site/components/index/stats.html" %}
+
+    {% include "site/components/index/services.html" %}
+
+    {% include "site/components/index/why-choose-us.html" %}
+
+    {% include "site/components/index/team.html" %}
+
+    {% include "site/components/index/projects.html" %}
+
+    {% include "site/components/index/how-it-works.html" %}
+
+    {% include "site/components/index/testimonials.html" %}
+
+    {% include "site/components/index/brands.html" %}
+
+    {% include "site/components/index/insights.html" %}
+
+
+    <!-- ==========================================
+         CALL TO ACTION
+         ========================================== -->
+
+    {% include "partials/cta.html" %}
+
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+
+    {% include "partials/footer.html" %}
+
+
+    <!-- ==========================================
+         SITE WIDGETS
+         ========================================== -->
+
+    {% include "partials/site-widgets.html" %}
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
+
+    <script
+        src="{% static 'assets/js/include-partials.js' %}"
+        data-site-scripts="
+            {% static 'assets/js/swiper-bundle.min.js' %},
+            {% static 'assets/js/animate.js' %},
+            {% static 'assets/js/back-to-top.js' %},
+            {% static 'assets/js/accordion.js' %},
+            {% static 'assets/js/responsive-menu.js' %},
+            {% static 'assets/js/pre-loader.js' %},
+            {% static 'assets/js/coming-soon.js' %},
+            {% static 'assets/js/slider-config.js' %},
+            {% static 'assets/js/email.min.js' %},
+            {% static 'assets/js/contact-form.js' %},
+            {% static 'assets/js/script.js' %}
+        ">
     </script>
 
-</body></html>
+
+    <!-- ==========================================
+         COMPANY EXPERIENCE COUNTER
+         ========================================== -->
+
+    <script>
+        (() => {
+
+            const foundedDate = new Date(2013, 9, 12);
+            const today = new Date();
+
+            let years =
+                today.getFullYear() -
+                foundedDate.getFullYear();
+
+            const anniversaryPassed =
+                today.getMonth() > foundedDate.getMonth() ||
+                (
+                    today.getMonth() === foundedDate.getMonth() &&
+                    today.getDate() >= foundedDate.getDate()
+                );
+
+            if (!anniversaryPassed) {
+                years--;
+            }
+
+            const element =
+                document.getElementById("yearsInTechnology");
+
+            if (element) {
+                element.textContent = `${years}+`;
+            }
+
+        })();
+    </script>
+
+</body>
+
+</html>
