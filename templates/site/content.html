@@ -1,6 +1,853 @@
+```html
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{{ seo.title|default:title }} | LK Professionals</title><meta name="description" content="{{ description }}">{% if seo.noindex %}<meta name="robots" content="noindex">{% endif %}<link rel="stylesheet" href="/assets/css/all.min.css"><style>body{margin:0;color:#1b2a30;font:16px/1.7 Arial,sans-serif;background:#fff}header,main,footer{max-width:1120px;margin:auto;padding:24px}header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e4e9eb}header img{width:180px}h1{font-size:36px;line-height:1.2;overflow-wrap:anywhere}h2{font-size:24px}a{color:#187f6b}.body{max-width:760px;white-space:pre-line;overflow-wrap:anywhere}.cover{width:100%;max-height:420px;object-fit:contain}.entries{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px}.entries article{border-bottom:1px solid #ddd;padding:24px 0}.entries img{width:100%;aspect-ratio:16/9;object-fit:cover}footer{border-top:1px solid #e4e9eb;margin-top:40px}</style></head>
-<body><header><a href="/"><img src="/assets/image/logo.png" alt="LK Professionals"></a><a href="{% url 'contact' %}">Contact us</a></header><main><h1>{{ title }}</h1>
-{% if object %}{% if object.featured_image %}<img class="cover" src="{{ object.featured_image.url }}" alt="{{ title }}">{% endif %}<p>{{ object.summary }}</p><div class="body">{{ body }}</div>{% if object.price %}<p>{{ object.price }} / {{ object.get_billing_cycle_display }}</p>{% endif %}
-{% else %}<div class="entries">{% for item in records %}<article>{% if item.featured_image %}<img src="{{ item.featured_image.url }}" alt="{{ item }}">{% endif %}<h2><a href="/{{ kind }}/{{ item.slug }}/">{{ item }}</a></h2><p>{{ item.summary }}</p></article>{% empty %}<p>No published content yet.</p>{% endfor %}</div>{% endif %}
-</main><footer><a href="/">LK Professionals</a> &middot; <a href="/insights/">Insights</a> &middot; <a href="/case-studies/">Case Studies</a></footer></body></html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <!-- =========================================================
+         SEO
+    ========================================================== -->
+
+    <title>
+        {{ seo.title|default:title }} | LKProfessionals (Pvt) Ltd.
+    </title>
+
+    <meta
+        name="description"
+        content="{{ seo.description|default:object.summary|default:description|default:'LKProfessionals (Pvt) Ltd. provides professional web development, software development, mobile app development, cloud computing, digital marketing, SEO, IT consulting, hosting and AI development services.' }}"
+    >
+
+    <meta
+        name="author"
+        content="LKProfessionals (Pvt) Ltd."
+    >
+
+    {% if seo.noindex %}
+        <meta name="robots" content="noindex, nofollow">
+    {% else %}
+        <meta
+            name="robots"
+            content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        >
+    {% endif %}
+
+    <link
+        rel="canonical"
+        href="{{ request.build_absolute_uri }}"
+    >
+
+    <!-- =========================================================
+         Open Graph
+    ========================================================== -->
+
+    <meta
+        property="og:type"
+        content="{% if object %}article{% else %}website{% endif %}"
+    >
+
+    <meta
+        property="og:site_name"
+        content="LKProfessionals (Pvt) Ltd."
+    >
+
+    <meta
+        property="og:title"
+        content="{{ seo.title|default:title }}"
+    >
+
+    <meta
+        property="og:description"
+        content="{{ seo.description|default:object.summary|default:description }}"
+    >
+
+    <meta
+        property="og:url"
+        content="{{ request.build_absolute_uri }}"
+    >
+
+    <meta
+        property="og:locale"
+        content="en_US"
+    >
+
+    {% if object and object.featured_image %}
+        <meta
+            property="og:image"
+            content="{{ request.scheme }}://{{ request.get_host }}{{ object.featured_image.url }}"
+        >
+        <meta
+            property="og:image:alt"
+            content="{{ title }}"
+        >
+    {% else %}
+        <meta
+            property="og:image"
+            content="{{ request.scheme }}://{{ request.get_host }}/assets/image/logo.png"
+        >
+        <meta
+            property="og:image:alt"
+            content="LKProfessionals (Pvt) Ltd."
+        >
+    {% endif %}
+
+    <!-- =========================================================
+         Twitter / X
+    ========================================================== -->
+
+    <meta
+        name="twitter:card"
+        content="summary_large_image"
+    >
+
+    <meta
+        name="twitter:title"
+        content="{{ seo.title|default:title }}"
+    >
+
+    <meta
+        name="twitter:description"
+        content="{{ seo.description|default:object.summary|default:description }}"
+    >
+
+    {% if object and object.featured_image %}
+        <meta
+            name="twitter:image"
+            content="{{ request.scheme }}://{{ request.get_host }}{{ object.featured_image.url }}"
+        >
+    {% else %}
+        <meta
+            name="twitter:image"
+            content="{{ request.scheme }}://{{ request.get_host }}/assets/image/logo.png"
+        >
+    {% endif %}
+
+    <!-- =========================================================
+         Favicon
+    ========================================================== -->
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="/assets/image/logo.png"
+    >
+
+    <!-- =========================================================
+         Styles
+    ========================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="/assets/css/all.min.css"
+    >
+
+    <style>
+        :root {
+            --primary: #187f6b;
+            --primary-dark: #126554;
+            --text: #1b2a30;
+            --muted: #607078;
+            --border: #e4e9eb;
+            --background: #ffffff;
+            --surface: #f7f9f9;
+            --max-width: 1120px;
+            --content-width: 800px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--text);
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            background: var(--background);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        a:focus-visible {
+            outline: 3px solid rgba(24, 127, 107, 0.35);
+            outline-offset: 3px;
+        }
+
+        /* =====================================================
+           Header
+        ====================================================== */
+
+        .site-header {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .brand img {
+            width: 180px;
+            height: auto;
+            display: block;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .header-actions a {
+            font-weight: 600;
+        }
+
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 6px;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .contact-button:hover {
+            background: var(--primary-dark);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* =====================================================
+           Main
+        ====================================================== */
+
+        main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+        }
+
+        .content-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+        }
+
+        /* =====================================================
+           Breadcrumbs
+        ====================================================== */
+
+        .breadcrumbs {
+            margin-bottom: 28px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .breadcrumbs a {
+            color: var(--muted);
+        }
+
+        .breadcrumbs span {
+            margin: 0 8px;
+            color: #9aa5a9;
+        }
+
+        /* =====================================================
+           Headings
+        ====================================================== */
+
+        h1 {
+            margin: 0 0 20px;
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            overflow-wrap: anywhere;
+        }
+
+        h2 {
+            margin: 0 0 12px;
+            font-size: 25px;
+            line-height: 1.3;
+        }
+
+        h3 {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+
+        /* =====================================================
+           Featured Image
+        ====================================================== */
+
+        .cover-wrapper {
+            margin: 30px 0;
+        }
+
+        .cover {
+            width: 100%;
+            max-height: 520px;
+            object-fit: contain;
+            display: block;
+            border-radius: 8px;
+            background: var(--surface);
+        }
+
+        /* =====================================================
+           Summary
+        ====================================================== */
+
+        .summary {
+            margin: 24px 0;
+            font-size: 19px;
+            line-height: 1.65;
+            color: #3d4d53;
+        }
+
+        /* =====================================================
+           Body Content
+        ====================================================== */
+
+        .body {
+            overflow-wrap: anywhere;
+        }
+
+        .body p {
+            margin: 0 0 20px;
+        }
+
+        .body ul,
+        .body ol {
+            margin: 0 0 24px;
+            padding-left: 28px;
+        }
+
+        .body li {
+            margin-bottom: 8px;
+        }
+
+        .body img {
+            display: block;
+            margin: 28px auto;
+            border-radius: 8px;
+        }
+
+        .body blockquote {
+            margin: 28px 0;
+            padding: 18px 24px;
+            border-left: 4px solid var(--primary);
+            background: var(--surface);
+        }
+
+        .body code {
+            padding: 2px 5px;
+            border-radius: 4px;
+            background: #f1f3f4;
+        }
+
+        /* =====================================================
+           Price
+        ====================================================== */
+
+        .price {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 28px;
+            padding: 12px 18px;
+            border-radius: 6px;
+            background: var(--surface);
+            font-weight: 700;
+        }
+
+        /* =====================================================
+           Listing
+        ====================================================== */
+
+        .entries {
+            display: grid;
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(260px, 1fr)
+                );
+            gap: 30px;
+        }
+
+        .entries article {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #fff;
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .entries article:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.07);
+        }
+
+        .entry-content {
+            padding: 22px;
+        }
+
+        .entries img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+        }
+
+        .entry-summary {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        /* =====================================================
+           Footer
+        ====================================================== */
+
+        .site-footer {
+            margin-top: 40px;
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .footer-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(200px, 1fr)
+                );
+            gap: 30px;
+        }
+
+        .footer-column h3 {
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 17px;
+        }
+
+        .footer-column p {
+            margin: 0 0 8px;
+            color: var(--muted);
+        }
+
+        .footer-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 7px;
+        }
+
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* =====================================================
+           Mobile
+        ====================================================== */
+
+        @media (max-width: 700px) {
+
+            .site-header {
+                padding: 16px 18px;
+                align-items: flex-start;
+            }
+
+            .brand img {
+                width: 145px;
+            }
+
+            .header-actions {
+                gap: 10px;
+                font-size: 14px;
+            }
+
+            .header-actions .home-link {
+                display: none;
+            }
+
+            main {
+                padding:
+                    30px 18px
+                    45px;
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+
+            .entries {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                padding:
+                    32px 18px;
+            }
+        }
+
+        /* =====================================================
+           Reduced Motion
+        ====================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            .entries article {
+                transition: none;
+            }
+        }
+    </style>
+
+    <!-- =========================================================
+         Microsoft Clarity
+         Replace YOUR_CLARITY_PROJECT_ID with your real ID.
+         Once this template is the base template, Clarity will
+         automatically load on every page using this template.
+    ========================================================== -->
+
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){
+                (c[a].q=c[a].q||[]).push(arguments)
+            };
+            t=l.createElement(r);
+            t.async=1;
+            t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "YOUR_CLARITY_PROJECT_ID");
+    </script>
+
+    <!-- =========================================================
+         Organization Schema
+    ========================================================== -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "LKProfessionals (Pvt) Ltd.",
+        "url": "https://www.lkprofessionals.com/",
+        "logo": "https://www.lkprofessionals.com/assets/image/logo.png",
+        "email": "info@lkprofessionals.com",
+        "telephone": "+94761234321",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Vidhan's Lane, Eachchamoddai",
+            "addressLocality": "Jaffna",
+            "postalCode": "40000",
+            "addressCountry": "LK"
+        }
+    }
+    </script>
+
+    {% if object %}
+    <!-- =========================================================
+         Breadcrumb Schema
+    ========================================================== -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.lkprofessionals.com/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "{{ title|escapejs }}"
+            }
+        ]
+    }
+    </script>
+    {% endif %}
+
+</head>
+
+<body>
+
+    <!-- =========================================================
+         Header
+    ========================================================== -->
+
+    <header class="site-header">
+
+        <a
+            class="brand"
+            href="/"
+            aria-label="LKProfessionals (Pvt) Ltd. Home"
+        >
+            <img
+                src="/assets/image/logo.png"
+                width="180"
+                alt="LKProfessionals (Pvt) Ltd."
+                fetchpriority="high"
+            >
+        </a>
+
+        <nav
+            class="header-actions"
+            aria-label="Primary navigation"
+        >
+            <a
+                class="home-link"
+                href="/"
+            >
+                Home
+            </a>
+
+            <a href="/insights/">
+                Insights
+            </a>
+
+            <a href="/case-studies/">
+                Case Studies
+            </a>
+
+            <a
+                class="contact-button"
+                href="{% url 'contact' %}"
+            >
+                Contact Us
+            </a>
+        </nav>
+
+    </header>
+        <!-- =================== FOOTER ======================================= -->
+
+    <div data-include="partials/footer.html"></div>
+
+    <div data-include="partials/site-widgets.html"></div>
+
+
+    <!-- =========================================================
+         Main Content
+    ========================================================== -->
+
+    <main>
+
+        <div class="content-container">
+
+            <!-- Breadcrumbs -->
+
+            <nav
+                class="breadcrumbs"
+                aria-label="Breadcrumb"
+            >
+                <a href="/">
+                    Home
+                </a>
+
+                {% if object %}
+                    <span aria-hidden="true">/</span>
+
+                    {% if kind %}
+                        <a href="/{{ kind }}/">
+                            {{ kind|title }}
+                        </a>
+
+                        <span aria-hidden="true">/</span>
+                    {% endif %}
+
+                    <span aria-current="page">
+                        {{ title }}
+                    </span>
+                {% else %}
+                    <span aria-hidden="true">/</span>
+
+                    <span aria-current="page">
+                        {{ title }}
+                    </span>
+                {% endif %}
+            </nav>
+
+
+            <!-- Page Title -->
+
+            <h1>
+                {{ title }}
+            </h1>
+
+
+            <!-- =================================================
+                 Detail Page
+            ================================================== -->
+
+            {% if object %}
+
+                {% if object.featured_image %}
+
+                    <div class="cover-wrapper">
+
+                        <img
+                            class="cover"
+                            src="{{ object.featured_image.url }}"
+                            alt="{{ title }}"
+                            loading="eager"
+                            decoding="async"
+                        >
+
+                    </div>
+
+                {% endif %}
+
+
+                {% if object.summary %}
+
+                    <p class="summary">
+                        {{ object.summary }}
+                    </p>
+
+                {% endif %}
+
+
+                <div class="body">
+                    {{ body }}
+                </div>
+
+
+                {% if object.price %}
+
+                    <div class="price">
+                        {{ object.price }}
+                        &nbsp;/&nbsp;
+                        {{ object.get_billing_cycle_display }}
+                    </div>
+
+                {% endif %}
+
+            {% else %}
+
+            <!-- =================================================
+                 Listing Page
+            ================================================== -->
+
+                <div class="entries">
+
+                    {% for item in records %}
+
+                        <article>
+
+                            {% if item.featured_image %}
+
+                                <img
+                                    src="{{ item.featured_image.url }}"
+                                    alt="{{ item }}"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+
+                            {% endif %}
+
+                            <div class="entry-content">
+
+                                <h2>
+
+                                    <a
+                                        href="/{{ kind }}/{{ item.slug }}/"
+                                    >
+                                        {{ item }}
+                                    </a>
+
+                                </h2>
+
+                                {% if item.summary %}
+
+                                    <p class="entry-summary">
+                                        {{ item.summary }}
+                                    </p>
+
+                                {% endif %}
+
+                            </div>
+
+                        </article>
+
+                    {% empty %}
+
+                        <p>
+                            No published content yet.
+                        </p>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         Footer
+    ========================================================== -->
+
+    <div data-include="partials/footer.html"></div>
+
+    <div data-include="partials/site-widgets.html"></div>
+
+</body>
+</html>
+```
