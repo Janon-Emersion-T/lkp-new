@@ -55,6 +55,10 @@ def portfolio_redirect(request, slug=None):
     return HttpResponsePermanentRedirect(path)
 
 
+def about_milestones_redirect(request):
+    return HttpResponsePermanentRedirect('/about/')
+
+
 
 def insights_index(request):
     records = (
@@ -319,4 +323,3 @@ def service_page(request, slug):
             "seo": seo,
         },
     )
-

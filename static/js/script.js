@@ -229,6 +229,7 @@ function initFunFactCounter({ durationMs = 2000, threshold = 0.2 } = {}) {
   let hasCounted = false;
 
   const animateCounter = (element, target) => {
+    const suffix = element.getAttribute("data-suffix") || "";
     const startTime = performance.now();
 
     const step = (currentTime) => {
@@ -237,10 +238,10 @@ function initFunFactCounter({ durationMs = 2000, threshold = 0.2 } = {}) {
 
       // Ease-out quadratic
       const eased = progress * (2 - progress);
-      element.textContent = String(Math.floor(eased * target));
+      element.textContent = `${Math.floor(eased * target)}${suffix}`;
 
       if (progress < 1) requestAnimationFrame(step);
-      else element.textContent = String(target);
+      else element.textContent = `${target}${suffix}`;
     };
 
     requestAnimationFrame(step);

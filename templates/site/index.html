@@ -92,7 +92,17 @@
                     "contentUrl": "https://lkprofessionals.com/assets/image/logo.png"
                 },
                 "description": "LKProfessionals is a technology and digital growth company providing web development, custom software, SEO, digital marketing, automation and IT solutions for businesses.",
-                "email": "info@lkprofessionals.com"
+                "email": "info@lkprofessionals.com",
+                "foundingDate": "{{ company.founded_year }}",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Jaffna",
+                    "addressCountry": "LK"
+                },
+                "areaServed": {
+                    "@type": "Place",
+                    "name": "{{ company.countries_served }} countries globally"
+                }
             },
 
             {
@@ -199,41 +209,6 @@
         ">
     </script>
 
-
-    <!-- ==========================================
-         COMPANY EXPERIENCE COUNTER
-         ========================================== -->
-
-    <script>
-        (() => {
-
-            const foundedDate = new Date(2013, 9, 12);
-            const today = new Date();
-
-            let years =
-                today.getFullYear() -
-                foundedDate.getFullYear();
-
-            const anniversaryPassed =
-                today.getMonth() > foundedDate.getMonth() ||
-                (
-                    today.getMonth() === foundedDate.getMonth() &&
-                    today.getDate() >= foundedDate.getDate()
-                );
-
-            if (!anniversaryPassed) {
-                years--;
-            }
-
-            const element =
-                document.getElementById("yearsInTechnology");
-
-            if (element) {
-                element.textContent = `${years}+`;
-            }
-
-        })();
-    </script>
 
 </body>
 

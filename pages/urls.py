@@ -27,6 +27,8 @@ urlpatterns = [
     path('', views.home, name='home'),
 
     # Clean public website URLs
+    path('about/milestones', public.about_milestones_redirect, name='about_milestones_redirect_no_slash'),
+    path('about/milestones/', public.about_milestones_redirect, name='about_milestones_redirect'),
     path('about/', views.page, {'page_path': 'about us.html'}, name='about'),
     path('careers/', views.page, {'page_path': 'careers.html'}, name='careers'),
     path('contact/', views.page, {'page_path': 'contact us.html'}, name='contact'),

@@ -250,11 +250,11 @@
           <!-- Item 1 -->
           <li class="flex items-center gap-6" data-animation="slideInUp">
             <div class="w-24 h-24 bg-glass rounded-xl grid place-items-center backdrop-blur-lg">
-              <img src="assets/image/love.svg" alt="Happy Clients">
+              <img src="assets/image/love.svg" alt="Digital Journey">
             </div>
             <div>
-              <h2 class="text-white text-5xl font-semibold fun-fact__number" data-count="520">0</h2>
-              <p class="text-gray-200 text-lg">Happy Clients</p>
+              <h2 class="text-white text-5xl font-semibold">{{ company.founded_year }}</h2>
+              <p class="text-gray-200 text-lg">Digital Journey Started</p>
             </div>
           </li>
 
@@ -264,7 +264,7 @@
               <img src="assets/image/policy.svg" alt="Projects Done">
             </div>
             <div>
-              <h2 class="text-white text-5xl font-semibold fun-fact__number" data-count="850">0</h2>
+              <h2 class="text-white text-5xl font-semibold fun-fact__number" data-count="200" data-suffix="+">0</h2>
               <p class="text-gray-200 text-lg">Projects Completed</p>
             </div>
           </li>
@@ -275,19 +275,19 @@
               <img src="assets/image/worker.svg" alt="Team Members">
             </div>
             <div>
-              <h2 class="text-white text-5xl font-semibold fun-fact__number" data-count="45">0</h2>
-              <p class="text-gray-200 text-lg">Expert Team Members</p>
+              <h2 class="text-white text-5xl font-semibold fun-fact__number" data-count="12" data-suffix="+">0</h2>
+              <p class="text-gray-200 text-lg">Countries Served</p>
             </div>
           </li>
 
           <!-- Item 4 -->
           <li class="flex items-center gap-6" data-animation="slideInUp" data-animation-delay="900ms">
             <div class="w-24 h-24 bg-glass rounded-xl grid place-items-center backdrop-blur-lg">
-              <img src="assets/image/badge.svg" alt="Awards Won">
+              <img src="assets/image/badge.svg" alt="Location">
             </div>
             <div>
-              <h2 class="text-white text-5xl font-semibold fun-fact__number" data-count="25">0</h2>
-              <p class="text-gray-200 text-lg">Awards Won</p>
+              <h2 class="text-white text-3xl font-semibold">Jaffna</h2>
+              <p class="text-gray-200 text-lg">Sri Lanka</p>
             </div>
           </li>
         </ul>
@@ -316,7 +316,7 @@
           </div>
 
           <p class="text-small-text max-w-2xl mx-auto">
-            We are proud to collaborate with industry leaders and innovative startups globally. Our commitment to excellence has built long-lasting partnerships with over 500+ companies.
+            From {{ company.location }}, LKProfessionals has delivered {{ company.projects_delivered }} projects and systems for clients across {{ company.countries_served }} countries.
           </p>
         </div>
         <!-- TITLE END -->

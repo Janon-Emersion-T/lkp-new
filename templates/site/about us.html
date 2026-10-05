@@ -11,18 +11,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Set the title of the web page -->
-    <title>About Us | LKProfessionals - Multipurpose Business Agency Html Tailwind CSS Template</title>
+    <title>About Us | LKProfessionals</title>
 
     <!-- Define the description and keywords for the web page -->
-    <meta name="description" content="Responsive Multipurpose Business Agency Html Tailwind CSS Template">
-    <meta name="keywords" content="Digital Agency, Business, Agency, Modern, Tailwind CSS, multipurpose, clean">
+    <meta name="description" content="Learn about LKProfessionals, a technology and digital growth company based in Jaffna, Sri Lanka, with a digital journey that started in 2013.">
+    <meta name="keywords" content="LKProfessionals, web development, software development, SEO, digital marketing, Jaffna, Sri Lanka">
 
     <!-- Define the author and version of the web page -->
-    <meta name="author" content="mktemplatewizard">
+    <meta name="author" content="LKProfessionals (Pvt) Ltd">
 
     <!-- Define the website and email address -->
-    <meta name="website" content="https://mkmonir.vercel.app">
-    <meta name="email" content="khanmonir1335@gmail.com">
+    <meta name="website" content="https://lkprofessionals.com">
+    <meta name="email" content="info@lkprofessionals.com">
 
     <!-- Define the version of the web page -->
     <meta name="version" content="1.0">
@@ -30,16 +30,16 @@
     <meta name="theme-color" content="#33b6ff">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="LKProfessionals - Multipurpose Business Agency Html Tailwind CSS Template">
-    <meta property="og:description" content="Responsive multipurpose business agency HTML template built with Tailwind CSS.">
+    <meta property="og:title" content="About LKProfessionals">
+    <meta property="og:description" content="LKProfessionals is a technology and digital growth company based in Jaffna, Sri Lanka.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://lkprofessionals.com/">
     <meta property="og:image" content="assets/images/logo.png">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="LKProfessionals - Multipurpose Business Agency Html Tailwind CSS Template">
-    <meta name="twitter:description" content="Responsive multipurpose business agency HTML template built with Tailwind CSS.">
+    <meta name="twitter:title" content="About LKProfessionals">
+    <meta name="twitter:description" content="LKProfessionals is a technology and digital growth company based in Jaffna, Sri Lanka.">
     <meta name="twitter:image" content="assets/images/logo.png">
     <!-- favicon -->
     <link href="assets/image/favicon.ico" rel="shortcut icon">
@@ -123,9 +123,9 @@
             <div class="flex flex-col gap-1 sm:gap-2 text-center justify-center items-center w-fit h-fit py-4 px-6 sm:py-6 sm:px-10 font-semibold bg-primary absolute -bottom-4 lg:bottom-8 left-1/2 -translate-x-1/2 rounded-xl text-gray-100 shadow-xl border-2 border-white">
               <p class="text-3xl sm:text-4xl font-semibold flex items-center gap-2 sm:gap-5">
                 <span><i class="text-4xl sm:text-6xl fa-solid fa-award"></i></span>
-                25+
+                {{ company.founded_year }}
               </p>
-              <p class="text-xs sm:text-lg leading-none">Years Of Experience</p>
+              <p class="text-xs sm:text-lg leading-none">Digital Journey Started</p>
             </div>
           </div>
           <!-- IMAGE END -->
@@ -158,32 +158,32 @@
               <li class="w-full flex items-center gap-3 sm:gap-4">
                 <img src="assets/image/certified.png" alt="Why Choose Us Icon" width="40" height="40" class="w-10 h-10 sm:w-[50px] sm:h-[50px] object-contain">
                 <div>
-                  <h4 class="text-base sm:text-lg font-semibold text-secondary">Certified Company</h4>
-                  <p class="text-xs sm:text-sm text-small-text">Best Provide Skills Services</p>
+                  <h4 class="text-base sm:text-lg font-semibold text-secondary">Based in {{ company.location }}</h4>
+                  <p class="text-xs sm:text-sm text-small-text">Practical technology delivery</p>
                 </div>
               </li>
 
               <li class="w-full flex items-center gap-3 sm:gap-4">
                 <img src="assets/image/team.png" alt="Why Choose Us Icon" width="40" height="40" class="w-10 h-10 sm:w-[50px] sm:h-[50px] object-contain">
                 <div>
-                  <h4 class="text-base sm:text-lg font-semibold text-secondary">Expert Team</h4>
-                  <p class="text-xs sm:text-sm text-small-text">100% Expert Team</p>
+                  <h4 class="text-base sm:text-lg font-semibold text-secondary">Digital Journey Since {{ company.founded_year }}</h4>
+                  <p class="text-xs sm:text-sm text-small-text">Long-term digital delivery</p>
                 </div>
               </li>
 
               <li class="w-full flex items-center gap-3 sm:gap-4">
                 <img src="assets/image/customer-review.png" alt="Why Choose Us Icon" width="40" height="40" class="w-10 h-10 sm:w-[50px] sm:h-[50px] object-contain">
                 <div>
-                  <h4 class="text-base sm:text-lg font-semibold text-secondary">100% Client Satisfaction</h4>
-                  <p class="text-xs sm:text-sm text-small-text">100% Expert Team</p>
+                  <h4 class="text-base sm:text-lg font-semibold text-secondary">{{ company.countries_served }} Countries Served</h4>
+                  <p class="text-xs sm:text-sm text-small-text">Global project experience</p>
                 </div>
               </li>
 
               <li class="w-full flex items-center gap-3 sm:gap-4">
                 <img src="assets/image/globe.png" alt="Why Choose Us Icon" width="40" height="40" class="w-10 h-10 sm:w-[50px] sm:h-[50px] object-contain">
                 <div>
-                  <h4 class="text-base sm:text-lg font-semibold text-secondary">500+ Projects</h4>
-                  <p class="text-xs sm:text-sm text-small-text">Worldwide Clients</p>
+                  <h4 class="text-base sm:text-lg font-semibold text-secondary">{{ company.projects_delivered }} Projects Delivered</h4>
+                  <p class="text-xs sm:text-sm text-small-text">Business systems and websites</p>
                 </div>
               </li>
             </ul>
@@ -256,11 +256,11 @@
           <!-- Item 1 -->
           <li class="flex items-center gap-6" data-animation="slideInUp">
             <div class="w-24 h-24 bg-glass rounded-xl grid place-items-center backdrop-blur-lg">
-              <img src="assets/image/love.svg" alt="Happy Clients">
+              <img src="assets/image/love.svg" alt="Digital Journey">
             </div>
             <div>
-              <h2 class="text-white text-5xl font-semibold fun-fact__number" data-count="520">520</h2>
-              <p class="text-gray-200 text-lg">Happy Clients</p>
+              <h2 class="text-white text-5xl font-semibold">{{ company.founded_year }}</h2>
+              <p class="text-gray-200 text-lg">Digital Journey Started</p>
             </div>
           </li>
 
@@ -270,7 +270,7 @@
               <img src="assets/image/policy.svg" alt="Projects Done">
             </div>
             <div>
-              <h2 class="text-white text-5xl font-semibold fun-fact__number" data-count="850">850</h2>
+              <h2 class="text-white text-5xl font-semibold fun-fact__number" data-count="200" data-suffix="+">200+</h2>
               <p class="text-gray-200 text-lg">Projects Completed</p>
             </div>
           </li>
@@ -281,19 +281,19 @@
               <img src="assets/image/worker.svg" alt="Team Members">
             </div>
             <div>
-              <h2 class="text-white text-5xl font-semibold fun-fact__number" data-count="45">45</h2>
-              <p class="text-gray-200 text-lg">Expert Team Members</p>
+              <h2 class="text-white text-5xl font-semibold fun-fact__number" data-count="12" data-suffix="+">12+</h2>
+              <p class="text-gray-200 text-lg">Countries Served</p>
             </div>
           </li>
 
           <!-- Item 4 -->
           <li class="flex items-center gap-6" data-animation="slideInUp" data-animation-delay="900ms">
             <div class="w-24 h-24 bg-glass rounded-xl grid place-items-center backdrop-blur-lg">
-              <img src="assets/image/badge.svg" alt="Awards Won">
+              <img src="assets/image/badge.svg" alt="Location">
             </div>
             <div>
-              <h2 class="text-white text-5xl font-semibold fun-fact__number" data-count="25">25</h2>
-              <p class="text-gray-200 text-lg">Awards Won</p>
+              <h2 class="text-white text-3xl font-semibold">Jaffna</h2>
+              <p class="text-gray-200 text-lg">Sri Lanka</p>
             </div>
           </li>
         </ul>
@@ -999,7 +999,7 @@
           </div>
 
           <p class="text-small-text max-w-2xl mx-auto">
-            We are proud to collaborate with industry leaders and innovative startups globally. Our commitment to excellence has built long-lasting partnerships with over 500+ companies.
+            From {{ company.location }}, LKProfessionals has delivered {{ company.projects_delivered }} projects and systems for clients across {{ company.countries_served }} countries.
           </p>
         </div>
         <!-- TITLE END -->

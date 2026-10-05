@@ -297,35 +297,7 @@
 
                 <div class="mt-12 pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-7">
 
-                    <div class="lkp-service-metric">
-                        <strong class="block text-white text-2xl lg:text-3xl font-bold">
-                            <span data-founded-year="2013">13</span>+
-                        </strong>
-                        <span class="text-slate-400 text-sm mt-1 block">
-                            Years in technology
-                        </span>
-                    </div>
-
-                    <div class="lkp-service-metric">
-                        <strong class="block text-white text-2xl lg:text-3xl font-bold">540+</strong>
-                        <span class="text-slate-400 text-sm mt-1 block">
-                            Projects delivered
-                        </span>
-                    </div>
-
-                    <div class="lkp-service-metric">
-                        <strong class="block text-white text-2xl lg:text-3xl font-bold">250+</strong>
-                        <span class="text-slate-400 text-sm mt-1 block">
-                            Clients served
-                        </span>
-                    </div>
-
-                    <div class="lkp-service-metric">
-                        <strong class="block text-white text-2xl lg:text-3xl font-bold">30+</strong>
-                        <span class="text-slate-400 text-sm mt-1 block">
-                            Industries served
-                        </span>
-                    </div>
+                    {% include 'site/services/_company-metrics.html' %}
 
                 </div>
 
@@ -1160,28 +1132,6 @@
 
 {% include 'partials/footer.html' %}
 
-
-<script>
-(function () {
-    const founded = new Date(2013, 9, 12);
-    const now = new Date();
-
-    let years = now.getFullYear() - founded.getFullYear();
-
-    const anniversaryPassed =
-        now.getMonth() > founded.getMonth() ||
-        (now.getMonth() === founded.getMonth() &&
-         now.getDate() >= founded.getDate());
-
-    if (!anniversaryPassed) {
-        years--;
-    }
-
-    document.querySelectorAll("[data-founded-year]").forEach(function (element) {
-        element.textContent = years;
-    });
-})();
-</script>
 
 <script src="/assets/js/swiper-bundle.min.js"></script>
 <script src="/assets/js/animate.js"></script>
