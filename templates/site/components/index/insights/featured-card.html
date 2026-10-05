@@ -1,0 +1,111 @@
+{% load static %}
+
+<article class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col h-full md:col-span-2 lg:col-span-2 transform hover:-translate-y-1 relative">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 h-full">
+
+        <!-- Image Side -->
+        <div class="relative h-64 md:h-auto overflow-hidden">
+
+            <a
+                href="{% url 'published_insight' slug=insight.slug %}"
+                class="absolute top-4 left-4 z-10"
+            >
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 bg-primary text-white text-xs font-bold rounded-full shadow-md">
+                    <i class="fa-solid fa-star text-lg"></i>
+                    Featured Insight
+                </span>
+            </a>
+
+            {% if insight.featured_image %}
+                <img
+                    src="{{ insight.featured_image.url }}"
+                    alt="{{ insight.title }}"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                >
+            {% else %}
+                <img
+                    src="{% static 'image/blog-5.jpg' %}"
+                    alt="{{ insight.title }}"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                >
+            {% endif %}
+
+        </div>
+
+
+        <!-- Content Side -->
+        <div class="p-8 flex flex-col justify-center">
+
+            <!-- Meta -->
+            <div class="flex items-center gap-3 text-gray-400 text-xs mb-4">
+
+                {% if insight.published_at %}
+                    <div class="flex items-center gap-1.5">
+                        <i class="fa-regular fa-calendar text-lg text-gray-400"></i>
+
+                        <span>
+                            {{ insight.published_at|date:"F d, Y" }}
+                        </span>
+                    </div>
+                {% endif %}
+
+            </div>
+
+
+            <!-- Title -->
+            <a
+                href="{% url 'published_insight' slug=insight.slug %}"
+                class="block mb-4"
+            >
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight group-hover:text-primary transition-colors duration-300 line-clamp-3">
+                    {{ insight.title }}
+                </h3>
+            </a>
+
+
+            <!-- Summary -->
+            {% if insight.summary %}
+                <p class="text-gray-500 mb-6 line-clamp-3">
+                    {{ insight.summary }}
+                </p>
+            {% endif %}
+
+
+            <!-- Footer -->
+            <div class="mt-auto pt-6 border-t border-gray-100 flex items-center justify-between">
+
+                <div class="flex items-center gap-3">
+
+                    <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
+                        <i class="fa-solid fa-building text-gray-400"></i>
+                    </div>
+
+                    <div>
+                        <p class="text-xs text-gray-400 uppercase font-semibold">
+                            Published By
+                        </p>
+
+                        <span class="text-base font-bold text-gray-900">
+                            LKProfessionals
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="{% url 'published_insight' slug=insight.slug %}"
+                    class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-gray-900 text-white text-sm font-semibold rounded-lg hover:bg-primary transition-colors duration-300"
+                >
+                    Read Full Story
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</article>

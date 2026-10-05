@@ -820,6 +820,33 @@ def page(request, page_path):
             is_featured=True
         ).order_by('department', 'full_name')[:4]
 
+        published_insights = (
+            Insight.objects
+            .filter(
+                status=Insight.Status.PUBLISHED,
+                published_at__isnull=False,
+                published_at__lte=timezone.now(),
+            )
+            .select_related('category')
+            .prefetch_related('tags')
+            .order_by('-published_at', '-created_at')
+        )
+
+        context['featured_insight'] = (
+            published_insights
+            .filter(is_featured=True)
+            .first()
+        )
+
+        if context['featured_insight']:
+            context['latest_insights'] = (
+                published_insights
+                .exclude(pk=context['featured_insight'].pk)
+                [:4]
+            )
+        else:
+            context['latest_insights'] = published_insights[:4]
+
     elif template_name == 'team.html':
         context['team_members'] = TeamMember.objects.filter(
             is_active=True
