@@ -55,6 +55,90 @@ def portfolio_redirect(request, slug=None):
     return HttpResponsePermanentRedirect(path)
 
 
+
+def insights_index(request):
+    records = (
+        m.Insight.objects
+        .filter(
+            status=m.Insight.Status.PUBLISHED,
+            published_at__isnull=False,
+            published_at__lte=timezone.now(),
+        )
+        .select_related('category')
+        .prefetch_related('tags')
+        .order_by('-published_at', '-created_at')
+    )
+
+    seo = m.SEOSetting.objects.filter(
+        path=request.path
+    ).first()
+
+    title = (
+        seo.title
+        if seo and seo.title
+        else 'Insights | LKProfessionals'
+    )
+
+    description = (
+        seo.description
+        if seo and seo.description
+        else 'Insights, perspectives, and practical knowledge from LKProfessionals.'
+    )
+
+    return render(
+        request,
+        'site/insights.html',
+        {
+            'insights': records,
+            'title': title,
+            'description': description,
+            'seo': seo,
+            'canonical_path': request.path,
+        },
+    )
+
+
+def insight_detail(request, slug):
+    insight = get_object_or_404(
+        m.Insight.objects
+        .filter(
+            status=m.Insight.Status.PUBLISHED,
+            published_at__isnull=False,
+            published_at__lte=timezone.now(),
+        )
+        .select_related('category')
+        .prefetch_related('tags'),
+        slug=slug,
+    )
+
+    seo = m.SEOSetting.objects.filter(
+        path=request.path
+    ).first()
+
+    title = (
+        seo.title
+        if seo and seo.title
+        else f'{insight.title} | LKProfessionals'
+    )
+
+    description = (
+        seo.description
+        if seo and seo.description
+        else insight.summary
+    )
+
+    return render(
+        request,
+        'site/insight single.html',
+        {
+            'insight': insight,
+            'title': title,
+            'description': description,
+            'seo': seo,
+            'canonical_path': request.path,
+        },
+    )
+
 def content(request, kind, slug=None):
     model = PUBLISHED_MODELS.get(kind)
     if not model:
